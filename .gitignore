@@ -1,0 +1,19 @@
+.vscode
+Build
+Target
+
+# UNIX derived artifacts
+*.a
+*.o
+*.out
+
+# Windows derived artifacts
+*.dll
+*.exe
+*.lib
+
+# Linux derived artifacts
+*.elf
+
+# Mac OS derived artifacts
+*.dylib

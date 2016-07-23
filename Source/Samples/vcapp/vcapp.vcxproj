@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<ItemGroup Label="ProjectConfigurations">
+	<ProjectConfiguration Include="Debug|Win32">
+		<Configuration>Debug</Configuration>
+		<Platform>Win32</Platform>
+		</ProjectConfiguration>
+	<ProjectConfiguration Include="Debug|Darwin64">
+		<Configuration>Debug</Configuration>
+		<Platform>Darwin64</Platform>
+	</ProjectConfiguration>
+	<ProjectConfiguration Include="Debug|Linux64">
+		<Configuration>Debug</Configuration>
+		<Platform>Linux64</Platform>
+	</ProjectConfiguration>
+</ItemGroup>
+
+<PropertyGroup Label="Globals">
+	<ProjectGuid>{721E9D4A-F4D8-4986-8464-73F62724A53B}</ProjectGuid>
+	<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir><!--Hack-->
+</PropertyGroup>
+
+<PropertyGroup Label="Configuration">
+	<ConfigurationType>Application</ConfigurationType>
+</PropertyGroup>
+
+<!--TODO: Compute the "SolutionDir", instead of relative paths.-->
+<Import Project="$(MSBuildStartupDirectory)\MSBuild\CppProject.props" />
+
+<ItemGroup>
+	<ClCompile Include="Main.cpp" />
+</ItemGroup>
+
+</Project>

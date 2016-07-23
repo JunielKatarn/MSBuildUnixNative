@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>
+			</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|Darwin64">
+			<Configuration>Debug</Configuration>
+			<Platform>Darwin64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|Linux64">
+			<Configuration>Debug</Configuration>
+			<Platform>Linux64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{86082908-3b33-429c-b694-8aed79d1e71f}</ProjectGuid>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Nested Include="."><Key>Value</Key></Nested>
+	</ItemGroup>
+
+	<!-- Include targets and properties for this project type. -->
+	<Import Project="MSBuild\CppProject.props" />
+
+	<Target Name="Build">
+		<Message Text="Configuration             [$(Configuration)]" />
+		<Message Text="CppCollection             [$(CppCollection)]" />
+		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
+		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
+		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
+		<Message Text="Nested                    [%(Nested.Key)]" />
+		<Message Text="OS                        [$(OS)]" />
+		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
+		<Message Text="ProcessorArchitecture     [$(ProcessorArchitecture)]" />
+		<Message Text="SolutionDir               [$(SolutionDir)]" />
+		<Message Text="TargetPlatformIdentifier  [$(TargetPlatformIdentifier)]" />
+		<Message Text="Uname                     [$(Uname)]" />
+		<Message Text="UserRootDir               [$(UserRootDir)]" />
+		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
+	</Target>
+
+</Project>

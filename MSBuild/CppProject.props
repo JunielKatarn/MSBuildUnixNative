@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This is the entry point for native (C/C++) project types.
+It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!--Currently pointless. Needs to be defined in each project.-->
+	<!--<PropertyGroup>
+		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
+	</PropertyGroup>-->
+
+	<Import Project="$(OS).props" />
+
+	<!-- Add Platform/Configuration defaults. -->
+	<Import Project="$(CppCollection)\Platforms\$(Platform).props" />
+	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
+
+</Project>
