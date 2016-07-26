@@ -30,6 +30,8 @@
 	<Target Name="Build">
 		<Message Text="Configuration             [$(Configuration)]" />
 		<Message Text="CppCollection             [$(CppCollection)]" />
+		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />
+		<Message Text="MSBuildToolsPath          [$(MSBuildToolsPath)]" />
 		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
 		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
 		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
@@ -37,6 +39,7 @@
 		<Message Text="OS                        [$(OS)]" />
 		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
 		<Message Text="ProcessorArchitecture     [$(ProcessorArchitecture)]" />
+		<Message Text="RootDir                   [$(RootDir)]" />
 		<Message Text="SolutionDir               [$(SolutionDir)]" />
 		<Message Text="TargetPlatformIdentifier  [$(TargetPlatformIdentifier)]" />
 		<Message Text="Uname                     [$(Uname)]" />

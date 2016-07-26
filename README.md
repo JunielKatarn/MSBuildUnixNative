@@ -16,3 +16,5 @@ Build (Generated)
 Target (Generated)
 	$(Platform)
 	$(Configuration)
+
+#Sample commit to test email notifications.

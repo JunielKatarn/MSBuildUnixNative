@@ -11,8 +11,6 @@ namespace Testeame
     {
         public static void Main()
         {
-            Console.WriteLine("Hello\n");
-
             DummyTask task = new DummyTask();
 
             task.ClangExecutable = "/usr/bin/clang";
@@ -20,8 +18,6 @@ namespace Testeame
             task.OutputFile = "/home/calope/Desktop/devmain/Source/Samples/application/a.out";
             
             task.Execute();
-
-            Console.WriteLine("Goodbye\n");
         }
     }
 }
