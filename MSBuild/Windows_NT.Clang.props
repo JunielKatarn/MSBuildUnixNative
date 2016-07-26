@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<!--Sets start up properties such as the targets path.-->
-	<!--TODO: ClangTargetsPath should be defined beforehand, ideally.-->
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
@@ -13,9 +11,8 @@
 		<Import Project="$(ClangTargetsPath)LLVM.Cpp.targets" />
 	</ImportGroup>
 
-	<!-- Defaults? -->
 	<PropertyGroup>
-		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
+		<Platform Condition="'$(Platform)' == ''">Win32</Platform>
 	</PropertyGroup>
 
 </Project>

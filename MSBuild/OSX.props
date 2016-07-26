@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<Import Project="LLVM\LLVM.Cpp.props" />
+	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
 	</PropertyGroup>
-	<Import Project="LLVM\LLVM.Cpp.targets" />
 
-	<!-- Defaults? -->
+	<ImportGroup Label="ClangTargets">
+		<Import Project="$(ClangTargetsPath)LLVM.Cpp.props" />
+		<Import Project="$(ClangTargetsPath)LLVM.Cpp.targets" />
+	</ImportGroup>
+
 	<PropertyGroup>
 		<Platform Condition="'$(Platform)' == ''">Darwin64</Platform>
 	</PropertyGroup>

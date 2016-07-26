@@ -20,6 +20,10 @@
 		<ProjectGuid>{86082908-3b33-429c-b694-8aed79d1e71f}</ProjectGuid>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Nested Include="."><Key>Value</Key></Nested>
 	</ItemGroup>
@@ -28,6 +32,7 @@
 	<Import Project="MSBuild\CppProject.props" />
 
 	<Target Name="Build">
+		<Message Text="ClangTargetsPath          [$(ClangTargetsPath)]" />
 		<Message Text="Configuration             [$(Configuration)]" />
 		<Message Text="CppCollection             [$(CppCollection)]" />
 		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />

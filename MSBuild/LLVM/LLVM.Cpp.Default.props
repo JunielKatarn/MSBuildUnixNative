@@ -3,6 +3,7 @@
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+		<ClangTargetsPath Condition="'$(ClangTargetsPath)' == ''">$(SolutionDir)MSBuild\LLVM\</ClangTargetsPath>
 	</PropertyGroup>
 
 </Project>
