@@ -1,6 +1,10 @@
 .vscode
 Build
 Target
+bin/
+obj/
+
+*.lock.json
 
 # UNIX derived artifacts
 *.a

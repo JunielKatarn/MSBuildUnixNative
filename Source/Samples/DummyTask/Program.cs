@@ -1,13 +1,38 @@
-﻿using System;
-using Microsoft.Build.Framework;
+﻿#region Using directives
 
-namespace ConsoleApplication
+using System;
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
+
+#endregion
+
+namespace DummyTaskNameSpace
 {
-    public class Program
+    public class DummyTask : Task
     {
-        public static void Main(string[] args)
+        #region Private members
+
+        private string dummyProperty;
+
+        #endregion
+
+        #region Public properties
+
+        public string DummyProperty
         {
-            Console.WriteLine("Hello World!");
+            get { return dummyProperty; }
+            set { dummyProperty = value; }
         }
+
+        #endregion
+
+        #region Public methods
+
+        public override bool Execute()
+        {
+            return true;
+        }
+
+        #endregion
     }
 }
