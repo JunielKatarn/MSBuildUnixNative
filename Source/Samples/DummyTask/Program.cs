@@ -1,38 +1,23 @@
-﻿#region Using directives
+#region Using directives
 
+using DummyTaskNameSpace;
 using System;
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 #endregion
 
-namespace DummyTaskNameSpace
+namespace Testeame
 {
-    public class DummyTask : Task
+    public class Program
     {
-        #region Private members
-
-        private string dummyProperty;
-
-        #endregion
-
-        #region Public properties
-
-        public string DummyProperty
+        public static void Main()
         {
-            get { return dummyProperty; }
-            set { dummyProperty = value; }
+            DummyTask task = new DummyTask();
+
+            task.ClangExecutable = "/usr/bin/clang";
+            task.SourceFile = "/home/calope/Desktop/devmain/Source/Samples/application/main.cpp";
+            task.OutputFile = "/home/calope/Desktop/devmain/Source/Samples/application/a.out";
+            
+            task.Execute();
         }
-
-        #endregion
-
-        #region Public methods
-
-        public override bool Execute()
-        {
-            return true;
-        }
-
-        #endregion
     }
 }
