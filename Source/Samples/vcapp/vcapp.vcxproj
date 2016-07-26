@@ -3,9 +3,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 <ItemGroup Label="ProjectConfigurations">
-	<ProjectConfiguration Include="Debug|Win32">
+	<ProjectConfiguration Include="Debug|x64">
 		<Configuration>Debug</Configuration>
-		<Platform>Win32</Platform>
+		<Platform>x64</Platform>
 		</ProjectConfiguration>
 	<ProjectConfiguration Include="Debug|Darwin64">
 		<Configuration>Debug</Configuration>
@@ -27,7 +27,7 @@
 </PropertyGroup>
 
 <!--TODO: Compute the "SolutionDir", instead of relative paths.-->
-<Import Project="$(MSBuildStartupDirectory)\MSBuild\CppProject.props" />
+<Import Project="$(SolutionDir)\MSBuild\CppProject.props" />
 
 <ItemGroup>
 	<ClCompile Include="Main.cpp" />
