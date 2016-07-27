@@ -39,6 +39,7 @@
 		<Message Text="CppCollection             [$(CppCollection)]" />
 		<Message Text="GeneratedFilesDir         [$(GeneratedFilesDir)]" />
 		<Message Text="IntDir                    [$(IntDir)]" />
+		<Message Text="LLVMInstallDir            [$(LLVMInstallDir)]" />
 		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />
 		<Message Text="MSBuildToolsPath          [$(MSBuildToolsPath)]" />
 		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
@@ -56,6 +57,7 @@
 		<Message Text="TargetPlatformIdentifier  [$(TargetPlatformIdentifier)]" />
 		<Message Text="Uname                     [$(Uname)]" />
 		<Message Text="UserRootDir               [$(UserRootDir)]" />
+		<Message Text="VCInstallDir              [$(VCInstallDir)]" />
 		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
 	</Target>
 
