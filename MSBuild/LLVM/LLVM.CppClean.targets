@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!--TODO: Define an actual task installation directory.-->
+	<!--<UsingTask TaskName="CleanTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />-->
+
+	<Target Name="Clean" />
+
+</Project>

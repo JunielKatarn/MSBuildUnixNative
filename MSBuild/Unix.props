@@ -6,16 +6,12 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
+		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
-		<Import Project="$(ClangTargetsPath)LLVM.Cpp.props" />
-		<Import Project="$(ClangTargetsPath)LLVM.Cpp.targets" />
+		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.props" />
+		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.targets" />
 	</ImportGroup>
-
-	<!-- Defaults? -->
-	<PropertyGroup>
-		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
-	</PropertyGroup>
 
 </Project>

@@ -4,15 +4,12 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
+		<Platform Condition="'$(Platform)' == ''">Darwin64</Platform>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
-		<Import Project="$(ClangTargetsPath)LLVM.Cpp.props" />
-		<Import Project="$(ClangTargetsPath)LLVM.Cpp.targets" />
+		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.props" />
+		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.targets" />
 	</ImportGroup>
-
-	<PropertyGroup>
-		<Platform Condition="'$(Platform)' == ''">Darwin64</Platform>
-	</PropertyGroup>
 
 </Project>

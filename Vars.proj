@@ -18,8 +18,10 @@
 
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{86082908-3b33-429c-b694-8aed79d1e71f}</ProjectGuid>
+		<ProjectName>Vars</ProjectName>
 	</PropertyGroup>
 
+	<!--TODO: Research - avoid setting this per project?-->
 	<PropertyGroup>
 		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
 	</PropertyGroup>
@@ -35,13 +37,17 @@
 		<Message Text="ClangTargetsPath          [$(ClangTargetsPath)]" />
 		<Message Text="Configuration             [$(Configuration)]" />
 		<Message Text="CppCollection             [$(CppCollection)]" />
+		<Message Text="IntDir                    [$(IntDir)]" />
 		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />
 		<Message Text="MSBuildToolsPath          [$(MSBuildToolsPath)]" />
 		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
+		<Message Text="MSBuildTempTasksPath      [$(MSBuildTempTasksPath)]" />
 		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
 		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
 		<Message Text="Nested                    [%(Nested.Key)]" />
 		<Message Text="OS                        [$(OS)]" />
+		<Message Text="OutDir                    [$(OutDir)]" />
+		<Message Text="Platform                  [$(Platform)]" />
 		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
 		<Message Text="ProcessorArchitecture     [$(ProcessorArchitecture)]" />
 		<Message Text="RootDir                   [$(RootDir)]" />

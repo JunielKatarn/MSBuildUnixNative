@@ -3,6 +3,6 @@
 
 	<Target Name="Build" />
 
-	<Target Name="Clean" />
+	<Import Project="$(ClangTargetsPath)\LLVM.CppClean.targets" />
 
 </Project>
