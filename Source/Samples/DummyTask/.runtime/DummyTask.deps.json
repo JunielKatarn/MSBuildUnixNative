@@ -1,0 +1,79 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.0",
+    "signature": "dda5ede7d0701235aba0843b7474992e372a9824"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.0": {
+      "DummyTask/1.0.0": {
+        "dependencies": {
+          "Microsoft.Build.Framework": "0.1.0-preview-00028-160627",
+          "Microsoft.Build.Utilities.Core": "0.1.0-preview-00028-160627"
+        },
+        "runtime": {
+          "DummyTask.dll": {}
+        }
+      },
+      "Microsoft.Build.Framework/0.1.0-preview-00028-160627": {
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Build.Framework.dll": {}
+        }
+      },
+      "Microsoft.Build.Utilities.Core/0.1.0-preview-00028-160627": {
+        "dependencies": {
+          "Microsoft.Build.Framework": "0.1.0-preview-00028-160627",
+          "System.Collections.NonGeneric": "4.0.1",
+          "System.Diagnostics.TraceSource": "4.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Build.Utilities.Core.dll": {}
+        }
+      },
+      "System.Collections.NonGeneric/4.0.1": {
+        "runtime": {
+          "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
+        }
+      },
+      "System.Diagnostics.TraceSource/4.0.0": {
+        "runtimeTargets": {
+          "runtimes/unix/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "rid": "unix",
+            "assetType": "runtime"
+          },
+          "runtimes/win/lib/netstandard1.3/System.Diagnostics.TraceSource.dll": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DummyTask/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Build.Framework/0.1.0-preview-00028-160627": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GIBuyASTgMvk4AgFaem81nHj0fEHqEsQRKisYntR0EPUFct7csb6OWAX37X0BTbk/DKLA4Wu3EmMBEW5nj308A=="
+    },
+    "Microsoft.Build.Utilities.Core/0.1.0-preview-00028-160627": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+l3exLiLUlAI8kn3+8UZeFFGlTaJC1fG7MXOx05e7Yo0JwcmdzBeN+cNWy7FQqgb4uQ2eQdd1hSk+IU96vBNZA=="
+    },
+    "System.Collections.NonGeneric/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hMxFT2RhhlffyCdKLDXjx8WEC5JfCvNozAZxCablAuFRH74SCV4AgzE8yJCh/73bFnEoZgJ9MJmkjQ0dJmnKqA=="
+    },
+    "System.Diagnostics.TraceSource/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6WVCczFZKXwpWpzd/iJkYnsmWTSFFiU24Xx/YdHXBcu+nFI/ehTgeqdJQFbtRPzbrO3KtRNjvkhtj4t5/WwWsA=="
+    }
+  }
+}

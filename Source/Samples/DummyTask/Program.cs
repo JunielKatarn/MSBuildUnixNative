@@ -14,8 +14,8 @@ namespace Testeame
             DummyTask task = new DummyTask();
 
             task.ClangExecutable = "/usr/bin/clang";
-            task.SourceFile = "/home/calope/Desktop/devmain/Source/Samples/application/main.cpp";
-            task.OutputFile = "/home/calope/Desktop/devmain/Source/Samples/application/a.out";
+            task.SourceFile = "../application/main.cpp";
+            task.OutputFile = "../application/a.out";
             
             task.Execute();
         }
