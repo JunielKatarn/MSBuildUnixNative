@@ -2,8 +2,18 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--TODO: Define an actual task installation directory.-->
-	<!--<UsingTask TaskName="CleanTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />-->
+	<UsingTask TaskName="LLVM.Build.Tasks.CleanTask" AssemblyFile="$(SolutionDir)Source\Tasks\bin\Debug\netcoreapp1.0\publish\Tasks.dll" />
 
-	<Target Name="Clean" />
+	<ItemDefinitionGroup>
+		<CleanTask>
+			<Directories Condition="'%(CleanTask.Directories)' == ''">Build;Target;bin;obj;</Directories>
+			<Extensions Condition="'%(CleanTask.Extensions)' == ''">o;a;so;elf;dylib;out;obj;lib;dll;exe;</Extensions>
+		</CleanTask>
+	</ItemDefinitionGroup>
+
+	<Target Name="Clean">
+		<!--TODO: Ensure artifact directories exist?-->
+		<CleanTask Directories="%(CleanTask.Directories)" Extensions="%(CleanTask.Extensions)" />
+	</Target>
 
 </Project>
