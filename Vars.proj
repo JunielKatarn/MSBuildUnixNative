@@ -66,11 +66,4 @@
 		<DummyTask SourceFile="Source/Samples/application/main.cpp" ClangExecutable="/usr/bin/clang" OutputFile="Source/Samples/application/a.out"/>
 	</Target>
 
-	<ItemDefinitionGroup>
-		<CleanTask>
-			<Directories></Directories>
-			<Extensions></Extensions>
-		</CleanTask>
-	</ItemDefinitionGroup>
-
 </Project>
