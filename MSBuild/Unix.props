@@ -6,8 +6,12 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/usr/lib/clang/3.4</LLVMInstallDir>
 		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
+	</PropertyGroup>
+
+	<PropertyGroup Label="LLVMProperties">
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/usr/lib/clang/3.4</LLVMInstallDir>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/usr/bin/clang</ClangExecutable>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">

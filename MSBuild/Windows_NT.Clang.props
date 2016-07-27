@@ -4,8 +4,58 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
 		<Platform Condition="'$(Platform)' == ''">Win32</Platform>
+	</PropertyGroup>
+
+	<PropertyGroup Label="LLVMProperties">
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang.exe</ClangExecutable>
+	</PropertyGroup>
+
+	<PropertyGroup Label="ClangDefaultOptions">
+		<Option_cc1>true</Option_cc1>
+		<Option_triple>x86_64-pc-windows-msvc18.0.0</Option_triple>
+		<Option_emit-obj>true</Option_emit-obj>
+		<Option_mrelax-all>true</Option_mrelax-all>
+		<Option_mincremental-linker-compatible>true</Option_mincremental-linker-compatible>
+		<Option_disable-free>true</Option_disable-free>
+		<!--<Option_main-file-name>lib.cpp</Option_main-file-name>-->
+		<Option_mrelocation-model>pic</Option_mrelocation-model>
+		<Option_pic-level>2</Option_pic-level>
+		<Option_mthread-model>posix</Option_mthread-model>
+		<Option_fmath-errno>true</Option_fmath-errno>
+		<Option_masm-verbose>true</Option_masm-verbose>
+		<Option_mconstructor-aliases>true</Option_mconstructor-aliases>
+		<Option_munwind-tables>true</Option_munwind-tables>
+		<Option_target-cpu>x86-64</Option_target-cpu>
+		<Option_momit-leaf-frame-pointer>true</Option_momit-leaf-frame-pointer>
+		<Option_v>true</Option_v>
+		<Option_dwarf-column-info>true</Option_dwarf-column-info>
+		<Option_debugger-tuning>gdb</Option_debugger-tuning>
+		<Option_coverage-file>C:\Users\jurocha\OneDrive - Microsoft\OneWeek\2016\llvmsamples\lib.cpp"</Option_coverage-file>
+		<Option_resource-dir>$(LLVMInstallDir)</Option_resource-dir>
+		<Option_internal-isystem>C:\Program Files\LLVM\bin\..\lib\clang\3.8.1\include</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\ucrt</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\shared</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\um</Option_internal-isystem>
+		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\winrt</Option_internal-isystem>
+		<Option_fdeprecated-macro>true</Option_fdeprecated-macro>
+		<Option_fdebug-compilation-dir>C:\Users\jurocha\OneDrive - Microsoft\OneWeek\2016\llvmsamples</Option_fdebug-compilation-dir>
+		<Option_ferror-limit>19</Option_ferror-limit>
+		<Option_fmessage-length>111</Option_fmessage-length>
+		<Option_fms-extensions>true</Option_fms-extensions>
+		<Option_fms-compatibility>true</Option_fms-compatibility>
+		<Option_fms-compatibility-version>18</Option_fms-compatibility-version>
+		<Option_std>c++11</Option_std>
+		<Option_fno-threadsafe-statics>true</Option_fno-threadsafe-statics>
+		<Option_fdelayed-template-parsing>true</Option_fdelayed-template-parsing>
+		<Option_fobjc-runtime>gcc</Option_fobjc-runtime>
+		<Option_fdiagnostics-show-option>true</Option_fdiagnostics-show-option>
+		<Option_fcolor-diagnostics>true</Option_fcolor-diagnostics>
+		<Option_o>lib.o</Option_o><!--Output file-->
+		<Option_x>c++ ".\lib.cpp"</Option_x>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
