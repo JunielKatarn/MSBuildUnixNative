@@ -8,7 +8,8 @@
   "dependencies": {
     //NOTE: Use these versions to avoid manifest mismatches.
     "Microsoft.Build.Framework":"0.1.0-preview-00024-160610",
-    "Microsoft.Build.Utilities.Core":"0.1.0-preview-00024-160610"
+    "Microsoft.Build.Utilities.Core":"0.1.0-preview-00024-160610",
+    "System.Diagnostics.Process": "4.1.0"
   },
   "frameworks": {
     "netcoreapp1.0": {
