@@ -3,6 +3,8 @@
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+		<IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+		<OutDir>$(SolutionDir)Target\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
 	</PropertyGroup>
 
 </Project>

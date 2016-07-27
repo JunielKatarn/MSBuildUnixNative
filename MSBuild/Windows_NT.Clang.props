@@ -4,8 +4,8 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/7.0.2</LLVMInstallDir>
-		<Platform Condition="'$(Platform)' == ''">Darwin64</Platform>
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
+		<Platform Condition="'$(Platform)' == ''">Win32</Platform>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">

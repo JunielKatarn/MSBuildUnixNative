@@ -6,10 +6,10 @@ It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
 -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<!--Currently pointless. Needs to be defined in each project.-->
-	<!--<PropertyGroup>
-		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
-	</PropertyGroup>-->
+	<PropertyGroup>
+		<!--Currently pointless. Needs to be defined in each project.-->
+		<!--<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>-->
+	</PropertyGroup>
 
 	<Import Project="$(OS).props" />
 

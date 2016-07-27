@@ -57,11 +57,21 @@ namespace DummyTaskNameSpace
             
             int errorCode = RunProgram(ClangExecutable, arguments, out stdout, out stderr);
 
-            Console.WriteLine("stdout: " + stdout + "\n");
+            if(String.Empty != stdout)
+            {
+                Console.WriteLine("stdout: " + stdout + "\n");
+            }
+            if(String.Empty != stderr)
+            {
+                Console.WriteLine("stderr: " + stderr + "\n");
+            }
+            if(0 != errorCode)
+            {
+                Console.WriteLine("Error code: " + errorCode);
+            }
 
             if(0 != errorCode)
             {
-                Console.WriteLine("stderr: " + stderr + "\n");
                 return false;
             }
 
