@@ -58,4 +58,10 @@
 		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
 	</Target>
 
+	<!-- DummyTask" -->
+	<UsingTask TaskName="DummyTaskNameSpace.DummyTask" AssemblyFile="Target\DotNet\Debug\DummyTask\DummyTask.dll"/>
+	
+	<Target Name="Dummy">
+		<DummyTask SourceFile="Source/Samples/application/main.cpp" ClangExecutable="/usr/bin/clang" OutputFile="Source/Samples/application/a.out"/>
+	</Target>
 </Project>
