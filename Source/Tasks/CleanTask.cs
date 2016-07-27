@@ -130,8 +130,8 @@ namespace LLVM.Build.Tasks
             {
                 if (!Directory.Exists(directory))
                 {
-                    Log.LogErrorFromException(new DirectoryNotFoundException("Directory does not exist: " + directory));
-                    return false;
+                    Log.LogWarning("Directory does not exist: " + directory);
+                    continue;
                 }
 
                 if (usingDefaultExtension)
