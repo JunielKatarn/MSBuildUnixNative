@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!--Manually define MSVC variables, in case they are missing.-->
+	<!--
+		TODO: Research error below.
+		C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.Cpp.Platform.props(21,5)
+		MSB4184: The expression "Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\vs\Servicing\11.0\professional@Version" cannot be evaluated.
+	-->
+
+	<PropertyGroup>
+		<VCTargetsPath Condition="'$(VCTargetsPath)'==''">C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140</VCTargetsPath>
+	</PropertyGroup>
+
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<PropertyGroup Label="Configuration">
+		<!--Set before VCTargets-->
+		<IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+		<OutDir>$(SolutionDir)Target\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+		<PlatformToolset>v140</PlatformToolset><!--TODO: Use v140_clang_3_7 for compatibility.-->
+		<CppCollection>MSVC</CppCollection><!--TODO: Pointless?-->
+
+		<!-- These are set by default, but kept here for reference for other OSes. -->
+		<TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+		<TargetPlatformVersion>8.1</TargetPlatformVersion>
+	</PropertyGroup>
+
+	<ImportGroup Label="VCTargets">
+		<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+		<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+
+	<!--Override these targets to avoid warnings.-->
+	<Target Name="_ConvertPdbFiles" />
+	<Target Name="_CollectPdbFiles" />
+	<Target Name="_CollectMdbFiles" />
+	<Target Name="_CopyMdbFiles" />
+
+</Project>

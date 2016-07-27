@@ -21,3 +21,4 @@ obj/
 
 # Mac OS derived artifacts
 *.dylib
+*.pdb
