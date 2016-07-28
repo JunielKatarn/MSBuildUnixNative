@@ -6,32 +6,7 @@
 
 	<Target Name="Build">
 		<Message Text="Building project..." />
+		<CompileTask ClangExecutable="$(ClangExecutable)" InputFiles="Source/Samples/application/main.cpp" Option_o="Source/Samples/application/a.out" />
 	</Target>
 
-	<CompileTask ClangExecutable="$(ClangExecutable)" InputFiles="Source/Samples/application/main.cpp" Option_o="Source/Samples/application/a.out" />
-			<!-- 	Option_analyze="false"
-					Option_c="true"
-					Option_dD="false"
-					Option_dM="false"
-					Option_E="false"
-					Option_F="false"
-					Option_gcodeview="false"
-					Option_gmodules="false"
-					Option_g="false"
-					Option_help="false"
-					Option_H="false"
-					Option_include_pch="test.pch"
-					Option_include="test.h"
-					Option_I="searchPathDir/" 
-					Option_MF="depFileOutput.test"
-					Option_MG="false"
-					Option_MP="false"
-					Option_M="false"
-					Option_pg="false"
-					Option_P="false"
-					Option_S="false"
-					Option_v="false"
-					Option_w="false"
-					Option_x="cpp"
-			-->
 </Project>
