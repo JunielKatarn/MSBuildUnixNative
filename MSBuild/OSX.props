@@ -12,6 +12,47 @@
 		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/usr/bin/clang</ClangExecutable>
 	</PropertyGroup>
 
+	<PropertyGroup Label="ClangDefaultOptions">
+		<Option_cc1>true</Option_cc1>
+		<Option_triple>x86_64-apple-macosx10.11.0</Option_triple>
+		<Option_Wdeprecated-objc-isa-usage>true</Option_Wdeprecated-objc-isa-usage>
+		<Option_Werror>deprecated-objc-isa-usage</Option_Werror>
+		<Option_emit-obj>true</Option_emit-obj>
+		<Option_mrelax-all>true</Option_mrelax-all>
+		<Option_disable-free>true</Option_disable-free>
+		<Option_disable-llvm-verifier></Option_disable-llvm-verifier>
+		<!--<Option_main-file-name>lib.cpp</Option_main-file-name>-->
+		<Option_mrelocation-model>pic</Option_mrelocation-model>
+		<Option_pic-level>2</Option_pic-level>
+		<Option_mthread-model>posix</Option_mthread-model>
+		<Option_mdisable-fp-elim>true</Option_mdisable-fp-elim>
+		<Option_masm-verbose>true</Option_masm-verbose>
+		<Option_munwind-tables>true</Option_munwind-tables>
+		<Option_target-cpu>core2</Option_target-cpu>
+		<Option_target-linker-version>253.9</Option_target-linker-version>
+		<Option_v>true</Option_v>
+		<Option_dwarf-column-info>true</Option_dwarf-column-info>
+		<Option_coverage-file><!--TODO: Absolute path to lib.cpp--></Option_coverage-file>
+		<Option_resource-dir>$(LLVMInstallDir)</Option_resource-dir>
+		<Option_stdlib>libc++</Option_stdlib>
+		<Option_fdeprecated-macro>true</Option_fdeprecated-macro>
+		<Option_fdebug-compilation-dir><!--TODO: Absolute path to dir containing lib.cpp--></Option_fdebug-compilation-dir>
+		<Option_ferror-limit>19</Option_ferror-limit>
+		<Option_fmessage-length>106</Option_fmessage-length>
+		<Option_stack-protector>1</Option_stack-protector>
+		<Option_mstackrealign>true</Option_mstackrealign>
+		<Option_fblocks>true</Option_fblocks>
+		<Option_fobjc-runtime>macosx-10.11.0</Option_fobjc-runtime>
+		<Option_fencode-extended-block-signature>true</Option_fencode-extended-block-signature>
+		<Option_fcxx-exceptions>true</Option_fcxx-exceptions>
+		<Option_fexceptions>true</Option_fexceptions>
+		<Option_fmax-type-align>16</Option_fmax-type-align>
+		<Option_fdiagnostics-show-option>true</Option_fdiagnostics-show-option>
+		<Option_fcolor-diagnostics>true</Option_fcolor-diagnostics>
+		<Option_o>lib.o</Option_o>
+		<Option_x>c++ lib.cpp</Option_x>
+	</PropertyGroup>
+
 	<ImportGroup Label="ClangTargets">
 		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.props" />
 		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.targets" />

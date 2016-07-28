@@ -32,7 +32,7 @@
 		<Option_v>true</Option_v>
 		<Option_dwarf-column-info>true</Option_dwarf-column-info>
 		<Option_debugger-tuning>gdb</Option_debugger-tuning>
-		<Option_coverage-file>C:\Users\jurocha\OneDrive - Microsoft\OneWeek\2016\llvmsamples\lib.cpp"</Option_coverage-file>
+		<Option_coverage-file><!--TODO: Absolute path to lib.cpp--></Option_coverage-file>
 		<Option_resource-dir>$(LLVMInstallDir)</Option_resource-dir>
 		<Option_internal-isystem>C:\Program Files\LLVM\bin\..\lib\clang\3.8.1\include</Option_internal-isystem>
 		<Option_internal-isystem>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE</Option_internal-isystem>
@@ -42,7 +42,7 @@
 		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\um</Option_internal-isystem>
 		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\winrt</Option_internal-isystem>
 		<Option_fdeprecated-macro>true</Option_fdeprecated-macro>
-		<Option_fdebug-compilation-dir>C:\Users\jurocha\OneDrive - Microsoft\OneWeek\2016\llvmsamples</Option_fdebug-compilation-dir>
+		<Option_fdebug-compilation-dir><!--TODO: Absolute path to dir containing lib.cpp--></Option_fdebug-compilation-dir>
 		<Option_ferror-limit>19</Option_ferror-limit>
 		<Option_fmessage-length>111</Option_fmessage-length>
 		<Option_fms-extensions>true</Option_fms-extensions>
