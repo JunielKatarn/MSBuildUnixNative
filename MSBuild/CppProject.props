@@ -8,13 +8,13 @@ It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
 
 	<PropertyGroup>
 		<!--Currently pointless. Needs to be defined in each project.-->
-		<!--<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>-->
+		<!--<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)/</SolutionDir>-->
 	</PropertyGroup>
 
 	<Import Project="$(OS).props" />
 
 	<!-- Add Platform/Configuration defaults. -->
-	<Import Project="$(CppCollection)\Platforms\$(Platform).props" />
-	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
+	<Import Project="$(CppCollection)/Platforms/$(Platform).props" />
+	<Import Project="$(CppCollection)/Configurations/$(Configuration).props" />
 
 </Project>

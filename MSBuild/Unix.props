@@ -3,7 +3,7 @@
 
 	<!--Sets start up properties such as the targets path.-->
 	<!--TODO: ClangTargetsPath should be defined beforehand, ideally.-->
-	<Import Project="LLVM\LLVM.Cpp.Default.props" />
+	<Import Project="LLVM/LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
 		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
@@ -15,8 +15,8 @@
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
-		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.props" />
-		<Import Project="$(ClangTargetsPath)\LLVM.Cpp.targets" />
+		<Import Project="$(ClangTargetsPath)/LLVM.Cpp.props" />
+		<Import Project="$(ClangTargetsPath)/LLVM.Cpp.targets" />
 	</ImportGroup>
 
 </Project>

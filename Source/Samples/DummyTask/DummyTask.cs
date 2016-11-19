@@ -12,172 +12,172 @@ using System.Threading;
 
 namespace DummyTaskNameSpace
 {
-    public class DummyTask : Task
-    {
-        #region Private members
+	public class DummyTask : Task
+	{
+		#region Private members
 
-        private string _clangExecutable = "";
-        private string _sourceFile = "";
-        private string _outputFile = "";
+		private string _clangExecutable = "";
+		private string _sourceFile = "";
+		private string _outputFile = "";
 
-        #endregion
+		#endregion
 
-        #region Public properties
+		#region Public properties
 
-        public string ClangExecutable
-        {
-            get { return _clangExecutable; }
-            set { _clangExecutable = value; }
-        }
+		public string ClangExecutable
+		{
+			get { return _clangExecutable; }
+			set { _clangExecutable = value; }
+		}
 
-        public string SourceFile
-        {
-            get { return _sourceFile; }
-            set { _sourceFile = value; }
-        }
+		public string SourceFile
+		{
+			get { return _sourceFile; }
+			set { _sourceFile = value; }
+		}
 
-        public string OutputFile
-        {
-            get { return _outputFile; }
-            set { _outputFile = value; }
-        }
+		public string OutputFile
+		{
+			get { return _outputFile; }
+			set { _outputFile = value; }
+		}
 
-        #endregion
+		#endregion
 
-        #region Public methods
+		#region Public methods
 
-        public override bool Execute()
-        {
-            VerifyPaths();
+		public override bool Execute()
+		{
+			VerifyPaths();
 
-            string arguments = SourceFile + " -o " + OutputFile;
-            
-            string stdout = String.Empty;
-            string stderr = String.Empty;
-            
-            int errorCode = RunProgram(ClangExecutable, arguments, out stdout, out stderr);
+			string arguments = SourceFile + " -o " + OutputFile;
+			
+			string stdout = String.Empty;
+			string stderr = String.Empty;
+			
+			int errorCode = RunProgram(ClangExecutable, arguments, out stdout, out stderr);
 
-            if(String.Empty != stdout)
-            {
-                Console.WriteLine("stdout: " + stdout + "\n");
-            }
-            if(String.Empty != stderr)
-            {
-                Console.WriteLine("stderr: " + stderr + "\n");
-            }
-            if(0 != errorCode)
-            {
-                Console.WriteLine("Error code: " + errorCode);
-            }
+			if(String.Empty != stdout)
+			{
+				Console.WriteLine("stdout: " + stdout + "\n");
+			}
+			if(String.Empty != stderr)
+			{
+				Console.WriteLine("stderr: " + stderr + "\n");
+			}
+			if(0 != errorCode)
+			{
+				Console.WriteLine("Error code: " + errorCode);
+			}
 
-            if(0 != errorCode)
-            {
-                return false;
-            }
+			if(0 != errorCode)
+			{
+				return false;
+			}
 
-            return true;
-        }
+			return true;
+		}
 
-        #endregion
+		#endregion
 
-        #region Private methods
+		#region Private methods
 
-        private void VerifyPaths()
-        {
-            string errorMessage = String.Empty;
-            
-            if(String.Empty == SourceFile)
-            {
-                errorMessage = "Source file cannot be empty.";
-            }
-            else if(String.Empty == ClangExecutable)
-            {
-                errorMessage = "Clang path cannot be empty.";
-            }
-            else if(!File.Exists(SourceFile))
-            {
-                errorMessage = "Source file does not exist.";
-            }
-            else if(!File.Exists(ClangExecutable))
-            {
-                errorMessage = "Clang path does not exist.";
-            }
+		private void VerifyPaths()
+		{
+			string errorMessage = String.Empty;
+			
+			if(String.Empty == SourceFile)
+			{
+				errorMessage = "Source file cannot be empty.";
+			}
+			else if(String.Empty == ClangExecutable)
+			{
+				errorMessage = "Clang path cannot be empty.";
+			}
+			else if(!File.Exists(SourceFile))
+			{
+				errorMessage = "Source file does not exist.";
+			}
+			else if(!File.Exists(ClangExecutable))
+			{
+				errorMessage = "Clang path does not exist.";
+			}
 
-            if(String.Empty != errorMessage)
-            {
-                throw new Exception(errorMessage);
-            }
-        }         
+			if(String.Empty != errorMessage)
+			{
+				throw new Exception(errorMessage);
+			}
+		}		 
 
-        private int RunProgram(string pathToExecutable, string arguments, out string standardOutput, out string standardError)
-        {
-            standardOutput = String.Empty;
-            standardError  = String.Empty;
+		private int RunProgram(string pathToExecutable, string arguments, out string standardOutput, out string standardError)
+		{
+			standardOutput = String.Empty;
+			standardError  = String.Empty;
 
-            StringBuilder sbOutput = new StringBuilder();
-            StringBuilder sbError  = new StringBuilder();
+			StringBuilder sbOutput = new StringBuilder();
+			StringBuilder sbError  = new StringBuilder();
 
-            int exitCode = -1;
+			int exitCode = -1;
 
-            Process process = null;
+			Process process = null;
 
-            try
-            {
-                process = new Process();
+			try
+			{
+				process = new Process();
 
-                process.StartInfo.FileName = pathToExecutable;
-                process.StartInfo.Arguments = arguments;
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardError = true;
+				process.StartInfo.FileName = pathToExecutable;
+				process.StartInfo.Arguments = arguments;
+				process.StartInfo.UseShellExecute = false;
+				process.StartInfo.RedirectStandardOutput = true;
+				process.StartInfo.RedirectStandardError = true;
 
-                process.OutputDataReceived += new DataReceivedEventHandler((sender, e) => {
-                    if(!String.IsNullOrEmpty(e.Data))
-                    {
-                        sbOutput.Append("\n" + e.Data);
-                    }
-                });
+				process.OutputDataReceived += new DataReceivedEventHandler((sender, e) => {
+					if(!String.IsNullOrEmpty(e.Data))
+					{
+						sbOutput.Append("\n" + e.Data);
+					}
+				});
 
-                process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) => {
-                    if(!String.IsNullOrEmpty(e.Data))
-                    {
-                        sbOutput.Append("\n" + e.Data);
-                    }
-                });
+				process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) => {
+					if(!String.IsNullOrEmpty(e.Data))
+					{
+						sbOutput.Append("\n" + e.Data);
+					}
+				});
 
-                Console.WriteLine("Command to execute: " + process.StartInfo.FileName + " " + process.StartInfo.Arguments);
+				Console.WriteLine("Command to execute: " + process.StartInfo.FileName + " " + process.StartInfo.Arguments);
 
-                process.Start();
+				process.Start();
 
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
+				process.BeginOutputReadLine();
+				process.BeginErrorReadLine();
 
-                while(!process.HasExited)
-                {
-                    process.WaitForExit(1);
-                    Thread.Sleep(TimeSpan.FromSeconds(1));
-                }
+				while(!process.HasExited)
+				{
+					process.WaitForExit(1);
+					Thread.Sleep(TimeSpan.FromSeconds(1));
+				}
 
-                exitCode = process.ExitCode;
+				exitCode = process.ExitCode;
 
-                standardOutput = sbOutput.ToString();
-                standardError  = sbError.ToString();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            finally
-            {
-                if(process != null)
-                {
-                    process.Dispose();
-                }
-            }
+				standardOutput = sbOutput.ToString();
+				standardError  = sbError.ToString();
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.ToString());
+			}
+			finally
+			{
+				if(process != null)
+				{
+					process.Dispose();
+				}
+			}
 
-            return exitCode;
-        }
+			return exitCode;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }

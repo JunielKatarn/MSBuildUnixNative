@@ -3,10 +3,10 @@
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-		<ClangTargetsPath Condition="'$(ClangTargetsPath)' == ''">$(SolutionDir)MSBuild\LLVM</ClangTargetsPath>
+		<ClangTargetsPath Condition="'$(ClangTargetsPath)' == ''">$(SolutionDir)MSBuild/LLVM</ClangTargetsPath>
 
 		<!--TODO: Replace with an actual installation/deployment path.-->
-		<MSBuildTempTasksPath>$(SolutionDir)Target\DotNet\Debug\Tasks\</MSBuildTempTasksPath>
+		<MSBuildTempTasksPath>$(SolutionDir)Target/DotNet/Debug/Tasks/</MSBuildTempTasksPath>
 	</PropertyGroup>
 
 </Project>

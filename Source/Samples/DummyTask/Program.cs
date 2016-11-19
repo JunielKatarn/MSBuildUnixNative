@@ -7,17 +7,17 @@ using System;
 
 namespace Testeame
 {
-    public class Program
-    {
-        public static void Main()
-        {
-            DummyTask task = new DummyTask();
+	public class Program
+	{
+		public static void Main()
+		{
+			DummyTask task = new DummyTask();
 
-            task.ClangExecutable = "/usr/bin/clang";
-            task.SourceFile = "../application/main.cpp";
-            task.OutputFile = "../application/a.out";
-            
-            task.Execute();
-        }
-    }
+			task.ClangExecutable = "/usr/bin/clang";
+			task.SourceFile = "../application/main.cpp";
+			task.OutputFile = "../application/a.out";
+			
+			task.Execute();
+		}
+	}
 }
