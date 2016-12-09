@@ -6,7 +6,7 @@
 
 	<Target Name="Build">
 		<Message Text="Building project..." />
-		<CompileTask ClangExecutable="$(ClangExecutable)" InputFiles="Source/Samples/application/main.cpp" Option_o="Source/Samples/application/a.out" />
+		<CompileTask ClangExecutable="$(ClangExecutable)" InputFiles="$(MSBuildStartupDirectory)\Source\Samples\application\main.cpp" Option_o="$(MSBuildStartupDirectory)\Source\Samples\application\a.out" />
 	</Target>
 
 </Project>
