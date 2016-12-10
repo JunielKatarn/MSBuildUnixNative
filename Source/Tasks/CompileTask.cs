@@ -6,6 +6,8 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 
+using System.IO;
+
 #endregion
 
 namespace LLVM.Build.Tasks
@@ -131,6 +133,14 @@ namespace LLVM.Build.Tasks
 						Log.LogError(e.Data);
 					}
 				});
+
+				//TODO: Create ProcessOptions method.
+				// If the path to _option_o does not exist, clang won't create it by itself.
+				string dir = Path.GetDirectoryName(_option_o);
+				if (! string.IsNullOrEmpty(dir))
+				{
+					Directory.CreateDirectory(dir);
+				}
 
 				Console.WriteLine("Command to execute: " + process.StartInfo.FileName + " " + process.StartInfo.Arguments);
 

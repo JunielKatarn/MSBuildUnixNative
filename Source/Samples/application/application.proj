@@ -30,7 +30,7 @@
 <Import Project="$(SolutionDir)MSBuild\CppProject.props" />
 
 <ItemGroup>
-	<ClCompile Include="main.cpp" />
+	<ClangCompile Include="main.cpp" />
 </ItemGroup>
 
 </Project>
