@@ -5,6 +5,11 @@
     <RootNamespace>LLVM.Build.Tasks</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
+    <AssemblyName>Tasks</AssemblyName>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.548" />
   </ItemGroup>

@@ -1,4 +1,8 @@
-[Repository Layout]
+[Building]
+`MSBuild`
+(The above command implicitly grabs the only existing .sln file. It expands to: `MSBuild.exe .\MSBuildCppUnix.sln /t:Build`) 
+
+[Repository Layout (Outdated; UPDATE)]
 
 MSBuild
 	LLVM
