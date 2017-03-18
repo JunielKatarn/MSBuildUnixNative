@@ -6,11 +6,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!--$(SolutionDir) doesn't seem to work here :(-->
-    <BaseIntermediateOutputPath>..\..\Build\$(Configuration)\$(AssemblyName)\</BaseIntermediateOutputPath>
+    <!--$(SolutionDir) doesn't seem to work for BaseIntermediateOutputPath :(-->
+    <BaseIntermediateOutputPath>..\..\Build\$(AssemblyName)\</BaseIntermediateOutputPath>
     <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-    <OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
-    <AssemblyName>Tasks</AssemblyName>
+    <OutputPath>$(SolutionDir)Target\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
