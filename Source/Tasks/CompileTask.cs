@@ -89,7 +89,7 @@ namespace LLVM.Build.Tasks
 
 		#region Driver options
 
-		[Required]
+		//[Required]
 		public Stage Stage { get; set; }
 
 		#endregion // Driver options
