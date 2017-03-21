@@ -1,3 +1,0 @@
-See VSTS:1724
-
-Refactor repository strcture: Move .TARGETS and .PROPS into this folder.
