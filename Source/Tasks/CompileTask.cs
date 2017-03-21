@@ -12,6 +12,13 @@ using System.IO;
 
 namespace LLVM.Build.Tasks
 {
+	public enum Stage
+	{
+		Preprocess,
+		Compile,
+		Assemble
+	}
+
 	/// <summary>
 	/// This is an MSBuild Task that allows executing the current operating
 	/// system's version of clang for the compilation process.
@@ -23,6 +30,7 @@ namespace LLVM.Build.Tasks
 		private string _clangExecutable = String.Empty;
 		private string _inputFiles = String.Empty; 
 		private string _option_o = String.Empty;
+		private string _outputFile = string.Empty;// Output file name without extension.
 		
 		#endregion
 
@@ -61,7 +69,30 @@ namespace LLVM.Build.Tasks
 			set { _option_o = value; }
 		}
 
+		public string OutputFile
+		{
+			get
+			{
+				if (!string.IsNullOrEmpty(_outputFile))
+					return _outputFile;
+
+				return "a.out";
+			}
+
+			set
+			{
+				_outputFile = value;
+			}
+		}
+
 		#endregion
+
+		#region Driver options
+
+		[Required]
+		public Stage Stage { get; set; }
+
+		#endregion // Driver options
 
 		#endregion
 
@@ -133,6 +164,8 @@ namespace LLVM.Build.Tasks
 						Log.LogError(e.Data);
 					}
 				});
+
+				//TODO: Define actual file name.
 
 				//TODO: Create ProcessOptions method.
 				// If the path to _option_o does not exist, clang won't create it by itself.

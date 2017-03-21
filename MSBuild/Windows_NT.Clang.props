@@ -12,6 +12,54 @@
 		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang.exe</ClangExecutable>
 	</PropertyGroup>
 
+	<PropertyGroup Label="DriverOptions">
+		<!-- Preprocess, Compile, Assemble:c. Don't link. -->
+		<Stages>Assemble</Stages>
+
+		<!--(integrated-as) Relax all machine instructions.-->
+		<RelaxAll>true</RelaxAll><!---mrelax-all-->
+
+		<IncrementalLinkerCompatible>true</IncrementalLinkerCompatible><!---mincremental-linker-compatible-->
+
+		<!--Thread model.-->
+		<ThreadModel>posix</ThreadModel><!---mthread-model posix-->
+
+		<!--Require math functions to indicate errors by setting errno-->
+		<MathErrNo>true</MathErrNo><!---fmath-errno-->
+
+		<!--Omit frame pointer setup for leaf functions.-->
+		<OmitLeafFramePointer>true</OmitLeafFramePointer><!---momit-leaf-frame-pointer-->
+
+		<!--Accept some non-standard constructs supported by the Microsoft compiler.-->
+		<MsExtensions>true</MsExtensions><!---fms-extensions-->
+		<!--Enable Microsoft compatibility mode-->
+		<MsCompatibility>true</MsCompatibility><!---fms-compatibility-->
+		<!--Version of the Microsoft C/C++ compiler to report in _MSC_VER (0 = don't define it (default))-->
+		<MsCompatibilityVersion></MsCompatibilityVersion><!---fms-compatibility-version="19.0.24210"-->
+
+		<!--Language standard to compile for-->
+		<Standard>c++14</Standard><!---std=c++14-->
+		<!--Parse templated function definitions at the end of the translation unit-->
+		<DelayedTemplateParsing>true</DelayedTemplateParsing><!---fdelayed-template-parsing-->
+		<!--Specify the target Objective-C runtime kind and version-->
+		<ObjectiveCRuntime>gcc</ObjectiveCRuntime><!---fobjc-runtime=gcc-->
+		<!--Enable C++ exceptions-->
+		<EnableCppExtensions>true</EnableCppExtensions><!---fcxx-exceptions-->
+		<!--Enable support for exception handling.-->
+		<EnableExceptions>true</EnableExceptions><!---fexceptions-->
+		<!--Print option name with mappable diagnostics.-->
+		<DiagnosticsShowOption>true</DiagnosticsShowOption><!---fdiagnostics-show-option-->
+		<!--Use colors in diagnostics.-->
+		<DiagnosticsUseColor>true</DiagnosticsUseColor><!---fcolor-diagnostics-->
+
+		<!--Write output to <file>.-->
+		<!--<OutputFile>hi.o</OutputFile>-->
+		<!---o hi.o-->
+
+		<!--Treat subsequent input files as having type <language>.-->
+		<!---x c++-->
+	</PropertyGroup>
+
 	<PropertyGroup Label="ClangDefaultOptions">
 		<Option_cc1>true</Option_cc1>
 		<Option_triple>x86_64-pc-windows-msvc18.0.0</Option_triple>
