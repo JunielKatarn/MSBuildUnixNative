@@ -31,7 +31,7 @@
 	</ItemGroup>
 
 	<!-- Include targets and properties for this project type. -->
-	<Import Project="$(SolutionDir)MSBuild\CppProject.props" />
+	<Import Project="$(SolutionDir)Source\Targets\CppProject.props" />
 
 	<Target Name="Build">
 		<Message Text="ClangTargetsPath          [$(ClangTargetsPath)]" />

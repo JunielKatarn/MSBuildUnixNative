@@ -4,12 +4,12 @@
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<Platform Condition="'$(Platform)' == ''">Win32</Platform>
+		<Platform Condition="'$(Platform)' == '' Or '$(Platform)' == 'x86'">Win32</Platform>
 	</PropertyGroup>
 
 	<PropertyGroup Label="LLVMProperties">
 		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
-		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang.exe</ClangExecutable>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang-cpp.exe</ClangExecutable>
 	</PropertyGroup>
 
 	<PropertyGroup Label="DriverOptions">
