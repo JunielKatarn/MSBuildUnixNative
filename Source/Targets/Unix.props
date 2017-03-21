@@ -10,8 +10,8 @@
 	</PropertyGroup>
 
 	<PropertyGroup Label="LLVMProperties">
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/usr/lib/clang/3.4</LLVMInstallDir>
-		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/usr/bin/clang</ClangExecutable>
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/opt/llvm/4/lib/clang/4.0.0</LLVMInstallDir>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/opt/llvm/4/bin/clang</ClangExecutable>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
