@@ -27,7 +27,7 @@
 </PropertyGroup>
 
 <!--TODO: Compute the "SolutionDir", instead of relative paths.-->
-<Import Project="$(SolutionDir)MSBuild\CppProject.props" />
+<Import Project="$(SolutionDir)Source\Targets\CppProject.props" />
 
 <ItemGroup>
 	<ClangCompile Include="main.cpp" />
