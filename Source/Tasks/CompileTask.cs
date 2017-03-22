@@ -1,12 +1,12 @@
 #region Using directives
 
-using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 
-using System.IO;
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
 
 #endregion
 
