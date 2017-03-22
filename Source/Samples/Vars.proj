@@ -61,4 +61,25 @@
 		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
 	</Target>
 
+
+	<UsingTask TaskName="InlineString" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<OSFamily ParameterType="System.String" Output="true" />
+		</ParameterGroup>
+		<Task>
+			<!--[CDATA[
+				OutputPath = Path.Combine("bin", Guid.NewGuid().ToString("N")) + System.IO.Path.DirectorySeparatorChar;
+			]]-->
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+					OSFamily = "Inline String";
+				]]>
+			</Code>
+		</Task>
+	</UsingTask>
+
+	<Target Name="Builds">
+		<GetOSFamily />
+	</Target>
+
 </Project>
