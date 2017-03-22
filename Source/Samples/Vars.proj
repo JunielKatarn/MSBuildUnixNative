@@ -78,7 +78,9 @@
 		</Task>
 	</UsingTask>
 
-	<Target Name="Builds">
+	<UsingTask TaskName="LLVM.Build.Tasks.GetOSFamily" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
+
+	<Target Name="GetOS">
 		<GetOSFamily />
 	</Target>
 
