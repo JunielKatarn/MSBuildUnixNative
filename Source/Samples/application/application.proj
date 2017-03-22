@@ -19,6 +19,7 @@
 
 <PropertyGroup Label="Globals">
 	<ProjectGuid>{95B2FA74-2F53-40B8-8F48-1A729779EC38}</ProjectGuid>
+	<ProjectName>application</ProjectName>
 	<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir><!--Hack-->
 </PropertyGroup>
 
