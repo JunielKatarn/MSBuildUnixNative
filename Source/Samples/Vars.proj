@@ -19,6 +19,9 @@
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{86082908-3b33-429c-b694-8aed79d1e71f}</ProjectGuid>
 		<ProjectName>Vars</ProjectName>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))">$([System.Runtime.InteropServices.OSPlatform]::OSX)</OSPlatform>
 	</PropertyGroup>
 
 	<!--TODO: Research - avoid setting this per project?-->
@@ -48,6 +51,7 @@
 		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
 		<Message Text="Nested                    [%(Nested.Key)]" />
 		<Message Text="OS                        [$(OS)]" />
+		<Message Text="OSPlatform                [$(OSPlatform)]" />
 		<Message Text="OutDir                    [$(OutDir)]" />
 		<Message Text="Platform                  [$(Platform)]" />
 		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
@@ -61,7 +65,7 @@
 		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
 	</Target>
 
-
+	<!--TODO: Implement when CodeTaskFactory is implemented in .NET Core.-->
 	<UsingTask TaskName="InlineString" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
 		<ParameterGroup>
 			<OSFamily ParameterType="System.String" Output="true" />
@@ -77,11 +81,5 @@
 			</Code>
 		</Task>
 	</UsingTask>
-
-	<UsingTask TaskName="LLVM.Build.Tasks.GetOSFamily" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
-
-	<Target Name="GetOS">
-		<GetOSFamily />
-	</Target>
 
 </Project>

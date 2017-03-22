@@ -26,10 +26,10 @@
   <ItemGroup>
     <None Include="CppProject.props" />
     <None Include="OSX.props" />
-    <None Include="Unix.props" />
-    <None Include="Windows_NT.Clang.props" />
-    <None Include="Windows_NT.MSVC.props" />
-    <None Include="Windows_NT.props" />
+    <None Include="LINUX.props" />
+    <None Include="WINDOWS.Clang.props" />
+    <None Include="WINDOWS.MSVC.props" />
+    <None Include="WINDOWS.props" />
     <None Include="LLVM\LLVM.Cpp.Default.props">
       <Filter>LLVM</Filter>
     </None>

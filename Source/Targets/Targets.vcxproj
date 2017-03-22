@@ -74,10 +74,10 @@
     <None Include="MSVC\Platforms\Win32.props" />
     <None Include="MSVC\Platforms\x64.props" />
     <None Include="OSX.props" />
-    <None Include="Unix.props" />
-    <None Include="Windows_NT.Clang.props" />
-    <None Include="Windows_NT.MSVC.props" />
-    <None Include="Windows_NT.props" />
+    <None Include="LINUX.props" />
+    <None Include="WINDOWS.Clang.props" />
+    <None Include="WINDOWS.MSVC.props" />
+    <None Include="WINDOWS.props" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

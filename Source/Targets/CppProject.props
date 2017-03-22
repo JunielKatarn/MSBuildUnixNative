@@ -9,9 +9,14 @@ It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
 	<PropertyGroup>
 		<!--Currently pointless. Needs to be defined in each project.-->
 		<!--<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)/</SolutionDir>-->
+
+		<!--TODO: Wait for .NET Core to implement a decent getter.-->
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))">$([System.Runtime.InteropServices.OSPlatform]::OSX)</OSPlatform>
 	</PropertyGroup>
 
-	<Import Project="$(OS).props" />
+	<Import Project="$(OSPlatform).props" />
 
 	<!-- Add Platform/Configuration defaults. -->
 	<Import Project="$(CppCollection)/Platforms/$(Platform).props" />
