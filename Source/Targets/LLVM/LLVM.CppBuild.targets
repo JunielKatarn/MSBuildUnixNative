@@ -5,8 +5,11 @@
 	<UsingTask TaskName="LLVM.Build.Tasks.WhatIfCompileTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
 
 	<Target Name="Build">
-		<Message Text="Building project..." />
-		<WhatIfCompileTask ClangExecutable="$(ClangExecutable)" InputFiles="@(ClangCompile)" ObjectFileName="a" />
+		<WhatIfCompileTask
+				ClangExecutable="$(ClangExecutable)"
+				InputFiles     ="@(ClangCompile)"
+				IntDir         ="$(IntDir)"
+		/>
 	</Target>
 
 </Project>

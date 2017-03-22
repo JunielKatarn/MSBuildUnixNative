@@ -9,101 +9,13 @@
 
 	<PropertyGroup Label="LLVMProperties">
 		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
-		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang-cpp.exe</ClangExecutable>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang.exe</ClangExecutable>
 	</PropertyGroup>
 
 	<PropertyGroup Label="DriverOptions">
-		<!-- Preprocess, Compile, Assemble:c. Don't link. -->
-		<Stages>Assemble</Stages>
-
-		<!--(integrated-as) Relax all machine instructions.-->
-		<RelaxAll>true</RelaxAll><!---mrelax-all-->
-
-		<IncrementalLinkerCompatible>true</IncrementalLinkerCompatible><!---mincremental-linker-compatible-->
-
-		<!--Thread model.-->
-		<ThreadModel>posix</ThreadModel><!---mthread-model posix-->
-
-		<!--Require math functions to indicate errors by setting errno-->
-		<MathErrNo>true</MathErrNo><!---fmath-errno-->
-
-		<!--Omit frame pointer setup for leaf functions.-->
-		<OmitLeafFramePointer>true</OmitLeafFramePointer><!---momit-leaf-frame-pointer-->
-
-		<!--Accept some non-standard constructs supported by the Microsoft compiler.-->
-		<MsExtensions>true</MsExtensions><!---fms-extensions-->
-		<!--Enable Microsoft compatibility mode-->
-		<MsCompatibility>true</MsCompatibility><!---fms-compatibility-->
-		<!--Version of the Microsoft C/C++ compiler to report in _MSC_VER (0 = don't define it (default))-->
-		<MsCompatibilityVersion></MsCompatibilityVersion><!---fms-compatibility-version="19.0.24210"-->
-
-		<!--Language standard to compile for-->
-		<Standard>c++14</Standard><!---std=c++14-->
-		<!--Parse templated function definitions at the end of the translation unit-->
-		<DelayedTemplateParsing>true</DelayedTemplateParsing><!---fdelayed-template-parsing-->
-		<!--Specify the target Objective-C runtime kind and version-->
-		<ObjectiveCRuntime>gcc</ObjectiveCRuntime><!---fobjc-runtime=gcc-->
-		<!--Enable C++ exceptions-->
-		<EnableCppExtensions>true</EnableCppExtensions><!---fcxx-exceptions-->
-		<!--Enable support for exception handling.-->
-		<EnableExceptions>true</EnableExceptions><!---fexceptions-->
-		<!--Print option name with mappable diagnostics.-->
-		<DiagnosticsShowOption>true</DiagnosticsShowOption><!---fdiagnostics-show-option-->
-		<!--Use colors in diagnostics.-->
-		<DiagnosticsUseColor>true</DiagnosticsUseColor><!---fcolor-diagnostics-->
-
-		<!--Write output to <file>.-->
-		<!--<OutputFile>hi.o</OutputFile>-->
-		<!---o hi.o-->
-
-		<!--Treat subsequent input files as having type <language>.-->
-		<!---x c++-->
 	</PropertyGroup>
 
 	<PropertyGroup Label="ClangDefaultOptions">
-		<Option_cc1>true</Option_cc1>
-		<Option_triple>x86_64-pc-windows-msvc18.0.0</Option_triple>
-		<Option_emit-obj>true</Option_emit-obj>
-		<Option_mrelax-all>true</Option_mrelax-all>
-		<Option_mincremental-linker-compatible>true</Option_mincremental-linker-compatible>
-		<Option_disable-free>true</Option_disable-free>
-		<!--<Option_main-file-name>lib.cpp</Option_main-file-name>-->
-		<Option_mrelocation-model>pic</Option_mrelocation-model>
-		<Option_pic-level>2</Option_pic-level>
-		<Option_mthread-model>posix</Option_mthread-model>
-		<Option_fmath-errno>true</Option_fmath-errno>
-		<Option_masm-verbose>true</Option_masm-verbose>
-		<Option_mconstructor-aliases>true</Option_mconstructor-aliases>
-		<Option_munwind-tables>true</Option_munwind-tables>
-		<Option_target-cpu>x86-64</Option_target-cpu>
-		<Option_momit-leaf-frame-pointer>true</Option_momit-leaf-frame-pointer>
-		<Option_v>true</Option_v>
-		<Option_dwarf-column-info>true</Option_dwarf-column-info>
-		<Option_debugger-tuning>gdb</Option_debugger-tuning>
-		<Option_coverage-file><!--TODO: Absolute path to lib.cpp--></Option_coverage-file>
-		<Option_resource-dir>$(LLVMInstallDir)</Option_resource-dir>
-		<Option_internal-isystem>C:\Program Files\LLVM\bin\..\lib\clang\3.8.1\include</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\INCLUDE</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\ucrt</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\shared</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\um</Option_internal-isystem>
-		<Option_internal-isystem>C:\Program Files (x86)\Windows Kits\10\include\10.0.10240.0\winrt</Option_internal-isystem>
-		<Option_fdeprecated-macro>true</Option_fdeprecated-macro>
-		<Option_fdebug-compilation-dir><!--TODO: Absolute path to dir containing lib.cpp--></Option_fdebug-compilation-dir>
-		<Option_ferror-limit>19</Option_ferror-limit>
-		<Option_fmessage-length>111</Option_fmessage-length>
-		<Option_fms-extensions>true</Option_fms-extensions>
-		<Option_fms-compatibility>true</Option_fms-compatibility>
-		<Option_fms-compatibility-version>18</Option_fms-compatibility-version>
-		<Option_std>c++11</Option_std>
-		<Option_fno-threadsafe-statics>true</Option_fno-threadsafe-statics>
-		<Option_fdelayed-template-parsing>true</Option_fdelayed-template-parsing>
-		<Option_fobjc-runtime>gcc</Option_fobjc-runtime>
-		<Option_fdiagnostics-show-option>true</Option_fdiagnostics-show-option>
-		<Option_fcolor-diagnostics>true</Option_fcolor-diagnostics>
-		<Option_o>lib.o</Option_o><!--Output file-->
-		<Option_x>c++ ".\lib.cpp"</Option_x>
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">

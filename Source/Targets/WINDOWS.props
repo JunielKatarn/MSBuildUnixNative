@@ -2,6 +2,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<Import Project="WINDOWS.MSVC.props" Condition="$(Clang) != 1" />
-	<Import Project="WINDOWS.Clang.props" Condition="$(Clang) == 1" /><!--Meant for test/debugging-->
+	<Import Project="WINDOWS.Clang.props" Condition="$(Clang) == 1" /><!--Meant for testing/debugging-->
 
 </Project>

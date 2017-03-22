@@ -56,6 +56,7 @@
 		<Message Text="Platform                  [$(Platform)]" />
 		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
 		<Message Text="ProcessorArchitecture     [$(ProcessorArchitecture)]" />
+		<Message Text="ProjectName               [$(ProjectName)]" />
 		<Message Text="RootDir                   [$(RootDir)]" />
 		<Message Text="SolutionDir               [$(SolutionDir)]" />
 		<Message Text="TargetPlatformIdentifier  [$(TargetPlatformIdentifier)]" />
