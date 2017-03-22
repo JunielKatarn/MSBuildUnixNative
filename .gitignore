@@ -5,6 +5,7 @@ Target
 bin/
 obj/
 
+*.userprefs
 *.lock.json
 
 # UNIX derived artifacts
