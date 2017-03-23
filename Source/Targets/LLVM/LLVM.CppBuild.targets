@@ -2,10 +2,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--TODO: Define an actual task installation directory.-->
-	<UsingTask TaskName="LLVM.Build.Tasks.WhatIfCompileTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
+	<UsingTask TaskName="LLVM.Build.Tasks.CompileTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
 
 	<Target Name="Build">
-		<WhatIfCompileTask
+		<CompileTask
 				ClangExecutable="$(ClangExecutable)"
 				InputFiles     ="@(ClangCompile)"
 				IntDir         ="$(IntDir)"

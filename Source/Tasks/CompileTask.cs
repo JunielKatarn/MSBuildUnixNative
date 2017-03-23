@@ -1,6 +1,7 @@
 #region Using directives
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -12,176 +13,63 @@ using Microsoft.Build.Utilities;
 
 namespace LLVM.Build.Tasks
 {
-	public enum Stage
-	{
-		Preprocess,
-		Compile,
-		Assemble
-	}
-
 	/// <summary>
 	/// This is an MSBuild Task that allows executing the current operating
 	/// system's version of clang for the compilation process.
 	/// </summary>
 	public class CompileTask : Task
 	{
+		#region Static members
+
+		static readonly Dictionary<string, string> Stages = new Dictionary<string, string>
+		{
+			["Preprocess"] = "-E",
+			["Parse"] = "-fsyntax-only",
+			["Assemble"] = "-S",
+			["Compile"] = "-c"
+		};
+
+		#endregion
+
 		#region Private members
 
-		private string _clangExecutable = String.Empty;
-		private string _inputFiles = String.Empty; 
-		private string _option_o = String.Empty;
-		private string _outputFile = string.Empty;// Output file name without extension.
-		
-		#endregion
-
-		#region Public properties
-
-		/// <summary>
-		/// Full path to the clang executable.
-		/// </summary>
-		[Required]
-		public string ClangExecutable
-		{
-			get { return _clangExecutable; }
-			set { _clangExecutable = value; }
-		}
-
-		/// <summary>
-		/// The C++ files to compile.
-		/// </summary>
-		[Required]
-		public string InputFiles
-		{
-			get { return _inputFiles; }
-			set { _inputFiles = value; }
-		}
-
-		#region  Clang options and arguments
-
-		/// <summary>
-		/// -o
-		/// Writes output to file.
-		/// </summary>
-		[Required]
-		public string Option_o
-		{
-			get { return _option_o; }
-			set { _option_o = value; }
-		}
-
-		public string OutputFile
-		{
-			get
-			{
-				if (!string.IsNullOrEmpty(_outputFile))
-					return _outputFile;
-
-				return "a.out";
-			}
-
-			set
-			{
-				_outputFile = value;
-			}
-		}
-
-		#endregion
-
-		#region Driver options
-
-		//[Required]
-		public Stage Stage { get; set; }
-
-		#endregion // Driver options
-
-		#endregion
-
-		#region Private properties
-
-		/// <summary>
-		/// Constructs a string with all the arguments for the clang executable
-		/// using the provided values in the public properties.
-		/// </summary>
-		private string Arguments
-		{
-			get {
-				return String.Format(
-					"{0} -o {1} ",
-					InputFiles,
-					Option_o
-				);
-			}
-		}
-
-		#endregion
-
-		#region Public methods
-
-		/// <summary>
-		/// Executes clang.
-		/// </summary>
-		/// <returns>True if the return value of clang was 0.</returns>
-		public override bool Execute()
-		{
-			return RunProgram() == 0;
-		}
-
-		#endregion
-
-		#region Private methods
-
-		/// <summary>
-		/// Creates a Process for the clang executable with all the necessary arguments,
-		/// and captures the standard output and error strings to log them.
-		/// </summary>
-		/// <returns>The integer return value of the process.</returns>
-		private int RunProgram()
+		private int InvokeProcess(ITaskItem item)
 		{
 			int exitCode = -1;
-
 			Process process = null;
+			string[] arguments = GetArguments(item);
+
+			Log.LogMessage("Executing command:");
+			Log.LogCommandLine($"{ClangExecutable}\n\t{string.Join("\n\t", arguments)}");
 
 			try
 			{
 				process = new Process();
-
 				process.StartInfo.FileName = ClangExecutable;
-				process.StartInfo.Arguments = Arguments;
+				process.StartInfo.Arguments = string.Join(" ", arguments);
 				process.StartInfo.UseShellExecute = false;
 				process.StartInfo.RedirectStandardOutput = true;
 				process.StartInfo.RedirectStandardError = true;
 
-				process.OutputDataReceived += new DataReceivedEventHandler((sender, e) => {
-					if (!String.IsNullOrEmpty(e.Data))
-					{
-						Log.LogMessage(e.Data);
-					}
-				});
-
-				process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) => {
-					if (!String.IsNullOrEmpty(e.Data))
-					{
-						Log.LogError(e.Data);
-					}
-				});
-
-				//TODO: Define actual file name.
-
-				//TODO: Create ProcessOptions method.
-				// If the path to _option_o does not exist, clang won't create it by itself.
-				string dir = Path.GetDirectoryName(_option_o);
-				if (! string.IsNullOrEmpty(dir))
+				process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
 				{
-					Directory.CreateDirectory(dir);
-				}
+					if (!string.IsNullOrEmpty(e.Data))
+						Log.LogMessage(e.Data);
+				});
 
-				Console.WriteLine("Command to execute: " + process.StartInfo.FileName + " " + process.StartInfo.Arguments);
+				process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
+				{
+					if (!string.IsNullOrEmpty(e.Data))
+						Log.LogError(e.Data);
+				});
+
+				// If the path to ObjectFile does not exist, clang won't create it by itself.
+				if (!string.IsNullOrEmpty(IntDir) && !Directory.Exists(IntDir))
+					Directory.CreateDirectory(IntDir);
 
 				process.Start();
-
 				process.BeginOutputReadLine();
 				process.BeginErrorReadLine();
-
 				while (!process.HasExited)
 				{
 					process.WaitForExit(1);
@@ -196,13 +84,50 @@ namespace LLVM.Build.Tasks
 			}
 			finally
 			{
-				if (process != null)
-				{
-					process.Dispose();
-				}
+				process?.Dispose();
 			}
 
 			return exitCode;
+		}
+
+		private string[] GetArguments(ITaskItem item)
+		{
+			return new string[]
+			{
+				Stages[Stage],
+				$"-o {IntDir}{item.ItemSpec.Substring(0, item.ItemSpec.LastIndexOf('.'))}.o",
+				item.GetMetadata("FullPath")
+			};
+		}
+
+		#endregion
+
+		#region Compiler options
+
+		[Required]
+		public string ClangExecutable { get; set; }
+
+		[Required]
+		public ITaskItem[] InputFiles { get; set; }
+
+		public string Stage { get; set; } = "Compile";
+
+		public string IntDir { get; set; }
+
+		public string ObjectFileName { get; set; }
+
+		#endregion
+
+		#region Task members
+
+		public override bool Execute()
+		{
+			foreach (var item in InputFiles)
+			{
+				InvokeProcess(item);
+			}
+
+			return true;
 		}
 
 		#endregion
