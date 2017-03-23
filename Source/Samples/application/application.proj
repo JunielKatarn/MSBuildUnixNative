@@ -25,6 +25,7 @@
 
 <PropertyGroup Label="Configuration">
 	<ConfigurationType>Application</ConfigurationType>
+	<PrintOnly>True</PrintOnly>
 </PropertyGroup>
 
 <!--TODO: Compute the "SolutionDir", instead of relative paths.-->

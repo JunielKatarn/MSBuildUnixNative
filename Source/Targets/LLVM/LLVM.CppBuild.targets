@@ -9,6 +9,7 @@
 				ClangExecutable="$(ClangExecutable)"
 				InputFiles     ="@(ClangCompile)"
 				IntDir         ="$(IntDir)"
+				PrintOnly      ="$(PrintOnly)"
 		/>
 	</Target>
 

@@ -40,7 +40,13 @@ namespace LLVM.Build.Tasks
 			string[] arguments = GetArguments(item);
 
 			Log.LogMessage("Executing command:");
-			Log.LogCommandLine($"{ClangExecutable}\n\t{string.Join("\n\t", arguments)}");
+			Log.LogCommandLine($"{ClangExecutable}\n\t{string.Join("\n\t", arguments)}\n");
+
+			if (PrintOnly)
+			{
+				Log.LogWarning("PrintOnly was set. Ignoring this task.");
+				return 0;
+			}
 
 			try
 			{
@@ -114,7 +120,12 @@ namespace LLVM.Build.Tasks
 
 		public string IntDir { get; set; }
 
+		/// <summary>
+		/// Only applies when the length of InputFiles is 1.
+		/// </summary>
 		public string ObjectFileName { get; set; }
+
+		public bool PrintOnly { get; set; } = false;
 
 		#endregion
 
