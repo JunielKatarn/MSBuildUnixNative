@@ -1,11 +1,10 @@
 #region Using directives
 
+using System;
+using System.IO;
+
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
 
 #endregion
 
@@ -18,72 +17,6 @@ namespace LLVM.Build.Tasks
 	public class CleanTask : Task
 	{
 		#region Private members
-
-		private const string DefaultExtension = "*";
-		private readonly char[] argumentSeparators = { ';' };
-
-		private string _directories = String.Empty;
-		private string _extensions  = String.Empty;
-
-		private List<string> directoriesList = new List<string>();
-		private List<string> extensionsList  = new List<string>();
-
-		private bool usingDefaultExtension = false;
-
-		#endregion
-		
-		#region Public properties
-
-		/// <summary>
-		/// Public property to indicate the list of directories where we want to find files that need to be cleaned.
-		/// This is a required property, so it cannot be empty.
-		/// Multiple directories must be separated by semicolon ";".
-		/// </summary>
-		[Required]
-		public string Directories
-		{
-			get { return _directories; }
-			set
-			{
-				_directories = value;
-				directoriesList.Clear();
-				directoriesList.AddRange(_directories.Split(argumentSeparators, StringSplitOptions.RemoveEmptyEntries));
-
-				if (directoriesList.Count <= 0)
-				{
-					throw new ArgumentNullException("DirectoriesToClean must not be empty.");
-				}
-			}
-		}
-
-		/// <summary>
-		/// Public property to indicate the list of extensions that need to be cleaned.
-		/// This is a required property, so it cannot be empty.
-		/// If it is desired to delete all the files, use "*".
-		/// Multiple extensions must be separated by semicolon ";".
-		/// </summary>
-		[Required]
-		public string Extensions
-		{
-			get { return _extensions; }
-			set
-			{
-				_extensions = value;
-				extensionsList.Clear();
-				extensionsList.AddRange(_extensions.Split(argumentSeparators, StringSplitOptions.RemoveEmptyEntries));
-
-				if (extensionsList.Count <= 0)
-				{
-					throw new ArgumentNullException("ExtensionsToClean must not be empty.");
-				}
-
-				usingDefaultExtension = extensionsList.Contains(DefaultExtension);
-			}
-		}
-
-		#endregion
-
-		#region Private methods
 
 		/// <summary>
 		/// Deletes all the files that match the specified extension inside the desired directory.
@@ -103,10 +36,15 @@ namespace LLVM.Build.Tasks
 				foreach (string filePath in filePaths)
 				{
 					string trimmedFilePath = filePath.Trim();
-					Log.LogMessage("Cleaning file: {0}", trimmedFilePath);
+					if (PrintOnly)
+					{
+						Log.LogWarning($"PrintOnly mode. Skiping: {trimmedFilePath}");
+						continue;
+					}
+					Log.LogMessage("Deleting file: {0}", trimmedFilePath);
 					File.Delete(trimmedFilePath);
 				}
-				
+
 			}
 			catch (Exception e)
 			{
@@ -116,6 +54,29 @@ namespace LLVM.Build.Tasks
 
 			return true;
 		}
+
+		#endregion
+
+		#region Public properties
+
+		/// <summary>
+		/// Public property to indicate the list of directories where we want to find files that need to be cleaned.
+		/// This is a required property, so it cannot be empty.
+		/// Multiple directories must be separated by semicolon ";".
+		/// </summary>
+		[Required]
+		public ITaskItem[] Directories { get; set; }
+
+		/// <summary>
+		/// Public property to indicate the list of extensions that need to be cleaned.
+		/// This is a required property, so it cannot be empty.
+		/// If it is desired to delete all the files, use "*".
+		/// Multiple extensions must be separated by semicolon ";".
+		/// </summary>
+		[Required]
+		public ITaskItem[] Extensions { get; set; }
+
+		public bool PrintOnly { get; set; } = false;
 
 		#endregion
 
@@ -129,37 +90,21 @@ namespace LLVM.Build.Tasks
 		/// <returns>True if the task was successful, false otherwise.</returns>
 		public override bool Execute()
 		{
-			foreach (string directory in directoriesList)
+			foreach(var directory in Directories)
 			{
-				if (!Directory.Exists(directory))
-				{
-					Log.LogWarning("Directory does not exist: " + directory);
+				if (!Directory.Exists(directory.GetMetadata("FullPath")))
 					continue;
-				}
 
-				if (usingDefaultExtension)
+				foreach (var extension in Extensions)
 				{
-					Log.LogWarning("You selected * as extension, which will delete all the files in the selected directories.");
-					if (!DeleteFilesInDirectoryByExtension(directory, DefaultExtension))
-					{
-						return false;
-					}
-				}
+					//TODO: preprocess at earlier stage.
+					string pattern;
+					if (extension.ItemSpec.Contains("."))
+						pattern = "*" + extension.ItemSpec;
+					else
+						pattern = "*." + extension.ItemSpec;
 
-				else
-				{
-					foreach (string extension in extensionsList)
-					{
-						string completeExtension = extension;
-						if(!extension.StartsWith("*."))
-						{
-							completeExtension = "*." + extension;
-						}
-						if (!DeleteFilesInDirectoryByExtension(directory, completeExtension))
-						{
-							return false;
-						}
-					}
+					return DeleteFilesInDirectoryByExtension(directory.GetMetadata("FullPath"), pattern);
 				}
 			}
 

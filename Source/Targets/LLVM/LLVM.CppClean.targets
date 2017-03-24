@@ -9,16 +9,22 @@
 		Find out what the 'Include' field means.-->
 	<ItemGroup>
 		<CleanTask Include=".">
-			<Directories Condition="'%(CleanTask.Directories)' == ''">Build;Target;bin;obj;</Directories>
-			<Extensions Condition="'%(CleanTask.Extensions)' == ''">o;a;so;elf;dylib;out;obj;lib;dll;exe;</Extensions>
+			<Extensions Condition="'%(CleanTask.Extensions)' == ''">o;a;so;elf;dylib;out;obj;lib;dll;exe</Extensions>
+			<Directories Condition="'%(CleanTask.Directories)' == ''">Build;Target;bin;obj;$(IntDir);$(OutDir)</Directories>
 		</CleanTask>
 	</ItemGroup>
 
 	<Target Name="Clean">
 		<Message Text="Cleaning directories: [%(CleanTask.Directories)]." />
 		<Message Text="Cleaning extensions: [%(CleanTask.Extensions)]." />
+		<Message Text=" " /><!-- Extra line -->
+
 		<!--TODO: Ensure artifact directories exist?-->
-		<CleanTask Directories="%(CleanTask.Directories)" Extensions="%(CleanTask.Extensions)" />
+		<CleanTask
+				Directories="%(CleanTask.Directories)"
+				Extensions="%(CleanTask.Extensions)"
+				PrintOnly="$(PrintOnly)"
+		/>
 	</Target>
 
 </Project>
