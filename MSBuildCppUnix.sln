@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Source\Tasks\Tasks.csproj", "{B66A94F5-16A3-495D-8BED-145CF4E88A69}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Targets", "Source\Targets\Targets.vcxproj", "{FABAD470-0BFD-4801-9E01-41D33B08A148}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Targets", "Source\Targets\Targets.vcxitems", "{FABAD470-0BFD-4801-9E01-41D33B08A148}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
