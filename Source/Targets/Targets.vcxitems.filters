@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="LLVM">
@@ -21,52 +21,52 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CppProject.props" />
-    <None Include="OSX.props" />
-    <None Include="LINUX.props" />
-    <None Include="WINDOWS.Clang.props" />
-    <None Include="WINDOWS.MSVC.props" />
-    <None Include="WINDOWS.props" />
-    <None Include="LLVM\LLVM.Cpp.Default.props">
+    <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
+    <None Include="$(MSBuildThisFileDirectory)OSX.props" />
+    <None Include="$(MSBuildThisFileDirectory)LINUX.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.Clang.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.MSVC.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.Default.props">
       <Filter>LLVM</Filter>
     </None>
-    <None Include="LLVM\LLVM.Cpp.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.props">
       <Filter>LLVM</Filter>
     </None>
-    <None Include="LLVM\LLVM.Cpp.targets">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.targets">
       <Filter>LLVM</Filter>
     </None>
-    <None Include="LLVM\LLVM.CppBuild.targets">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppBuild.targets">
       <Filter>LLVM</Filter>
     </None>
-    <None Include="LLVM\LLVM.CppClean.targets">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppClean.targets">
       <Filter>LLVM</Filter>
     </None>
-    <None Include="LLVM\Configurations\Debug.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Debug.props">
       <Filter>LLVM\Configurations</Filter>
     </None>
-    <None Include="LLVM\Configurations\Release.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Release.props">
       <Filter>LLVM\Configurations</Filter>
     </None>
-    <None Include="LLVM\Platforms\Darwin64.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64.props">
       <Filter>LLVM\Platforms</Filter>
     </None>
-    <None Include="LLVM\Platforms\Linux64.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64.props">
       <Filter>LLVM\Platforms</Filter>
     </None>
-    <None Include="LLVM\Platforms\Win32.props">
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win32.props">
       <Filter>LLVM\Platforms</Filter>
     </None>
-    <None Include="MSVC\Configurations\Debug.props">
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Debug.props">
       <Filter>MSVC\Configurations</Filter>
     </None>
-    <None Include="MSVC\Configurations\Release.props">
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Release.props">
       <Filter>MSVC\Configurations</Filter>
     </None>
-    <None Include="MSVC\Platforms\Win32.props">
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\Win32.props">
       <Filter>MSVC\Platforms</Filter>
     </None>
-    <None Include="MSVC\Platforms\x64.props">
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\x64.props">
       <Filter>MSVC\Platforms</Filter>
     </None>
   </ItemGroup>

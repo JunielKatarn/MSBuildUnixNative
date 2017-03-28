@@ -14,25 +14,25 @@
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CppProject.props" />
-    <None Include="LINUX.props" />
-    <None Include="LLVM\Configurations\Debug.props" />
-    <None Include="LLVM\Configurations\Release.props" />
-    <None Include="LLVM\LLVM.Cpp.Default.props" />
-    <None Include="LLVM\LLVM.Cpp.props" />
-    <None Include="LLVM\LLVM.Cpp.targets" />
-    <None Include="LLVM\LLVM.CppBuild.targets" />
-    <None Include="LLVM\LLVM.CppClean.targets" />
-    <None Include="LLVM\Platforms\Darwin64.props" />
-    <None Include="LLVM\Platforms\Linux64.props" />
-    <None Include="LLVM\Platforms\Win32.props" />
-    <None Include="MSVC\Configurations\Debug.props" />
-    <None Include="MSVC\Configurations\Release.props" />
-    <None Include="MSVC\Platforms\Win32.props" />
-    <None Include="MSVC\Platforms\x64.props" />
-    <None Include="OSX.props" />
-    <None Include="WINDOWS.Clang.props" />
-    <None Include="WINDOWS.MSVC.props" />
-    <None Include="WINDOWS.props" />
+    <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
+    <None Include="$(MSBuildThisFileDirectory)LINUX.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Debug.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Release.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppBuild.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppClean.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win32.props" />
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Debug.props" />
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Release.props" />
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\Win32.props" />
+    <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\x64.props" />
+    <None Include="$(MSBuildThisFileDirectory)OSX.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.Clang.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.MSVC.props" />
+    <None Include="$(MSBuildThisFileDirectory)WINDOWS.props" />
   </ItemGroup>
 </Project>
