@@ -48,6 +48,7 @@
 		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
 		<Message Text="MSBuildTempTasksPath      [$(MSBuildTempTasksPath)]" />
 		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
+		<Message Text="MSBuildExtensionsPath     [$(MSBuildExtensionsPath)]" />
 		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
 		<Message Text="Nested                    [%(Nested.Key)]" />
 		<Message Text="OS                        [$(OS)]" />
