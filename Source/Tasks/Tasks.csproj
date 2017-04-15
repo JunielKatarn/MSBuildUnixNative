@@ -10,14 +10,23 @@
 		<BaseIntermediateOutputPath>..\..\Build\$(AssemblyName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
 		<OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Label="NuGet">
 		<AssemblyName>LLVM.Build.Tasks</AssemblyName>
+		<PackageId>LLVM.Build</PackageId>
+		<Version>0.0.0</Version>
+		<Authors />
+		<Company />
+		<Product />
+		<Description>MSBuild tasks and targets for LLVM/Clang compiler tools.</Description>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.1012" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<ItemGroup Label="NuGet">
 		<Content Include="..\Targets\**\*.*" Exclude="..\Targets\**\*.vcxitems*">
 			<PackagePath>build\</PackagePath>
 		</Content>

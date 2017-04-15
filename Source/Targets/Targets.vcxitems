@@ -16,6 +16,8 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
     <None Include="$(MSBuildThisFileDirectory)LINUX.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM.Build.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM.Build.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Debug.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Configurations\Release.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.Default.props" />

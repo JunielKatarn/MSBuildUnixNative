@@ -72,5 +72,7 @@
     <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\x64.props">
       <Filter>MSVC\Platforms</Filter>
     </None>
+    <None Include="$(MSBuildThisFileDirectory)LLVM.Build.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM.Build.targets" />
   </ItemGroup>
 </Project>

@@ -3,8 +3,8 @@
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
-		<!--<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">.</LLVMTargetsPath>-->
+		<!--<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>-->
+		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">LLVM</LLVMTargetsPath>
 
 		<!--TODO: Replace with an actual installation/deployment path.-->
 		<MSBuildTempTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</MSBuildTempTasksPath>

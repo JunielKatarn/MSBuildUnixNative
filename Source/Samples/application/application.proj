@@ -26,6 +26,9 @@
 <PropertyGroup Label="Configuration">
 	<ConfigurationType>Application</ConfigurationType>
 	<PrintOnly>True</PrintOnly>
+
+	<!--TODO: Local hack-->
+	<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
 </PropertyGroup>
 
 <!--TODO: Compute the "SolutionDir", instead of relative paths.-->
