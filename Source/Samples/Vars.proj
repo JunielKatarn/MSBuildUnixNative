@@ -29,6 +29,10 @@
 		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Nested Include="."><Key>Value</Key></Nested>
 	</ItemGroup>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Label="Globals">
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
@@ -26,6 +26,7 @@
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win32.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Debug.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Release.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\Win32.props" />
