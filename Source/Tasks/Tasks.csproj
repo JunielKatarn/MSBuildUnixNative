@@ -1,20 +1,26 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <RootNamespace>LLVM.Build.Tasks</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard1.6</TargetFramework>
+		<RootNamespace>LLVM.Build.Tasks</RootNamespace>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <!--$(SolutionDir) doesn't seem to work for BaseIntermediateOutputPath :(-->
-    <BaseIntermediateOutputPath>..\..\Build\$(AssemblyName)\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-    <OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
-    <AssemblyName>LLVM.Build.Tasks</AssemblyName>
-  </PropertyGroup>
+	<PropertyGroup>
+		<!--$(SolutionDir) doesn't seem to work for BaseIntermediateOutputPath :(-->
+		<BaseIntermediateOutputPath>..\..\Build\$(AssemblyName)\</BaseIntermediateOutputPath>
+		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+		<OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
+		<AssemblyName>LLVM.Build.Tasks</AssemblyName>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.548" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.1.1012" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="..\Targets\**\*.*" Exclude="..\Targets\**\*.vcxitems*">
+			<PackagePath>build\</PackagePath>
+		</Content>
+	</ItemGroup>
 
 </Project>

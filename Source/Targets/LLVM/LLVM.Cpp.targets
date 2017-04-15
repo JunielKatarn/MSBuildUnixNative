@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-	<Import Project="$(ClangTargetsPath)/LLVM.CppBuild.targets" />
+	<Import Project="$(LLVMTargetsPath)/LLVM.CppBuild.targets" />
 
-	<Import Project="$(ClangTargetsPath)/LLVM.CppClean.targets" />
+	<Import Project="$(LLVMTargetsPath)/LLVM.CppClean.targets" />
 
 </Project>

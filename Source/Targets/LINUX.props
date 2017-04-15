@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--Sets start up properties such as the targets path.-->
-	<!--TODO: ClangTargetsPath should be defined beforehand, ideally.-->
+	<!--TODO: LLVMTargetsPath should be defined beforehand, ideally.-->
 	<Import Project="LLVM/LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
@@ -15,8 +15,8 @@
 	</PropertyGroup>
 
 	<ImportGroup Label="ClangTargets">
-		<Import Project="$(ClangTargetsPath)/LLVM.Cpp.props" />
-		<Import Project="$(ClangTargetsPath)/LLVM.Cpp.targets" />
+		<Import Project="$(LLVMTargetsPath)/LLVM.Cpp.props" />
+		<Import Project="$(LLVMTargetsPath)/LLVM.Cpp.targets" />
 	</ImportGroup>
 
 </Project>
