@@ -14,9 +14,6 @@
 	<ItemGroup />
 
 	<!--TODO: Remove. Hack to override targets from Sdk Microsoft.NET.Sdk-->
-	<Target Name="PrepareForPublish" />
-	<Target Name="Publish" />
-	<Target Name="DotNetPublish" />
 	<Target Name="_CheckForUnsupportedTargetFramework" />
 
 </Project>
