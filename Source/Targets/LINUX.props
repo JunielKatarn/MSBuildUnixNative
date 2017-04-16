@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
 	<!--Sets start up properties such as the targets path.-->
@@ -5,7 +6,7 @@
 	<Import Project="LLVM/LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<Platform Condition="'$(Platform)' == ''">Linux64</Platform>
+		<Platform Condition="'$(Platform)'=='' OR '$(Platform)'=='AnyCPU'">Linux64</Platform>
 	</PropertyGroup>
 
 	<PropertyGroup Label="LLVMProperties">

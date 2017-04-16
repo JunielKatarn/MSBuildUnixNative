@@ -1,15 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.1">
 
 	<ImportGroup Label="PropertySheets">
 		<Import Project="CppProject.props"/>
 	</ImportGroup>
 
-	<PropertyGroup Label="UserMacros" />
+	<PropertyGroup Label="UserMacros">
 		<!--'lib' folder within the deployed NuGet package.-->
-		<LLVMTasksPath>..\lib\</LLVMTasksPath>
-	<PropertyGroup />
-	
+		<LLVMTasksPath>$(MSBuildThisFileDirectory)..\lib\netstandard1.6\</LLVMTasksPath>
+	</PropertyGroup>
+
 	<ItemDefinitionGroup />
 	<ItemGroup />
+
+	<!--TODO: Remove. Hack to override targets from Sdk Microsoft.NET.Sdk-->
+	<Target Name="PrepareForPublish" />
+	<Target Name="Publish" />
+	<Target Name="DotNetPublish" />
+	<Target Name="_CheckForUnsupportedTargetFramework" />
 
 </Project>

@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
-		<Platform Condition="'$(Platform)' == '' Or '$(Platform)' == 'x64'">Win64</Platform>
+		<Platform Condition="'$(Platform)' == '' OR '$(Platform)' == 'x64' OR '$(Platform)'=='AnyCPU'">Win64</Platform>
 	</PropertyGroup>
 
 	<PropertyGroup Label="LLVMProperties">

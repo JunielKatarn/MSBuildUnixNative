@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+	<!--Dummy file to prevent NuGet restore errors when importing targets.-->
+</Project>

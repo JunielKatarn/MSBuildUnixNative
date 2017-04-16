@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 This is the entry point for native (C/C++) project types.
 It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
