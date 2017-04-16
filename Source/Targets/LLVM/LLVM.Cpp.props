@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
 
 	<PropertyGroup>
-		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
 		<IntDir>$(SolutionDir)Build/$(Platform)/$(Configuration)/$(ProjectName)/</IntDir>
 		<OutDir>$(SolutionDir)Target/$(Platform)/$(Configuration)/$(ProjectName)/</OutDir>
 	</PropertyGroup>

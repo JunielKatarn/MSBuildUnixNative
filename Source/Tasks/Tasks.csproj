@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<!--TODO: Use TargetFrameworkVersion and TargetFrameworkIdentifier instead?-->
 		<TargetFramework>netstandard1.6</TargetFramework>
 		<RootNamespace>LLVM.Build.Tasks</RootNamespace>
 	</PropertyGroup>

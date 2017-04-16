@@ -1,13 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build">
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-		<!--<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>-->
 		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">LLVM</LLVMTargetsPath>
 
 		<!--TODO: Replace with an actual installation/deployment path.-->
-		<MSBuildTempTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</MSBuildTempTasksPath>
+		<LLVMTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 	</PropertyGroup>
 
 </Project>

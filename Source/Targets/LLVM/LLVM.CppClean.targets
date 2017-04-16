@@ -2,7 +2,7 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--TODO: Define an actual task installation directory.-->
-	<UsingTask TaskName="LLVM.Build.Tasks.CleanTask" AssemblyFile="$(MSBuildTempTasksPath)LLVM.Build.Tasks.dll" />
+	<UsingTask TaskName="LLVM.Build.Tasks.CleanTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 
 	<!--TODO:
 		Research how/why use ItemDefinitionGroup instead.

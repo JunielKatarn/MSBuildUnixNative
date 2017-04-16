@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <!--
 This is the entry point for native (C/C++) project types.
 It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
@@ -19,7 +17,7 @@ It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
 	<Import Project="$(OSPlatform).props" />
 
 	<!-- Add Platform/Configuration defaults. -->
-	<Import Project="$(CppCollection)/Platforms/$(Platform).props" />
-	<Import Project="$(CppCollection)/Configurations/$(Configuration).props" />
+	<Import Project="$(CppCollection)\Platforms\$(Platform).props" />
+	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
 
 </Project>

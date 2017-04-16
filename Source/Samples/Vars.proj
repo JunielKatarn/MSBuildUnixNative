@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
 
 	<ItemGroup Label="ProjectConfigurations">
@@ -31,6 +30,7 @@
 
 	<PropertyGroup>
 		<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
+		<LLVMTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -47,10 +47,10 @@
 		<Message Text="IntDir                    [$(IntDir)]" />
 		<Message Text="LLVMInstallDir            [$(LLVMInstallDir)]" />
 		<Message Text="LLVMTargetsPath           [$(LLVMTargetsPath)]" />
+		<Message Text="LLVMTasksPath             [$(LLVMTasksPath)]" />
 		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />
 		<Message Text="MSBuildToolsPath          [$(MSBuildToolsPath)]" />
 		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
-		<Message Text="MSBuildTempTasksPath      [$(MSBuildTempTasksPath)]" />
 		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
 		<Message Text="MSBuildExtensionsPath     [$(MSBuildExtensionsPath)]" />
 		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
