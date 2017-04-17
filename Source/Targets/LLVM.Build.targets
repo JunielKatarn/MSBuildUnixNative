@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Doesn't seem to be loaded from the deployed NuGet package. Disregard for now...-->
-<Project ToolsVersion="15.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<ImportGroup Label="PropertySheets" />
-	<PropertyGroup Label="UserMacros" />
-	<PropertyGroup />
-	<ItemDefinitionGroup />
-	<ItemGroup />
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ImportGroup Label="PropertySheets">
+		<Import Project="CppProject.props"/>
+	</ImportGroup>
+
+	<PropertyGroup Label="UserMacros">
+		<!--'lib' folder within the deployed NuGet package.-->
+		<LLVMTasksPath>$(MSBuildThisFileDirectory)..\lib\netstandard1.6\</LLVMTasksPath>
+	</PropertyGroup>
+
 </Project>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk">
+<Project ToolsVersion="15.0">
+
+<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+
+<ItemGroup>
+	<PackageReference Include="LLVM.Build" Version="0.0.0" />
+</ItemGroup>
 
 <ItemGroup>
 	<ClangCompile Include="main.cpp" />
