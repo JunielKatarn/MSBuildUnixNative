@@ -5,11 +5,11 @@
 		<RootNamespace>LLVM.Build.Tasks</RootNamespace>
 	</PropertyGroup>
 
+	<!-- Build properties related to this codebase. -->
 	<PropertyGroup>
-		<!--$(SolutionDir) doesn't seem to work for BaseIntermediateOutputPath :(-->
-		<BaseIntermediateOutputPath>..\..\Build\$(AssemblyName)\</BaseIntermediateOutputPath>
+		<ProjectName>Tasks</ProjectName>
+		<BaseIntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\$(ProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-		<OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Label="NuGet">

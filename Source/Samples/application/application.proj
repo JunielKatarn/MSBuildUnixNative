@@ -2,40 +2,39 @@
 
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-<ItemGroup Label="ProjectConfigurations">
-	<ProjectConfiguration Include="Debug|Win32">
-		<Configuration>Debug</Configuration>
-		<Platform>Win32</Platform>
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug|Win32">
+			<Configuration>Debug</Configuration>
+			<Platform>Win32</Platform>				</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug|Darwin64">
+			<Configuration>Debug</Configuration>
+			<Platform>Darwin64</Platform>
 		</ProjectConfiguration>
-	<ProjectConfiguration Include="Debug|Darwin64">
-		<Configuration>Debug</Configuration>
-		<Platform>Darwin64</Platform>
-	</ProjectConfiguration>
-	<ProjectConfiguration Include="Debug|Linux64">
-		<Configuration>Debug</Configuration>
-		<Platform>Linux64</Platform>
-	</ProjectConfiguration>
-</ItemGroup>
+		<ProjectConfiguration Include="Debug|Linux64">
+			<Configuration>Debug</Configuration>
+			<Platform>Linux64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
 
-<PropertyGroup Label="Globals">
-	<ProjectGuid>{95B2FA74-2F53-40B8-8F48-1A729779EC38}</ProjectGuid>
-	<ProjectName>application</ProjectName>
-	<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir><!--Hack-->
-</PropertyGroup>
+	<!--Sets up the LLVM.Build environment.-->
+	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+	<Import Project="$(LLVMTargetsPath)\..\CppProject.props" />
 
-<PropertyGroup Label="Configuration">
-	<ConfigurationType>Application</ConfigurationType>
-	<PrintOnly>True</PrintOnly>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{95B2FA74-2F53-40B8-8F48-1A729779EC38}</ProjectGuid>
+		<ProjectName>application</ProjectName>
+	</PropertyGroup>
 
-	<!--TODO: Local hack-->
-	<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
-</PropertyGroup>
+	<PropertyGroup Label="Configuration">
+		<ConfigurationType>Application</ConfigurationType>
+		<PrintOnly>True</PrintOnly>
 
-<!--TODO: Compute the "SolutionDir", instead of relative paths.-->
-<Import Project="$(SolutionDir)Source\Targets\CppProject.props" />
+		<IntDir>$(SolutionDir)Build\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
+		<OutDir>$(SolutionDir)Target\$(Configuration)\$(Platform)\$(ProjectName)\</OutDir>
+	</PropertyGroup>
 
-<ItemGroup>
-	<ClangCompile Include="main.cpp" />
-</ItemGroup>
+	<ItemGroup>
+			<ClangCompile Include="main.cpp" />
+	</ItemGroup>
 
 </Project>

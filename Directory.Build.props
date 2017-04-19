@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
+		<BaseIntermediateOutputPath>$(SolutionDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
+		<OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup Label="SamplesGlobals">
+		<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
+	</PropertyGroup>
+
+</Project>
