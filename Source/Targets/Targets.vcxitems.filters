@@ -19,6 +19,15 @@
     <Filter Include="MSVC\Platforms">
       <UniqueIdentifier>{6fe64f9b-2cad-4c1a-ae63-7bdcf1aeb583}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LLVM\Platforms\Linux64">
+      <UniqueIdentifier>{8dc3e810-8dd1-4a59-8f7d-9afba892e5ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LLVM\Platforms\Linux64\PlatformToolsets">
+      <UniqueIdentifier>{6c50d530-1086-47ec-ad0d-11abc4dcf0af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0">
+      <UniqueIdentifier>{dc44ce03-237e-4cce-852f-1a96430b5781}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
@@ -74,5 +83,20 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)LLVM.Build.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM.Build.targets" />
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\Platform.Default.props">
+      <Filter>LLVM\Platforms\Linux64</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\Platform.props">
+      <Filter>LLVM\Platforms\Linux64</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\Platform.targets">
+      <Filter>LLVM\Platforms\Linux64</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0\Toolset.props">
+      <Filter>LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0\Toolset.targets">
+      <Filter>LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0</Filter>
+    </None>
   </ItemGroup>
 </Project>

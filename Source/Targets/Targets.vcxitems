@@ -27,6 +27,11 @@
     <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppClean.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\Platform.Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\Platform.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\Platform.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0\Toolset.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0\Toolset.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win32.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Debug.props" />
