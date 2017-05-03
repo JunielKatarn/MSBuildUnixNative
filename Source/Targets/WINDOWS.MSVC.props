@@ -2,11 +2,6 @@
 <Project DefaultTargets="Build" ToolsVersion="14.1" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
 	<!--Manually define MSVC variables, in case they are missing.-->
-	<!--
-		TODO: Research error below.
-		C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.Cpp.Platform.props(21,5)
-		MSB4184: The expression "Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevDiv\vs\Servicing\11.0\professional@Version" cannot be evaluated.
-	-->
 
 	<PropertyGroup>
 		<VCTargetsPath Condition="'$(VCTargetsPath)'==''">C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets</VCTargetsPath>

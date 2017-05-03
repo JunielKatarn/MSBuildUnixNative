@@ -9,4 +9,6 @@
 	</PropertyGroup>
 	-->
 
+	<Import Project="$(PlatformFolder)\Platform.props" />
+
 </Project>

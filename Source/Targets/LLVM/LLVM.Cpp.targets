@@ -1,39 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
 	<Import Project="LLVM.CppBuild.targets" />
 
 	<Import Project="LLVM.CppClean.targets" />
 
-	<!--TODO: Remove this eventually...-->
-	<Target Name="Vars">
-		<Message Text="Configuration             [$(Configuration)]" />
-		<Message Text="CppCollection             [$(CppCollection)]" />
-		<Message Text="GeneratedFilesDir         [$(GeneratedFilesDir)]" />
-		<Message Text="IntDir                    [$(IntDir)]" />
-		<Message Text="LLVMInstallDir            [$(LLVMInstallDir)]" />
-		<Message Text="LLVMTargetsPath           [$(LLVMTargetsPath)]" />
-		<Message Text="LLVMTasksPath             [$(LLVMTasksPath)]" />
-		<Message Text="MSBuildBinPath            [$(MSBuildBinPath)]" />
-		<Message Text="MSBuildToolsPath          [$(MSBuildToolsPath)]" />
-		<Message Text="MSBuildStartupDirectory   [$(MSBuildStartupDirectory)]" />
-		<Message Text="MSBuildThisFileDirectory  [$(MSBuildThisFileDirectory)]" />
-		<Message Text="MSBuildExtensionsPath     [$(MSBuildExtensionsPath)]" />
-		<Message Text="MSBuildUserExtensionsPath [$(MSBuildUserExtensionsPath)]" />
-		<Message Text="Nested                    [%(Nested.Key)]" />
-		<Message Text="OS                        [$(OS)]" />
-		<Message Text="OSPlatform                [$(OSPlatform)]" />
-		<Message Text="OutDir                    [$(OutDir)]" />
-		<Message Text="Platform                  [$(Platform)]" />
-		<Message Text="PlatformTarget            [$(PlatformTarget)]" />
-		<Message Text="ProcessorArchitecture     [$(ProcessorArchitecture)]" />
-		<Message Text="ProjectName               [$(ProjectName)]" />
-		<Message Text="RootDir                   [$(RootDir)]" />
-		<Message Text="SolutionDir               [$(SolutionDir)]" />
-		<Message Text="TargetPlatformIdentifier  [$(TargetPlatformIdentifier)]" />
-		<Message Text="Uname                     [$(Uname)]" />
-		<Message Text="UserRootDir               [$(UserRootDir)]" />
-		<Message Text="VCInstallDir              [$(VCInstallDir)]" />
-		<Message Text="VCTargetsPath             [$(VCTargetsPath)]" />
-	</Target>
+	<Import Project="$(PlatformFolder)\Platform.targets" />
 
 </Project>

@@ -34,7 +34,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-			<ClangCompile Include="main.cpp" />
+		<ClangCompile Include="main.cpp" />
 	</ItemGroup>
 
 </Project>

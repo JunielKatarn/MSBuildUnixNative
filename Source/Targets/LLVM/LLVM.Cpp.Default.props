@@ -3,10 +3,17 @@
 
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
-		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">LLVM</LLVMTargetsPath>
+		<ConfigurationType Condition="'$(ConfigurationType)' == ''">Application</ConfigurationType>
+		<!--<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">LLVM</LLVMTargetsPath>-->
+		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(MSBuildThisFileDirectory)</LLVMTargetsPath>
 
 		<!--TODO: Replace with an actual installation/deployment path.-->
-		<LLVMTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+		<LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+
+		<PlatformFolder Condition="'$(PlatformFolder)' == ''">$(LLVMTargetsPath)\Platforms\$(Platform)</PlatformFolder>
 	</PropertyGroup>
+
+	<!--Platform should already be set.-->
+	<Import Project="$(PlatformFolder)\Platform.Default.props" />
 
 </Project>
