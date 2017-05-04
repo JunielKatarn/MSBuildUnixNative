@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup Label="LLVMProperties">
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
+		<ClangExecutable Condition="'$(ClangExecutable)' == ''">$(LLVMInstallDir)\bin\clang.exe</ClangExecutable>
+	</PropertyGroup>
+
+</Project>
