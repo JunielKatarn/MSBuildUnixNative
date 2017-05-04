@@ -28,6 +28,12 @@
     <Filter Include="LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0">
       <UniqueIdentifier>{dc44ce03-237e-4cce-852f-1a96430b5781}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LLVM\Platforms\Unix">
+      <UniqueIdentifier>{93cb54f3-01af-415d-abf9-de8efa7082c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LLVM\Platforms\Unix\PlatformToolsets">
+      <UniqueIdentifier>{19f6aae3-6b82-4f2d-83dc-fa274236019a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
@@ -97,6 +103,21 @@
     </None>
     <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0\Toolset.targets">
       <Filter>LLVM\Platforms\Linux64\PlatformToolsets\llvm-4.0.0</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Unix\Platform.Default.props">
+      <Filter>LLVM\Platforms\Unix</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Unix\Platform.props">
+      <Filter>LLVM\Platforms\Unix</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Unix\Platform.targets">
+      <Filter>LLVM\Platforms\Unix</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Unix\PlatformToolsets\llvm-4.0.0\Toolset.props">
+      <Filter>LLVM\Platforms\Unix\PlatformToolsets</Filter>
+    </None>
+    <None Include="D:\Extra\oneweek\devmain\Source\Targets\LLVM\Platforms\Unix\PlatformToolsets\llvm-4.0.0\Toolset.targets">
+      <Filter>LLVM\Platforms\Unix\PlatformToolsets</Filter>
     </None>
   </ItemGroup>
 </Project>
