@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<CppCollection>LLVM</CppCollection>
 		<Platform Condition="'$(Platform)'=='' OR '$(Platform)'=='AnyCPU'">Darwin64</Platform>
 	</PropertyGroup>
-
-	<PropertyGroup Label="LLVMProperties">
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/opt/llvm/4/lib/clang/4.0.0</LLVMInstallDir>
-		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/opt/llvm/4/bin/clang</ClangExecutable>
-	</PropertyGroup>
+	<!--Sets start up properties such as the targets path.-->
+	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 
 	<ImportGroup Label="ClangTargets">
 		<Import Project="$(LLVMTargetsPath)\LLVM.Cpp.props" />

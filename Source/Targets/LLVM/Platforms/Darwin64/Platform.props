@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!--TODO: Define current platform directory?-->
+	<!--TODO: Define/import $(LLVMTargetsPath)\LLVM.Cpp.Platform.props?-->
+
+	<Import Project="$(PlatformFolder)\PlatformToolsets\$(PlatformToolset)\Toolset.props" />
+
+</Project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<PlatformArchitecture>64</PlatformArchitecture>
+		<!--TODO: PlatformTarget?-->
+		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-4.0.0</PlatformToolset>
+	</PropertyGroup>
+
+</Project>
