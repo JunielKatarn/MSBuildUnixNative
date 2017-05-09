@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup Label="NuGet">
-		<Content Include="..\Targets\**\*.*" Exclude="..\Targets\**\*.vcxitems*">
+		<Content Include="..\Targets\**\*.*" Exclude="..\Targets\Targets.*">
 			<PackagePath>build\</PackagePath>
 		</Content>
 	</ItemGroup>
