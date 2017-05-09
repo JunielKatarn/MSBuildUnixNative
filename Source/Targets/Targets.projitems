@@ -1,18 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup Label="Globals">
+  <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <ItemsProjectGuid>{FABAD470-0BFD-4801-9E01-41D33B08A148}</ItemsProjectGuid>
+    <SharedGUID>2b9036d6-0672-4576-aace-f096342de6f0</SharedGUID>
   </PropertyGroup>
-  <ItemDefinitionGroup>
-    <ClCompile>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemGroup>
-    <ProjectCapability Include="SourceItemsFromImports" />
-  </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>LLVM.Build</Import_RootNamespace>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)CppProject.props" />
     <None Include="$(MSBuildThisFileDirectory)LINUX.props" />
@@ -25,7 +20,13 @@
     <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.Cpp.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppBuild.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\LLVM.CppClean.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\AnyCPU.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64\Platform.Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64\Platform.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64\Platform.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64\PlatformToolsets\llvm-4.0.0\Toolset.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Darwin64\PlatformToolsets\llvm-4.0.0\Toolset.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\Platform.Default.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Linux64\Platform.props" />
@@ -39,6 +40,16 @@
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Unix\PlatformToolsets\llvm-4.0.0\Toolset.targets" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win32.props" />
     <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64\Platform.Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64\Platform.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64\Platform.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64\PlatformToolsets\llvm-4.0.0\Toolset.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Win64\PlatformToolsets\llvm-4.0.0\Toolset.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Windows_NT\Platform.Default.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Windows_NT\Platform.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Windows_NT\Platform.targets" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Windows_NT\PlatformToolsets\llvm-4.0.0\Toolset.props" />
+    <None Include="$(MSBuildThisFileDirectory)LLVM\Platforms\Windows_NT\PlatformToolsets\llvm-4.0.0\Toolset.targets" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Debug.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Configurations\Release.props" />
     <None Include="$(MSBuildThisFileDirectory)MSVC\Platforms\Win32.props" />
