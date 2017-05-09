@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Source\Tasks\Tasks.csproj", "{B66A94F5-16A3-495D-8BED-145CF4E88A69}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Targets", "Source\Targets\Targets.shproj", "{FABAD470-0BFD-4801-9E01-41D33B08A148}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Targets", "Source\Targets\Targets.shproj", "{A92336A3-A914-48F0-92A7-F71211925E0D}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Source\Targets\Targets.projitems*{fabad470-0bfd-4801-9e01-41d33b08a148}*SharedItemsImports = 9
+		Source\Targets\Targets.projitems*{a92336a3-a914-48f0-92a7-f71211925e0d}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
