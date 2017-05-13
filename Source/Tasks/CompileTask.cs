@@ -23,10 +23,10 @@ namespace LLVM.Build.Tasks
 
 		static readonly Dictionary<string, string> Stages = new Dictionary<string, string>
 		{
-			["Preprocess"] = "-E",
-			["Parse"] = "-fsyntax-only",
-			["Assemble"] = "-S",
-			["Compile"] = "-c"
+			["Preprocess"]	= "-E",
+			["Parse"]		= "-fsyntax-only",
+			["Assemble"]	= "-S",
+			["Compile"]		= "-c"
 		};
 
 		#endregion
