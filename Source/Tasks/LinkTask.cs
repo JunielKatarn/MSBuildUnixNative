@@ -62,6 +62,71 @@ namespace LLVM.Build.Tasks
 			return exitCode;
 		}
 
+		private void SetArgumentProperty(string key, bool value, string flag)
+		{
+			arguments[key] = value;
+			if (value)
+				argumentValues[key] = flag;
+		}
+
+		private void SetArgumentProperty(string key, string value, string format)
+		{
+			if (!string.IsNullOrEmpty(value))
+			{
+				arguments[key] = value;
+				argumentValues[key] = string.Format(format, value);
+			}
+			else if (arguments.ContainsKey(key))
+			{
+				arguments.Remove(key);
+				argumentValues.Remove(key);
+			}
+		}
+
+		private void SetArgumentProperty(string key, string[] value, string separator)
+		{
+			if (value != null && value.Length > 0)
+			{
+				arguments[key] = value;
+				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
+				argumentValues[key] = prefix + string.Join(separator, value);
+			}
+			else if (arguments.ContainsKey(key))
+			{
+				arguments.Remove(key);
+				argumentValues.Remove(key);
+			}
+		}
+
+		private void SetArgumentProperty(string key, ITaskItem value, string format)
+		{
+			if (value != null)
+			{
+				arguments[key] = value;
+				argumentValues[key] = string.Format(format, value);
+			}
+			else if (arguments.ContainsKey(key))
+			{
+				arguments.Remove(key);
+				argumentValues.Remove(key);
+			}
+		}
+
+		private void SetArgumentProperty(string key, ITaskItem[] value, string separator)
+		{
+			if (value != null && value.Length > 0)
+			{
+				arguments[key] = value;
+				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
+				argumentValues[key] = prefix + string.Join<ITaskItem>(separator, value);
+			}
+			else if (arguments.ContainsKey(key))
+			{
+				arguments.Remove(key);
+				argumentValues.Remove(key);
+			}
+		}
+
 		#endregion // Private members
 
 		#region Linker options
@@ -79,11 +144,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				if (value.Length < 1 || value == null)
-					throw new Exception();
-
-				arguments["InputFiles"] = value;
-				argumentValues["InputFiles"] = string.Join<ITaskItem>(" ", value);
+				SetArgumentProperty("InputFiles", value, " ");
 			}
 		}
 
@@ -100,16 +161,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				if (string.IsNullOrEmpty(value))
-				{
-					arguments.Remove("HashStyle");
-					argumentValues.Remove("HashStyle");
-				}
-				else
-				{
-					arguments["HashStyle"] = value;
-					argumentValues["HashStyle"] = $"--hash-style={value}";
-				}
+				SetArgumentProperty("HashStyle", value, "--hash-style={0}");
 			}
 		}
 
@@ -131,9 +183,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["EhFrameHeader"] = value;
-				if (value)
-					argumentValues["EhFrameHeader"] = "--eh-frame-hdr";
+				SetArgumentProperty("EhFrameHeader", value, "--eh-frame-hdr");
 			}
 		}
 
@@ -150,8 +200,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["TargetEmulation"] = value;
-				argumentValues["TargetEmulation"] = $"-m {value}";
+				SetArgumentProperty("TargetEmulation", value, "-m {0}");
 			}
 		}
 
@@ -168,8 +217,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["HeaderInputs"] = value;
-				argumentValues["HeaderInputs"] = string.Join<ITaskItem>(" ", value);
+				SetArgumentProperty("HeaderInputs", value, " ");
 			}
 		}
 
@@ -177,17 +225,16 @@ namespace LLVM.Build.Tasks
 		/// -dynamic-linker
 		/// TODO: EXE-only?
 		/// </summary>
-		public string DynamicLinker
+		public ITaskItem DynamicLinker
 		{
 			get
 			{
-				return arguments["DynamicLinker"] as string;
+				return arguments["DynamicLinker"] as ITaskItem;
 			}
 
 			set
 			{
-				arguments["DynamicLinker"] = value;
-				argumentValues["DynamicLinker"] = $"-dynamic-linker {value}";
+				SetArgumentProperty("DynamicLinker", value, "-dynamic-linker {0}");
 			}
 		}
 
@@ -209,9 +256,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["Shared"] = value;
-				if (value)
-					argumentValues["Shared"] = "-shared";
+				SetArgumentProperty("Shared", value, "-shared");
 			}
 		}
 
@@ -227,8 +272,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["LinkerOptionExtensions"] = value;
-				argumentValues["LinkerOptionExtensions"] = $"-z {value}";
+				SetArgumentProperty("LinkerOptionExtensions", value, "-z {0}");
 			}
 		}
 
@@ -244,8 +288,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["LibrarySearchPath"] = value;
-				argumentValues["LibrarySearchPath"] = "-L" +  string.Join<ITaskItem>(" -L", value);
+				SetArgumentProperty("LibrarySearchPath", value, " -L");
 			}
 		}
 
@@ -262,8 +305,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["LibraryNames"] = value;
-				argumentValues["LibraryNames"] = "-l" + string.Join(" -l", value);
+				SetArgumentProperty("LibraryNames", value, " l");
 			}
 		}
 
@@ -280,8 +322,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["FooterInputs"] = value;
-				argumentValues["FooterInputs"] = string.Join<ITaskItem>(" ", value);
+				SetArgumentProperty("FooterInputs", value, " ");
 			}
 		}
 
@@ -297,8 +338,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				arguments["OutputFile"] = value;
-				argumentValues["OutputFile"] = $"-o {value}";
+				SetArgumentProperty("OutputFile", value, "-o {0}");
 			}
 		}
 
