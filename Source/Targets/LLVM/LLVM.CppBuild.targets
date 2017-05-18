@@ -1,16 +1,39 @@
 <Project>
 
-	<!--TODO: Define an actual task installation directory.-->
 	<UsingTask TaskName="LLVM.Build.Tasks.CompileTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 
-	<Target Name="Build">
-		<Message Text="Executing [Build] target..." />
+	<Target Name="Compile">
+		<!--TODO: Stage.-->
 		<CompileTask
 				ClangExecutable="$(ClangExecutable)"
 				InputFiles     ="@(ClangCompile)"
 				IntDir         ="$(IntDir)"
 				PrintOnly      ="$(PrintOnly)"
 		/>
+	</Target>
+
+	<!--TODO: This is 'executable-only'-->
+	<Target Name="Link">
+		<LinkTask
+				LLDExecutable         ="$(LLDExecutable)"
+				InputFiles            ="@()"
+
+				LinkerOptionExtensions="$(LinkerOptionExtensions)"
+				HashStyle             ="$(HashStyle)"
+				EhFrameHeader         ="$(EhFrameHeader)"
+				TargetEmulation       ="$(TargetEmulation)"
+				DynamicLinker         ="$(DynamicLinker)"
+				HeaderInputs          ="@(HeaderInputs)"
+				LibrarySearchPath     ="@(LibrarySearchPath)"
+				LibraryNames          ="@(LibraryNames)"
+				FooterInputs          ="@(FooterInputs)"
+				OutputFile            ="$(OutputFile)"
+		/>
+	</Target>
+
+	<Target Name="Build" DependsOnTargets="Compile">
+		<!--TODO: Print this message BEFORE 'DependsOn'.-->
+		<Message Text="Executing [Build] target..." />
 	</Target>
 
 </Project>

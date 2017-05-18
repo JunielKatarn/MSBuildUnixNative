@@ -49,37 +49,36 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
-		private IDictionary<string, object> arguments = new Dictionary<string, object>();
-		private IDictionary<string, string> argumentValues = new SortedDictionary<string, string>(GetArgComparer());
+		private IDictionary<string, object> argValues = new Dictionary<string, object>();
 
-		private int InvokeProcess(ICollection<string> args)
+		private IDictionary<string, string> argStrings = new SortedDictionary<string, string>(GetArgComparer());
+
+		private string[] ToArgArray()
 		{
-			int exitCode = -1;
+			string[] result = new string[argStrings.Count];
+			argStrings.Values.CopyTo(result, 0);
 
-			Log.LogMessage(LLDExecutable);
-			Log.LogMessage("\t" + string.Join("\n\t", args));
-
-			return exitCode;
+			return result;
 		}
 
-		private void SetArgumentProperty(string key, bool value, string flag)
+		private void SetArgumentProperty(string key, bool value, string stringValue)
 		{
-			arguments[key] = value;
+			argValues[key] = value;
 			if (value)
-				argumentValues[key] = flag;
+				argStrings[key] = stringValue;
 		}
 
-		private void SetArgumentProperty(string key, string value, string format)
+		private void SetArgumentProperty(string key, string value, string stringValue)
 		{
 			if (!string.IsNullOrEmpty(value))
 			{
-				arguments[key] = value;
-				argumentValues[key] = string.Format(format, value);
+				argValues[key] = value;
+				argStrings[key] = stringValue;
 			}
-			else if (arguments.ContainsKey(key))
+			else if (argValues.ContainsKey(key))
 			{
-				arguments.Remove(key);
-				argumentValues.Remove(key);
+				argValues.Remove(key);
+				argStrings.Remove(key);
 			}
 		}
 
@@ -87,28 +86,28 @@ namespace LLVM.Build.Tasks
 		{
 			if (value != null && value.Length > 0)
 			{
-				arguments[key] = value;
+				argValues[key] = value;
 				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argumentValues[key] = prefix + string.Join(separator, value);
+				argStrings[key] = prefix + string.Join(separator, value);
 			}
-			else if (arguments.ContainsKey(key))
+			else if (argValues.ContainsKey(key))
 			{
-				arguments.Remove(key);
-				argumentValues.Remove(key);
+				argValues.Remove(key);
+				argStrings.Remove(key);
 			}
 		}
 
-		private void SetArgumentProperty(string key, ITaskItem value, string format)
+		private void SetArgumentProperty(string key, ITaskItem value, string stringValue)
 		{
 			if (value != null)
 			{
-				arguments[key] = value;
-				argumentValues[key] = string.Format(format, value);
+				argValues[key] = value;
+				argStrings[key] = stringValue;
 			}
-			else if (arguments.ContainsKey(key))
+			else if (argValues.ContainsKey(key))
 			{
-				arguments.Remove(key);
-				argumentValues.Remove(key);
+				argValues.Remove(key);
+				argStrings.Remove(key);
 			}
 		}
 
@@ -116,15 +115,25 @@ namespace LLVM.Build.Tasks
 		{
 			if (value != null && value.Length > 0)
 			{
-				arguments[key] = value;
+				argValues[key] = value;
 				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argumentValues[key] = prefix + string.Join<ITaskItem>(separator, value);
+				argStrings[key] = prefix + string.Join<ITaskItem>(separator, value);
 			}
-			else if (arguments.ContainsKey(key))
+			else if (argValues.ContainsKey(key))
 			{
-				arguments.Remove(key);
-				argumentValues.Remove(key);
+				argValues.Remove(key);
+				argStrings.Remove(key);
 			}
+		}
+
+		private int InvokeProcess(string[] args)
+		{
+			int exitCode = -1;
+
+			Log.LogMessage(LLDExecutable);
+			Log.LogMessage("\t" + string.Join("\n\t", args));
+
+			return exitCode;
 		}
 
 		#endregion // Private members
@@ -139,7 +148,7 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["InputFiles"] as ITaskItem[];
+				return argValues["InputFiles"] as ITaskItem[];
 			}
 
 			set
@@ -156,12 +165,12 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["HashStyle"] as string;
+				return argValues["HashStyle"] as string;
 			}
 
 			set
 			{
-				SetArgumentProperty("HashStyle", value, "--hash-style={0}");
+				SetArgumentProperty("HashStyle", value, $"--hash-style={value}");
 			}
 		}
 
@@ -173,9 +182,9 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				if (arguments.ContainsKey("EhFrameHeader"))
+				if (argValues.ContainsKey("EhFrameHeader"))
 				{
-					return (bool)arguments["EhFrameHeader"];
+					return (bool)argValues["EhFrameHeader"];
 				}
 
 				return false;
@@ -195,12 +204,12 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["TargetEmulation"] as string;
+				return argValues["TargetEmulation"] as string;
 			}
 
 			set
 			{
-				SetArgumentProperty("TargetEmulation", value, "-m {0}");
+				SetArgumentProperty("TargetEmulation", value, $"-m {value}");
 			}
 		}
 
@@ -212,7 +221,7 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["HeaderInputs"] as ITaskItem[];
+				return argValues["HeaderInputs"] as ITaskItem[];
 			}
 
 			set
@@ -229,12 +238,12 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["DynamicLinker"] as ITaskItem;
+				return argValues["DynamicLinker"] as ITaskItem;
 			}
 
 			set
 			{
-				SetArgumentProperty("DynamicLinker", value, "-dynamic-linker {0}");
+				SetArgumentProperty("DynamicLinker", value, $"-dynamic-linker {value}");
 			}
 		}
 
@@ -248,10 +257,10 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				if (!arguments.ContainsKey("Shared"))
+				if (!argValues.ContainsKey("Shared"))
 					return false;
 
-				return (bool)arguments["Shared"];
+				return (bool)argValues["Shared"];
 			}
 
 			set
@@ -267,12 +276,12 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["LinkerOptionExtensions"] as string;
+				return argValues["LinkerOptionExtensions"] as string;
 			}
 
 			set
 			{
-				SetArgumentProperty("LinkerOptionExtensions", value, "-z {0}");
+				SetArgumentProperty("LinkerOptionExtensions", value, $"-z {value}");
 			}
 		}
 
@@ -283,7 +292,7 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["LibrarySearchPath"] as ITaskItem[];
+				return argValues["LibrarySearchPath"] as ITaskItem[];
 			}
 
 			set
@@ -300,7 +309,7 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["LibraryNames"] as string[];
+				return argValues["LibraryNames"] as string[];
 			}
 
 			set
@@ -317,7 +326,7 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["FooterInputs"] as ITaskItem[];
+				return argValues["FooterInputs"] as ITaskItem[];
 			}
 
 			set
@@ -333,12 +342,12 @@ namespace LLVM.Build.Tasks
 		{
 			get
 			{
-				return arguments["OutputFile"] as ITaskItem;
+				return argValues["OutputFile"] as ITaskItem;
 			}
 
 			set
 			{
-				SetArgumentProperty("OutputFile", value, "-o {0}");
+				SetArgumentProperty("OutputFile", value, $"-o {value}");
 			}
 		}
 
@@ -350,7 +359,7 @@ namespace LLVM.Build.Tasks
 		{
 			try
 			{
-				return InvokeProcess(argumentValues.Values) == 0;
+				return InvokeProcess(ToArgArray()) == 0;
 			}
 			catch
 			{
