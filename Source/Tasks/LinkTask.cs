@@ -9,9 +9,9 @@ using Microsoft.Build.Utilities;
 
 namespace LLVM.Build.Tasks
 {
-	public class LinkTask : Task
+	public class LinkTask : CommandLineTask
 	{
-		#region Static members
+		#region static members
 
 		static LinkTask()
 		{
@@ -32,99 +32,15 @@ namespace LLVM.Build.Tasks
 
 		private static IDictionary<string, uint> argPriorities = new SortedDictionary<string, uint>();
 
-		private static ArgComparer GetArgComparer()
+		#endregion // static members
+
+		public LinkTask()
 		{
-			return new ArgComparer();
+			argValues = new Dictionary<string, object>();
+			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
 		}
 
-		#endregion // Static members
-
-		#region Private members
-
-		private class ArgComparer : IComparer<string>
-		{
-			public int Compare(string x, string y)
-			{
-				return argPriorities[x].CompareTo(argPriorities[y]);
-			}
-		}
-
-		private IDictionary<string, object> argValues = new Dictionary<string, object>();
-
-		private IDictionary<string, string> argStrings = new SortedDictionary<string, string>(GetArgComparer());
-
-		private string[] ToArgArray()
-		{
-			string[] result = new string[argStrings.Count];
-			argStrings.Values.CopyTo(result, 0);
-
-			return result;
-		}
-
-		private void SetArgumentProperty(string key, bool value, string stringValue)
-		{
-			argValues[key] = value;
-			if (value)
-				argStrings[key] = stringValue;
-		}
-
-		private void SetArgumentProperty(string key, string value, string stringValue)
-		{
-			if (!string.IsNullOrEmpty(value))
-			{
-				argValues[key] = value;
-				argStrings[key] = stringValue;
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, string[] value, string separator)
-		{
-			if (value != null && value.Length > 0)
-			{
-				argValues[key] = value;
-				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argStrings[key] = prefix + string.Join(separator, value);
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, ITaskItem value, string stringValue)
-		{
-			if (value != null)
-			{
-				argValues[key] = value;
-				argStrings[key] = stringValue;
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, ITaskItem[] value, string separator)
-		{
-			if (value != null && value.Length > 0)
-			{
-				argValues[key] = value;
-				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argStrings[key] = prefix + string.Join<ITaskItem>(separator, value);
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
+		#region private members
 
 		private int InvokeProcess(string[] args)
 		{
@@ -136,7 +52,7 @@ namespace LLVM.Build.Tasks
 			return exitCode;
 		}
 
-		#endregion // Private members
+		#endregion // private members
 
 		#region Linker options
 

@@ -17,9 +17,9 @@ namespace LLVM.Build.Tasks
 	/// This is an MSBuild Task that allows executing the current operating
 	/// system's version of clang for the compilation process.
 	/// </summary>
-	public class CompileTask : Task
+	public class CompileTask : CommandLineTask
 	{
-		#region Static members
+		#region static members
 
 		private static readonly Dictionary<string, string> Stages = new Dictionary<string, string>
 		{
@@ -38,100 +38,16 @@ namespace LLVM.Build.Tasks
 			argPriorities["InputFiles"] = i++;
 			argPriorities["Verbose"]    = i++;
 		}
-		private static ArgComparer GetArgComparer()
+
+		#endregion // static members
+
+		public CompileTask()
 		{
-			return new ArgComparer();
+			argValues = new Dictionary<string, object>();
+			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
 		}
 
-		#endregion
-
-		#region Private members
-
-		private class ArgComparer : IComparer<string>
-		{
-			public int Compare(string x, string y)
-			{
-				return argPriorities[x].CompareTo(argPriorities[y]);
-			}
-		}
-
-		private IDictionary<string, object> argValues = new Dictionary<string, object>();
-
-		private IDictionary<string, string> argStrings = new SortedDictionary<string, string>(GetArgComparer());
-
-		private string[] ToArgArray()
-		{
-			string[] result = new string[argStrings.Count];
-			argStrings.Values.CopyTo(result, 0);
-
-			return result;
-		}
-
-		//TODO: Move SetArgumentProperty into a base or utility class.
-		private void SetArgumentProperty(string key, bool value, string stringValue)
-		{
-			argValues[key] = value;
-			if (value)
-				argStrings[key] = stringValue;
-		}
-
-		private void SetArgumentProperty(string key, string value, string stringValue)
-		{
-			if (!string.IsNullOrEmpty(value))
-			{
-				argValues[key] = value;
-				argStrings[key] = stringValue;
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, string[] value, string separator)
-		{
-			if (value != null && value.Length > 0)
-			{
-				argValues[key] = value;
-				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argStrings[key] = prefix + string.Join(separator, value);
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, ITaskItem value, string stringValue)
-		{
-			if (value != null)
-			{
-				argValues[key] = value;
-				argStrings[key] = stringValue;
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
-
-		private void SetArgumentProperty(string key, ITaskItem[] value, string separator)
-		{
-			if (value != null && value.Length > 0)
-			{
-				argValues[key] = value;
-				string prefix = string.IsNullOrWhiteSpace(separator) ? "" : separator;
-				argStrings[key] = prefix + string.Join<ITaskItem>(separator, value);
-			}
-			else if (argValues.ContainsKey(key))
-			{
-				argValues.Remove(key);
-				argStrings.Remove(key);
-			}
-		}
+		#region private members
 
 		private string[] ToArgArray(ITaskItem item)
 		{
@@ -206,7 +122,7 @@ namespace LLVM.Build.Tasks
 			return exitCode;
 		}
 
-		#endregion
+		#endregion // private members
 
 		#region Compiler options
 
@@ -271,7 +187,7 @@ namespace LLVM.Build.Tasks
 
 		public bool PrintOnly { get; set; } = false;
 
-		#endregion
+		#endregion // Compiler options
 
 		#region Task members
 
@@ -285,6 +201,6 @@ namespace LLVM.Build.Tasks
 			return true;
 		}
 
-		#endregion
+		#endregion // Task members
 	}
 }
