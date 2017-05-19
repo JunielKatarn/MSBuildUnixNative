@@ -42,6 +42,14 @@ namespace LLVM.Build.Tasks
 
 		#region private members
 
+		protected string[] ToArgArray()
+		{
+			string[] result = new string[argStrings.Count];
+			argStrings.Values.CopyTo(result, 0);
+
+			return result;
+		}
+
 		private int InvokeProcess(string[] args)
 		{
 			int exitCode = -1;

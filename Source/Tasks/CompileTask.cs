@@ -35,7 +35,6 @@ namespace LLVM.Build.Tasks
 		{
 			uint i = 0;
 			argPriorities["Stage"]      = i++;
-			argPriorities["InputFiles"] = i++;
 			argPriorities["Verbose"]    = i++;
 		}
 
@@ -45,18 +44,26 @@ namespace LLVM.Build.Tasks
 		{
 			argValues = new Dictionary<string, object>();
 			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
+
+			// Defaults
+			Stage = "Compile";//TODO: Move default into props.
 		}
 
 		#region private members
 
 		private string[] ToArgArray(ITaskItem item)
 		{
-			return new string[]
+			string[] itemArgs = new string[]
 			{
-				Stages[Stage],
 				$"-o {IntDir}{item.ItemSpec.Substring(0, item.ItemSpec.LastIndexOf('.'))}.o",
 				item.GetMetadata("FullPath")
 			};
+
+			string[] result = new string[argStrings.Count + itemArgs.Length];
+			argStrings.Values.CopyTo(result, 0);
+			itemArgs.CopyTo(result, argStrings.Count);
+
+			return result;
 		}
 
 		private int InvokeProcess(ITaskItem item)
@@ -130,26 +137,12 @@ namespace LLVM.Build.Tasks
 		public string ClangExecutable { get; set; }
 
 		[Required]
-		public ITaskItem[] InputFiles
-		{
-			get
-			{
-				return argValues["InputFiles"] as ITaskItem[];
-			}
-
-			set
-			{
-				SetArgumentProperty("InputFiles", value, " ");
-			}
-		}
+		public ITaskItem[] InputFiles { get; set; }
 
 		public string Stage
 		{
 			get
 			{
-				if (!argValues.ContainsKey("Stage"))
-					return "Compile";//TODO: Move default into props.
-
 				return argValues["Stage"] as string;
 			}
 
@@ -163,6 +156,7 @@ namespace LLVM.Build.Tasks
 
 		/// <summary>
 		/// Only applies when the length of InputFiles is 1.
+		/// TODO: Either find usage, or deprecate.
 		/// </summary>
 		public string ObjectFileName { get; set; }
 

@@ -12,6 +12,8 @@
 		/>
 	</Target>
 
+	<Target Name="Lib" />
+
 	<!--TODO: This is 'executable-only'-->
 	<Target Name="Link">
 		<LinkTask

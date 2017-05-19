@@ -107,14 +107,6 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
-		protected string[] ToArgArray()
-		{
-			string[] result = new string[argStrings.Count];
-			argStrings.Values.CopyTo(result, 0);
-
-			return result;
-		}
-
-		#endregion
+		#endregion // protected members
 	}
 }
