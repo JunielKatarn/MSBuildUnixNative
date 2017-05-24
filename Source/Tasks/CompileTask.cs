@@ -14,8 +14,7 @@ using Microsoft.Build.Utilities;
 namespace LLVM.Build.Tasks
 {
 	/// <summary>
-	/// This is an MSBuild Task that allows executing the current operating
-	/// system's version of clang for the compilation process.
+	/// This is an MSBuild Task that allows executing the clang compiler, up to the 'Compile' stage.
 	/// </summary>
 	public class CompileTask : CommandLineTask
 	{
@@ -35,6 +34,8 @@ namespace LLVM.Build.Tasks
 		{
 			uint i = 0;
 			argPriorities["Stage"]      = i++;
+			argPriorities["SystemRoot"] = i++;
+			argPriorities["Language"]   = i++;
 			argPriorities["Verbose"]    = i++;
 		}
 
@@ -46,7 +47,9 @@ namespace LLVM.Build.Tasks
 			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
 
 			// Defaults
-			Stage = "Compile";//TODO: Move default into props.
+			//TODO: Move into props?
+			Stage = "Compile";
+			Language = "c++";
 		}
 
 		#region private members
@@ -131,7 +134,27 @@ namespace LLVM.Build.Tasks
 
 		#endregion // private members
 
-		#region Compiler options
+		#region Properties
+
+		[Output]
+		public string[] ObjectFiles
+		{
+			get
+			{
+				string[] result = new string[InputFiles.Length];
+
+				for (int i = 0; i < result.Length; i++)
+				{
+					result[i] = $"{IntDir}{InputFiles[i].ItemSpec.Substring(0, InputFiles[i].ItemSpec.LastIndexOf('.'))}.o";
+				}
+
+				return result;
+			}
+		}
+
+		#endregion // Properties
+
+		#region Command line arguments
 
 		[Required]
 		public string ClangExecutable { get; set; }
@@ -160,6 +183,33 @@ namespace LLVM.Build.Tasks
 		/// </summary>
 		public string ObjectFileName { get; set; }
 
+		public string SystemRoot
+		{
+			get
+			{
+				return argValues["SystemRoot"] as string;
+			}
+
+			set
+			{
+				SetArgumentProperty("SystemRoot", value, $"-isysroot {value}");
+			}
+		}
+
+		//TODO: Make non-arg? If not provided, infer/set per taskitem (InputFiles).
+		public string Language
+		{
+			get
+			{
+				return argValues["Language"] as string;
+			}
+
+			set
+			{
+				SetArgumentProperty("Language", value, $"-x {value}");
+			}
+		}
+
 		/// <summary>
 		/// -v
 		/// </summary>
@@ -181,18 +231,20 @@ namespace LLVM.Build.Tasks
 
 		public bool PrintOnly { get; set; } = false;
 
-		#endregion // Compiler options
+		#endregion // Command line arguments
 
 		#region Task members
 
 		public override bool Execute()
 		{
+			bool result = true;
+
 			foreach (var item in InputFiles)
 			{
-				InvokeProcess(item);
+				result &= InvokeProcess(item) == 0;
 			}
 
-			return true;
+			return result;
 		}
 
 		#endregion // Task members

@@ -281,14 +281,17 @@ namespace LLVM.Build.Tasks
 
 		public override bool Execute()
 		{
-			try
-			{
-				return InvokeProcess(ToArgArray()) == 0;
-			}
-			catch
-			{
-				return false;
-			}
+			//try
+			//{
+			//	return InvokeProcess(ToArgArray()) == 0;
+			//}
+			//catch
+			//{
+			//	return false;
+			//}
+			foreach (var item in InputFiles)
+				Log.LogMessage(item.ToString());
+			return true;
 		}
 
 		#endregion // Task members

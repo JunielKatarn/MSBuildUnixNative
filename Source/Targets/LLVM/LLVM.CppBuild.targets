@@ -1,15 +1,21 @@
 <Project>
 
 	<UsingTask TaskName="LLVM.Build.Tasks.CompileTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
+	<UsingTask TaskName="LLVM.Build.Tasks.LinkTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 
 	<Target Name="Compile">
-		<!--TODO: Stage.-->
+		<!--TODO: Stage, default languange.-->
 		<CompileTask
 				ClangExecutable="$(ClangExecutable)"
 				InputFiles     ="@(ClangCompile)"
 				IntDir         ="$(IntDir)"
-				PrintOnly      ="$(PrintOnly)"
-		/>
+				SystemRoot     ="$(SystemRoot)"
+				Language       ="$(Language)"
+				PrintOnly      ="$(PrintOnly)">
+			<Output
+					TaskParameter="ObjectFiles"
+					ItemName="CompileTaskOutput" />
+		</CompileTask>
 	</Target>
 
 	<Target Name="Lib" />
@@ -18,7 +24,7 @@
 	<Target Name="Link">
 		<LinkTask
 				LLDExecutable         ="$(LLDExecutable)"
-				InputFiles            ="@()"
+				InputFiles            ="@(CompileTaskOutput)"
 
 				LinkerOptionExtensions="$(LinkerOptionExtensions)"
 				HashStyle             ="$(HashStyle)"
@@ -33,7 +39,7 @@
 		/>
 	</Target>
 
-	<Target Name="Build" DependsOnTargets="Compile">
+	<Target Name="Build" DependsOnTargets="Compile;Link">
 		<!--TODO: Print this message BEFORE 'DependsOn'.-->
 		<Message Text="Executing [Build] target..." />
 	</Target>
