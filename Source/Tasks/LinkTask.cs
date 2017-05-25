@@ -28,6 +28,7 @@ namespace LLVM.Build.Tasks
 			argPriorities["LibraryNames"]			= i++;
 			argPriorities["FooterInputs"]			= i++;
 			argPriorities["OutputFile"]				= i++;
+			argPriorities["Erasme"] = i++;
 		}
 
 		private static IDictionary<string, uint> argPriorities = new SortedDictionary<string, uint>();
@@ -53,9 +54,61 @@ namespace LLVM.Build.Tasks
 		private int InvokeProcess(string[] args)
 		{
 			int exitCode = -1;
+			Process process = null;
 
-			Log.LogMessage(LLDExecutable);
-			Log.LogMessage("\t" + string.Join("\n\t", args));
+			Log.LogMessage("Executing command:");
+			Log.LogCommandLine($"{LLDExecutable}\n\t{string.Join("\n\t", args)}\n");
+
+			if (PrintOnly)
+			{
+				Log.LogWarning("PrintOnly was set. Ignoring this task.");
+				return 0;
+			}
+
+			try
+			{
+				process = new Process();
+				process.StartInfo.FileName = LLDExecutable;
+				process.StartInfo.Arguments = string.Join(" ", args);
+				process.StartInfo.UseShellExecute = false;
+				process.StartInfo.RedirectStandardOutput = true;
+				process.StartInfo.RedirectStandardError = true;
+
+				process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+				{
+					if (!string.IsNullOrEmpty(e.Data))
+						Log.LogMessage(e.Data);
+				});
+
+				process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
+				{
+					if (!string.IsNullOrEmpty(e.Data))
+						Log.LogError(e.Data);
+				});
+
+				// If the path to ObjectFile does not exist, clang won't create it by itself.
+				//if (!string.IsNullOrEmpty(IntDir) && !Directory.Exists(IntDir))
+				//	Directory.CreateDirectory(IntDir);
+
+				process.Start();
+				process.BeginOutputReadLine();
+				process.BeginErrorReadLine();
+				while (!process.HasExited)
+				{
+					process.WaitForExit(1);
+					Thread.Sleep(TimeSpan.FromSeconds(1));
+				}
+
+				exitCode = process.ExitCode;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.ToString());
+			}
+			finally
+			{
+				process?.Dispose();
+			}
 
 			return exitCode;
 		}
@@ -63,6 +116,21 @@ namespace LLVM.Build.Tasks
 		#endregion // private members
 
 		#region Linker options
+
+		public string[] Erasme
+		{
+			get
+			{
+				return argValues["Erasme"] as string[];
+			}
+
+			set
+			{
+				SetArgumentProperty("Erasme", value, " ");
+			}
+		}
+
+		public bool PrintOnly { get; set; } = false;
 
 		[Required]
 		public string LLDExecutable { get; set; }
@@ -238,7 +306,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("LibraryNames", value, " l");
+				SetArgumentProperty("LibraryNames", value, " -l");
 			}
 		}
 
@@ -281,17 +349,16 @@ namespace LLVM.Build.Tasks
 
 		public override bool Execute()
 		{
-			//try
-			//{
-			//	return InvokeProcess(ToArgArray()) == 0;
-			//}
-			//catch
-			//{
-			//	return false;
-			//}
-			foreach (var item in InputFiles)
-				Log.LogMessage(item.ToString());
-			return true;
+			try
+			{
+				return InvokeProcess(ToArgArray()) == 0;
+			}
+			catch(Exception e)
+			{
+				Log.LogError(e.StackTrace);
+
+				return false;
+			}
 		}
 
 		#endregion // Task members

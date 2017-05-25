@@ -7,4 +7,32 @@
 		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-4.0.0</PlatformToolset>
 	</PropertyGroup>
 
+	<!--TODO: Use ItemDefinitionGroup instead.-->
+	<PropertyGroup Label="Linker Options">
+		<Link_LinkerOptionExtensions Condition="'$(Link_LinkerOptionExtensions)' == ''">relro</Link_LinkerOptionExtensions>
+		<Link_HashStyle              Condition="'$(Link_HashStyle)'              == ''">gnu</Link_HashStyle>
+		<Link_EhFrameHeader          Condition="'$(Link_EhFrameHeader)'          == ''">true</Link_EhFrameHeader>
+		<Link_TargetEmulation        Condition="'$(Link_TargetEmulation)'        == ''">elf_x86_64</Link_TargetEmulation>
+		<Link_DynamicLinker          Condition="'$(Link_DynamicLinker)'          == ''">/lib64/ld-linux-x86-64.so.2</Link_DynamicLinker>
+		<Link_HeaderInputs           Condition="'$(Link_HeaderInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o</Link_HeaderInputs>
+		<Link_LibrarySearchPath      Condition="'$(Link_LibrarySearchPath)'      == ''">/usr/lib/gcc/x86_64-linux-gnu/5;/usr/lib/x86_64-linux-gnu;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib;/opt/llvm/4/lib;/lib;/usr/lib</Link_LibrarySearchPath>
+		<Link_LibraryNames           Condition="'$(Link_LibraryNames)'           == ''">c</Link_LibraryNames>
+		<Link_FooterInputs           Condition="'$(Link_FooterInputs)'           == ''">/usr/lib/gcc/x86_64-linux-gnu/5/crtend.o;/usr/lib/x86_64-linux-gnu/crtn.o</Link_FooterInputs>
+	</PropertyGroup>
+
+	<!--TODO: This works for executables only, currently.-->
+	<ItemDefinitionGroup>
+		<Link>
+			<LinkerOptionExtensions Condition="'%(Link.LinkerOptionExtensions)' == ''">relro</LinkerOptionExtensions>
+			<HashStyle              Condition="'%(Link.HashStyle)'              == ''">gnu</HashStyle>
+			<EhFrameHeader          Condition="'%(Link.EhFrameHeader)'          == ''">true</EhFrameHeader>
+			<TargetEmulation        Condition="'%(Link.TargetEmulation)'        == ''">elf_x86_64</TargetEmulation>
+			<DynamicLinker          Condition="'%(Link.DynamicLinker)'          == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
+			<HeaderInputs           Condition="'%(Link.HeaderInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crt1.o;/usr/lib/x86_64-linux-gnu/crti.o;/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o</HeaderInputs>
+			<LibrarySearchPath      Condition="'%(Link.LibrarySearchPath)'      == ''">/usr/lib/gcc/x86_64-linux-gnu/5;/usr/lib/x86_64-linux-gnu;/lib/x86_64-linux-gnu;/lib64;/usr/lib/x86_64-linux-gnu;/usr/lib;/opt/llvm/4/lib;/lib;/usr/lib</LibrarySearchPath>
+			<LibraryNames           Condition="'%(Link.LibraryNames)'           == ''">c</LibraryNames>
+			<FooterInputs           Condition="'%(Link.FooterInputs)'           == ''">/usr/lib/gcc/x86_64-linux-gnu/5/crtend.o;/usr/lib/x86_64-linux-gnu/crtn.o</FooterInputs>
+		</Link>
+	</ItemDefinitionGroup>
+
 </Project>

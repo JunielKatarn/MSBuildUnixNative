@@ -11,7 +11,17 @@
 		<LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 
 		<PlatformFolder Condition="'$(PlatformFolder)' == ''">$(LLVMTargetsPath)\Platforms\$(Platform)</PlatformFolder>
+
+		<TargetExt></TargetExt>
+		<TargetName Condition="'$(TargetName)' == '' AND '$(ProjectName)' != ''">$(ProjectName)</TargetName>
+		<Link_OutputFile Condition="'$(Link_OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</Link_OutputFile>
 	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<Link>
+			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+		</Link>
+	</ItemDefinitionGroup>
 
 	<!--Platform should already be set.-->
 	<Import Project="$(PlatformFolder)\Platform.Default.props" />

@@ -20,22 +20,28 @@
 
 	<Target Name="Lib" />
 
+	<PropertyGroup>
+		<Array>a;b;c</Array>
+	</PropertyGroup>
+
 	<!--TODO: This is 'executable-only'-->
 	<Target Name="Link">
 		<LinkTask
 				LLDExecutable         ="$(LLDExecutable)"
 				InputFiles            ="@(CompileTaskOutput)"
 
-				LinkerOptionExtensions="$(LinkerOptionExtensions)"
-				HashStyle             ="$(HashStyle)"
-				EhFrameHeader         ="$(EhFrameHeader)"
-				TargetEmulation       ="$(TargetEmulation)"
-				DynamicLinker         ="$(DynamicLinker)"
-				HeaderInputs          ="@(HeaderInputs)"
-				LibrarySearchPath     ="@(LibrarySearchPath)"
-				LibraryNames          ="@(LibraryNames)"
-				FooterInputs          ="@(FooterInputs)"
-				OutputFile            ="$(OutputFile)"
+				LinkerOptionExtensions="$(Link_LinkerOptionExtensions)"
+				HashStyle             ="$(Link_HashStyle)"
+				EhFrameHeader         ="$(Link_EhFrameHeader)"
+				TargetEmulation       ="$(Link_TargetEmulation)"
+				DynamicLinker         ="$(Link_DynamicLinker)"
+				HeaderInputs          ="$(Link_HeaderInputs)"
+				LibrarySearchPath     ="$(Link_LibrarySearchPath)"
+				LibraryNames          ="$(Link_LibraryNames)"
+				FooterInputs          ="$(Link_FooterInputs)"
+				OutputFile            ="$(Link_OutputFile)"
+
+				PrintOnly             ="$(PrintOnly)"
 		/>
 	</Target>
 
