@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Threading;
 
 using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 namespace LLVM.Build.Tasks
 {
@@ -28,7 +26,6 @@ namespace LLVM.Build.Tasks
 			argPriorities["LibraryNames"]			= i++;
 			argPriorities["FooterInputs"]			= i++;
 			argPriorities["OutputFile"]				= i++;
-			argPriorities["Erasme"] = i++;
 		}
 
 		private static IDictionary<string, uint> argPriorities = new SortedDictionary<string, uint>();
@@ -38,15 +35,30 @@ namespace LLVM.Build.Tasks
 		public LinkTask()
 		{
 			argValues = new Dictionary<string, object>();
-			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
+			argFuncs = new SortedDictionary<string, Func<object, string>>(Comparer<string>.Create((a, b) => { return argPriorities[a].CompareTo(argPriorities[b]); }));
+			argCount = 0;
 		}
 
 		#region private members
 
-		protected string[] ToArgArray()
+		private string[] ToArgArray()
 		{
-			string[] result = new string[argStrings.Count];
-			argStrings.Values.CopyTo(result, 0);
+			string[] result = new string[argCount];
+			uint index = 0;
+			foreach(var entry in argFuncs)
+			{
+				if (argValues[entry.Key].GetType().IsArray)
+				{
+					foreach(var item in (Array)argValues[entry.Key])
+					{
+						result[index++] = entry.Value(item);
+					}
+				}
+				else
+				{
+					result[index++] = entry.Value(argValues[entry.Key]);
+				}
+			}
 
 			return result;
 		}
@@ -86,10 +98,6 @@ namespace LLVM.Build.Tasks
 						Log.LogError(e.Data);
 				});
 
-				// If the path to ObjectFile does not exist, clang won't create it by itself.
-				//if (!string.IsNullOrEmpty(IntDir) && !Directory.Exists(IntDir))
-				//	Directory.CreateDirectory(IntDir);
-
 				process.Start();
 				process.BeginOutputReadLine();
 				process.BeginErrorReadLine();
@@ -116,19 +124,6 @@ namespace LLVM.Build.Tasks
 		#endregion // private members
 
 		#region Linker options
-
-		public string[] Erasme
-		{
-			get
-			{
-				return argValues["Erasme"] as string[];
-			}
-
-			set
-			{
-				SetArgumentProperty("Erasme", value, " ");
-			}
-		}
 
 		public bool PrintOnly { get; set; } = false;
 
@@ -218,7 +213,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("HeaderInputs", value, " ");
+				SetArgumentProperty("HeaderInputs", value);
 			}
 		}
 
@@ -289,7 +284,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("LibrarySearchPath", value, " -L");
+				SetArgumentProperty("LibrarySearchPath", value, "-L");
 			}
 		}
 
@@ -306,7 +301,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("LibraryNames", value, " -l");
+				SetArgumentProperty("LibraryNames", value, "-l");
 			}
 		}
 
@@ -323,7 +318,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("FooterInputs", value, " ");
+				SetArgumentProperty("FooterInputs", value);
 			}
 		}
 

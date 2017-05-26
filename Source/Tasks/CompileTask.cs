@@ -7,7 +7,6 @@ using System.IO;
 using System.Threading;
 
 using Microsoft.Build.Framework;
-using Microsoft.Build.Utilities;
 
 #endregion
 
@@ -37,6 +36,7 @@ namespace LLVM.Build.Tasks
 			argPriorities["SystemRoot"] = i++;
 			argPriorities["Language"]   = i++;
 			argPriorities["Verbose"]    = i++;
+			//argPriorities["InputFiles"] = i++;
 		}
 
 		#endregion // static members
@@ -44,7 +44,8 @@ namespace LLVM.Build.Tasks
 		public CompileTask()
 		{
 			argValues = new Dictionary<string, object>();
-			argStrings = new SortedDictionary<string, string>(CommandLineTask.GetArgComparer(argPriorities));
+			argFuncs = new SortedDictionary<string, Func<object, string>>(Comparer<string>.Create((a, b) => { return argPriorities[a].CompareTo(argPriorities[b]); }));
+			argCount = 0;
 
 			// Defaults
 			//TODO: Move into props?
@@ -62,9 +63,23 @@ namespace LLVM.Build.Tasks
 				item.GetMetadata("FullPath")
 			};
 
-			string[] result = new string[argStrings.Count + itemArgs.Length];
-			argStrings.Values.CopyTo(result, 0);
-			itemArgs.CopyTo(result, argStrings.Count);
+			string[] result = new string[argCount + itemArgs.Length];
+			int index = 0;
+			foreach (var entry in argFuncs)
+			{
+				if (argValues[entry.Key].GetType().IsArray)
+				{
+					foreach (var value in (Array)argValues[entry.Key])
+					{
+						result[index++] = entry.Value(value);
+					}
+				}
+				else
+				{
+					result[index++] = entry.Value(argValues[entry.Key]);
+				}
+			}
+			itemArgs.CopyTo(result, index);
 
 			return result;
 		}

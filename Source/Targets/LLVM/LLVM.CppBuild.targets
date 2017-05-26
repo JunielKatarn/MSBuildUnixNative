@@ -20,10 +20,6 @@
 
 	<Target Name="Lib" />
 
-	<PropertyGroup>
-		<Array>a;b;c</Array>
-	</PropertyGroup>
-
 	<!--TODO: This is 'executable-only'-->
 	<Target Name="Link">
 		<LinkTask
