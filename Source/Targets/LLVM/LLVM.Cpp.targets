@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
-	<!--TODO: Keep here, or below?-->
-	<Import Project="$(PlatformFolder)\Platform.targets" />
+
 	<Import Project="LLVM.CppBuild.targets" />
 
 	<Import Project="LLVM.CppClean.targets" />
 
-	<!--<Import Project="$(PlatformFolder)\Platform.targets" />-->
+	<Import Project="$(PlatformFolder)\Platform.targets" />
 
 </Project>

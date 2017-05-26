@@ -14,12 +14,15 @@
 
 		<TargetExt></TargetExt>
 		<TargetName Condition="'$(TargetName)' == '' AND '$(ProjectName)' != ''">$(ProjectName)</TargetName>
+		
+		<!--TODO: Move into ItemDefinitionGroup.-->
 		<Link_OutputFile Condition="'$(Link_OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</Link_OutputFile>
 	</PropertyGroup>
 
 	<ItemDefinitionGroup>
 		<Link>
-			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+				<!--TODO: Uncomment and remove PropertyGroup.-->
+			<!--<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>-->
 		</Link>
 	</ItemDefinitionGroup>
 
