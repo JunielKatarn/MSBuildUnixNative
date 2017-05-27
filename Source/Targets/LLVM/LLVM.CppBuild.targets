@@ -4,13 +4,20 @@
 	<UsingTask TaskName="LLVM.Build.Tasks.LinkTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 
 	<Target Name="Compile">
-		<!--TODO: Stage, default languange.-->
+		<ItemGroup>
+			<Compile Include="." />
+		</ItemGroup>
+
 		<CompileTask
 				ClangExecutable="$(ClangExecutable)"
 				InputFiles     ="@(ClangCompile)"
 				IntDir         ="$(IntDir)"
-				SystemRoot     ="$(SystemRoot)"
-				Language       ="$(Language)"
+
+				Stage          ="%(Compile.Stage)"
+				SystemRoot     ="%(Compile.SystemRoot)"
+				Language       ="%(Compile.Language)"
+				Verbose        ="%(Compile.Verbose)"
+
 				PrintOnly      ="$(PrintOnly)">
 			<Output
 					TaskParameter="ObjectFiles"

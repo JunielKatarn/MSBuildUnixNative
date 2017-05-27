@@ -36,7 +36,6 @@ namespace LLVM.Build.Tasks
 			argPriorities["SystemRoot"] = i++;
 			argPriorities["Language"]   = i++;
 			argPriorities["Verbose"]    = i++;
-			//argPriorities["InputFiles"] = i++;
 		}
 
 		#endregion // static members
@@ -46,11 +45,6 @@ namespace LLVM.Build.Tasks
 			argValues = new Dictionary<string, object>();
 			argFuncs = new SortedDictionary<string, Func<object, string>>(Comparer<string>.Create((a, b) => { return argPriorities[a].CompareTo(argPriorities[b]); }));
 			argCount = 0;
-
-			// Defaults
-			//TODO: Move into props?
-			Stage = "Compile";
-			Language = "c++";
 		}
 
 		#region private members
@@ -151,6 +145,11 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
+		[Required]
+		public string ClangExecutable { get; set; }
+
+		public string IntDir { get; set; }
+
 		[Output]
 		public string[] ObjectFiles
 		{
@@ -167,13 +166,22 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
+		/// <summary>
+		/// Only applies when the length of InputFiles is 1.
+		/// TODO: Either find usage, or deprecate.
+		/// </summary>
+		public string ObjectFileName { get; set; }
+
+		public bool PrintOnly { get; set; } = false;
+
 		#endregion // Properties
 
 		#region Command line arguments
 
-		[Required]
-		public string ClangExecutable { get; set; }
-
+		/// <summary>
+		/// Not treated as a regular command line argument.
+		/// There will be a clang process for each source file in this array.
+		/// </summary>
 		[Required]
 		public ITaskItem[] InputFiles { get; set; }
 
@@ -189,14 +197,6 @@ namespace LLVM.Build.Tasks
 				SetArgumentProperty("Stage", value, Stages[value]);
 			}
 		}
-
-		public string IntDir { get; set; }
-
-		/// <summary>
-		/// Only applies when the length of InputFiles is 1.
-		/// TODO: Either find usage, or deprecate.
-		/// </summary>
-		public string ObjectFileName { get; set; }
 
 		public string SystemRoot
 		{
@@ -243,8 +243,6 @@ namespace LLVM.Build.Tasks
 				SetArgumentProperty("Verbose", value, "-v");
 			}
 		}
-
-		public bool PrintOnly { get; set; } = false;
 
 		#endregion // Command line arguments
 

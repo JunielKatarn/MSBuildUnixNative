@@ -2,12 +2,11 @@
 <Project DefaultTargets="Build">
 
 	<PropertyGroup>
-		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+		<Configuration     Condition="'$(Configuration)'     == ''">Debug</Configuration>
 		<ConfigurationType Condition="'$(ConfigurationType)' == ''">Application</ConfigurationType>
-		<!--<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">LLVM</LLVMTargetsPath>-->
-		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(MSBuildThisFileDirectory)</LLVMTargetsPath>
+		<LLVMTargetsPath   Condition="'$(LLVMTargetsPath)'   == ''">$(MSBuildThisFileDirectory)</LLVMTargetsPath>
 
-		<!--TODO: Replace with an actual installation/deployment path.-->
+		<!-- Replace with an actual installation/deployment path. -->
 		<LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 
 		<PlatformFolder Condition="'$(PlatformFolder)' == ''">$(LLVMTargetsPath)\Platforms\$(Platform)</PlatformFolder>
@@ -17,6 +16,11 @@
 	</PropertyGroup>
 
 	<ItemDefinitionGroup>
+		<Compile>
+			<Stage    Condition="'%(Compile.Stage)'    == ''">Compile</Stage>
+			<Language Condition="'%(Compile.Language)' == ''">c++</Language>
+			<Verbose  Condition="'%(Compile.Verbose)'  == ''">False</Verbose>
+		</Compile>
 		<Link>
 			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
 		</Link>

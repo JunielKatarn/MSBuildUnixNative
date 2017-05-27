@@ -128,14 +128,18 @@ namespace LLVM.Build.Tasks
 
 		#endregion // private members
 
-		#region Linker options
-
-		public bool PrintOnly { get; set; } = false;
+		#region Properties
 
 		[Required]
 		public string LLDExecutable { get; set; }
 
 		public string OutDir { get; set; }
+
+		public bool PrintOnly { get; set; } = false;
+
+		#endregion
+
+		#region Command line arguments
 
 		[Required]
 		public ITaskItem[] InputFiles
