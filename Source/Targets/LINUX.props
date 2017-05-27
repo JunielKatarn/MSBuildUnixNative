@@ -8,6 +8,7 @@
 	<!--Sets start up properties such as the targets path.-->
 	<Import Project="LLVM\LLVM.Cpp.Default.props" />
 
+	<!--TODO: Add Configuration here, perhaps?-->
 	<ImportGroup Label="ClangTargets">
 		<Import Project="$(LLVMTargetsPath)\LLVM.Cpp.props" />
 		<Import Project="$(LLVMTargetsPath)\LLVM.Cpp.targets" />

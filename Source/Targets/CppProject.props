@@ -18,7 +18,8 @@ It will assign either MSVC on Windows, or LLVM/Clang on UNIX.
 	<Import Project="$(OSPlatform).props" />
 
 	<!-- Add Platform/Configuration defaults. -->
-	<Import Project="$(CppCollection)\Platforms\$(Platform).props" />
+	<!--TODO: Fetch from $(OSPlatform).props instead?-->
+	<!--<Import Project="$(CppCollection)\Platforms\$(Platform).props" />-->
 	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
 
 </Project>

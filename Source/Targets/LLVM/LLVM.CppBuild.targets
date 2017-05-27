@@ -29,6 +29,7 @@
 		<LinkTask
 				LLDExecutable         ="$(LLDExecutable)"
 				InputFiles            ="@(CompileTaskOutput)"
+				OutDir                ="$(OutDir)"
 
 				LinkerOptionExtensions="%(Link.LinkerOptionExtensions)"
 				HashStyle             ="%(Link.HashStyle)"
@@ -39,7 +40,7 @@
 				LibrarySearchPath     ="%(Link.LibrarySearchPath)"
 				LibraryNames          ="%(Link.LibraryNames)"
 				FooterInputs          ="%(Link.FooterInputs)"
-				OutputFile            ="$(Link_OutputFile)"
+				OutputFile            ="%(Link.OutputFile)"
 
 				PrintOnly             ="$(PrintOnly)"
 		/>

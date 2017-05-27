@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 
 using Microsoft.Build.Framework;
@@ -98,6 +99,10 @@ namespace LLVM.Build.Tasks
 						Log.LogError(e.Data);
 				});
 
+				// If the path to OutputFile does not exist, lld won't create it by itself.
+				if (!string.IsNullOrEmpty(OutDir) && !Directory.Exists(OutDir))
+					Directory.CreateDirectory(OutDir);
+
 				process.Start();
 				process.BeginOutputReadLine();
 				process.BeginErrorReadLine();
@@ -130,6 +135,8 @@ namespace LLVM.Build.Tasks
 		[Required]
 		public string LLDExecutable { get; set; }
 
+		public string OutDir { get; set; }
+
 		[Required]
 		public ITaskItem[] InputFiles
 		{
@@ -140,7 +147,7 @@ namespace LLVM.Build.Tasks
 
 			set
 			{
-				SetArgumentProperty("InputFiles", value, " ");
+				SetArgumentProperty("InputFiles", value);
 			}
 		}
 
