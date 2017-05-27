@@ -17,12 +17,7 @@
 			<HashStyle              Condition="'%(Link.HashStyle)'              == ''">gnu</HashStyle>
 			<EhFrameHeader          Condition="'%(Link.EhFrameHeader)'          == ''">true</EhFrameHeader>
 			<TargetEmulation        Condition="'%(Link.TargetEmulation)'        == ''">elf_x86_64</TargetEmulation>
-			<DynamicLinker          Condition="'%(Link.DynamicLinker)'          == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
-			<HeaderInputs           Condition="'%(Link.HeaderInputs)'           == ''">
-				/usr/lib/x86_64-linux-gnu/crt1.o;
-				/usr/lib/x86_64-linux-gnu/crti.o;
-				/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o
-			</HeaderInputs>
+			<HeaderInputs           Condition="'%(Link.HeaderInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crti.o</HeaderInputs>
 			<LibrarySearchPath      Condition="'%(Link.LibrarySearchPath)'      == ''">
 				/usr/lib/gcc/x86_64-linux-gnu/5;
 				/usr/lib/x86_64-linux-gnu;
@@ -35,9 +30,30 @@
 				/usr/lib
 			</LibrarySearchPath>
 			<LibraryNames           Condition="'%(Link.LibraryNames)'           == ''">c</LibraryNames>
-			<FooterInputs           Condition="'%(Link.FooterInputs)'           == ''">
+			<FooterInputs           Condition="'%(Link.FooterInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crtn.o</FooterInputs>
+		</Link>
+
+		<Link Condition="'$(ConfigurationType)' == 'Application'">
+			<DynamicLinker Condition="'%(Link.DynamicLinker)' == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
+			<HeaderInputs>
+				/usr/lib/x86_64-linux-gnu/crt1.o;
+				%(Link.HeaderInputs);
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o
+			</HeaderInputs>
+			<FooterInputs>
 				/usr/lib/gcc/x86_64-linux-gnu/5/crtend.o;
-				/usr/lib/x86_64-linux-gnu/crtn.o
+				%(Link.FooterInputs)
+			</FooterInputs>
+		</Link>
+
+		<Link Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
+			<HeaderInputs>
+				%(Link.HeaderInputs);
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+			</HeaderInputs>
+			<FooterInputs>
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o;
+				%(Link.FooterInputs)
 			</FooterInputs>
 		</Link>
 	</ItemDefinitionGroup>

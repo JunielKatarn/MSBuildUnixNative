@@ -20,6 +20,7 @@ namespace LLVM.Build.Tasks
 			argPriorities["HashStyle"]				= i++;
 			argPriorities["EhFrameHeader"]			= i++;
 			argPriorities["TargetEmulation"]		= i++;
+			argPriorities["Shared"]					= i++;
 			argPriorities["DynamicLinker"]			= i++;
 			argPriorities["HeaderInputs"]			= i++;
 			argPriorities["LibrarySearchPath"]		= i++;
@@ -229,23 +230,6 @@ namespace LLVM.Build.Tasks
 		}
 
 		/// <summary>
-		/// -dynamic-linker
-		/// TODO: EXE-only?
-		/// </summary>
-		public ITaskItem DynamicLinker
-		{
-			get
-			{
-				return argValues["DynamicLinker"] as ITaskItem;
-			}
-
-			set
-			{
-				SetArgumentProperty("DynamicLinker", value, $"-dynamic-linker {value}");
-			}
-		}
-
-		/// <summary>
 		/// -shared
 		/// Build a shared object.
 		/// TODO: Is this mutuially exclusive with DynamicLinker?
@@ -264,6 +248,23 @@ namespace LLVM.Build.Tasks
 			set
 			{
 				SetArgumentProperty("Shared", value, "-shared");
+			}
+		}
+
+		/// <summary>
+		/// -dynamic-linker
+		/// TODO: EXE-only?
+		/// </summary>
+		public ITaskItem DynamicLinker
+		{
+			get
+			{
+				return argValues["DynamicLinker"] as ITaskItem;
+			}
+
+			set
+			{
+				SetArgumentProperty("DynamicLinker", value, $"-dynamic-linker {value}");
 			}
 		}
 

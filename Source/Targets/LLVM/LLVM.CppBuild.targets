@@ -42,6 +42,7 @@
 				HashStyle             ="%(Link.HashStyle)"
 				EhFrameHeader         ="%(Link.EhFrameHeader)"
 				TargetEmulation       ="%(Link.TargetEmulation)"
+				Shared                ="%(Link.Shared)"
 				DynamicLinker         ="%(Link.DynamicLinker)"
 				HeaderInputs          ="%(Link.HeaderInputs)"
 				LibrarySearchPath     ="%(Link.LibrarySearchPath)"
