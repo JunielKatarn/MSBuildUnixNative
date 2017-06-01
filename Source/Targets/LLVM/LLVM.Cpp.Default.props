@@ -18,9 +18,13 @@
 
 	<ItemDefinitionGroup>
 		<Compile>
-			<Stage    Condition="'%(Compile.Stage)'    == ''">Compile</Stage>
-			<Language Condition="'%(Compile.Language)' == ''">c++</Language>
-			<Verbose  Condition="'%(Compile.Verbose)'  == ''">False</Verbose>
+			<Stage           Condition="'%(Compile.Stage)'           == ''">Compile</Stage>
+			<Language        Condition="'%(Compile.Language)'        == ''">c++</Language>
+			<StandardLibrary Condition="'%(Compile.StandardLibrary)' == ''">libc++</StandardLibrary>
+			<Verbose         Condition="'%(Compile.Verbose)'         == ''">False</Verbose>
+
+			<!--Compilation flags-->
+			<LanguageStandard Condition="'%(Compile.LanguageStandard)' == ''">c++11</LanguageStandard>
 		</Compile>
 
 		<Link>

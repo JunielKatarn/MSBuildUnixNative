@@ -16,7 +16,12 @@
 				Stage          ="%(Compile.Stage)"
 				SystemRoot     ="%(Compile.SystemRoot)"
 				Language       ="%(Compile.Language)"
+				StandardLibrary="%(Compile.StandardLibrary)"
 				Verbose        ="%(Compile.Verbose)"
+
+				LanguageStandard="%(Compile.LanguageStandard)"
+
+				PositionIndependentCode ="%(Compile.PositionIndependentCode)"
 
 				PrintOnly      ="$(PrintOnly)">
 			<Output

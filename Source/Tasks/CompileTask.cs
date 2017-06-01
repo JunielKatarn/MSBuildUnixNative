@@ -32,10 +32,16 @@ namespace LLVM.Build.Tasks
 		static CompileTask()
 		{
 			uint i = 0;
-			argPriorities["Stage"]      = i++;
-			argPriorities["SystemRoot"] = i++;
-			argPriorities["Language"]   = i++;
-			argPriorities["Verbose"]    = i++;
+			argPriorities["Stage"]                   = i++;
+			argPriorities["SystemRoot"]              = i++;
+			argPriorities["Language"]                = i++;
+			argPriorities["StandardLibrary"]         = i++;
+
+			// Compilation flags
+			argPriorities["LanguageStandard"]        = i++;
+
+			argPriorities["PositionIndependentCode"] = i++;
+			argPriorities["Verbose"]                 = i++;
 		}
 
 		#endregion // static members
@@ -222,6 +228,48 @@ namespace LLVM.Build.Tasks
 			set
 			{
 				SetArgumentProperty("Language", value, $"-x {value}");
+			}
+		}
+
+		public string StandardLibrary
+		{
+			get
+			{
+				return argValues["StandardLibrary"] as string;
+			}
+
+			set
+			{
+				SetArgumentProperty("StandardLibrary", value, $"-stdlib={value}");
+			}
+		}
+
+		public string LanguageStandard
+		{
+			get
+			{
+				return argValues["LanguageStandard"] as string;
+			}
+
+			set
+			{
+				SetArgumentProperty("LanguageStandard", value, $"-std={value}");
+			}
+		}
+
+		public bool PositionIndependentCode
+		{
+			get
+			{
+				if (argValues.ContainsKey("PositionIndependentCode"))
+					return (bool)argValues["PositionIndependentCode"];
+
+				return false;
+			}
+
+			set
+			{
+				SetArgumentProperty("PositionIndependentCode", value, "-fPIC");
 			}
 		}
 

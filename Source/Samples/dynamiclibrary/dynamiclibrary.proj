@@ -39,6 +39,8 @@
 
 	<ItemGroup>
 		<ClangCompile Include="lib.cpp" />
+		<ClangCompile Include="lib1.cpp" />
+		<ClangCompile Include="lib2.cpp" />
 	</ItemGroup>
 
 </Project>

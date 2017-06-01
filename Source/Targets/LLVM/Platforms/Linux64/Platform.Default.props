@@ -9,13 +9,19 @@
 
 	<!--TODO: This works for executables only, currently.-->
 	<ItemDefinitionGroup>
+
 		<Compile>
 			<SystemRoot Condition="'%(Compile.SystemRoot)' == ''"></SystemRoot>
 		</Compile>
+		<Compile Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
+			<!--Target-independent compilation options-->
+			<PositionIndependentCode Condition="'%(Compile.PositionIndependentCode)' == ''">True</PositionIndependentCode>
+		</Compile>
+
 		<Link>
 			<LinkerOptionExtensions Condition="'%(Link.LinkerOptionExtensions)' == ''">relro</LinkerOptionExtensions>
 			<HashStyle              Condition="'%(Link.HashStyle)'              == ''">gnu</HashStyle>
-			<EhFrameHeader          Condition="'%(Link.EhFrameHeader)'          == ''">true</EhFrameHeader>
+			<EhFrameHeader          Condition="'%(Link.EhFrameHeader)'          == ''">True</EhFrameHeader>
 			<TargetEmulation        Condition="'%(Link.TargetEmulation)'        == ''">elf_x86_64</TargetEmulation>
 			<HeaderInputs           Condition="'%(Link.HeaderInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crti.o</HeaderInputs>
 			<LibrarySearchPath      Condition="'%(Link.LibrarySearchPath)'      == ''">
@@ -32,7 +38,6 @@
 			<LibraryNames           Condition="'%(Link.LibraryNames)'           == ''">c</LibraryNames>
 			<FooterInputs           Condition="'%(Link.FooterInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crtn.o</FooterInputs>
 		</Link>
-
 		<Link Condition="'$(ConfigurationType)' == 'Application'">
 			<DynamicLinker Condition="'%(Link.DynamicLinker)' == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
 			<HeaderInputs>
@@ -45,7 +50,6 @@
 				%(Link.FooterInputs)
 			</FooterInputs>
 		</Link>
-
 		<Link Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
 			<HeaderInputs>
 				%(Link.HeaderInputs);
@@ -56,6 +60,7 @@
 				%(Link.FooterInputs)
 			</FooterInputs>
 		</Link>
+
 	</ItemDefinitionGroup>
 
 </Project>
