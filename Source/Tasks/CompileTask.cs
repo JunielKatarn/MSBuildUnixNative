@@ -19,6 +19,9 @@ namespace LLVM.Build.Tasks
 	{
 		#region static members
 
+		/// <summary>
+		/// Mappings from property sheet compiling stage names to actual command line flags.
+		/// </summary>
 		private static readonly Dictionary<string, string> Stages = new Dictionary<string, string>
 		{
 			["Preprocess"] = "-E",
@@ -27,8 +30,14 @@ namespace LLVM.Build.Tasks
 			["Compile"]    = "-c"
 		};
 
+		/// <summary>
+		/// Argument-priority map.
+		/// </summary>
 		private static IDictionary<string, uint> argPriorities = new SortedDictionary<string, uint>();
 
+		/// <summary>
+		/// Initializes static values for this class.
+		/// </summary>
 		static CompileTask()
 		{
 			uint i = 0;
@@ -47,6 +56,9 @@ namespace LLVM.Build.Tasks
 
 		#endregion // static members
 
+		/// <summary>
+		/// Initializes an instance of this class.
+		/// </summary>
 		public CompileTask()
 		{
 			argValues = new Dictionary<string, object>();
@@ -56,6 +68,11 @@ namespace LLVM.Build.Tasks
 
 		#region private members
 
+		/// <summary>
+		/// Serializes this task's argument values.
+		/// </summary>
+		/// <param name="item">Item to compile</param>
+		/// <returns>String array with the ordered command line arguments</returns>
 		private string[] ToArgArray(ITaskItem item)
 		{
 			string[] itemArgs = new string[]
@@ -84,6 +101,11 @@ namespace LLVM.Build.Tasks
 			return result;
 		}
 
+		/// <summary>
+		/// Executes the underlying compiler tool.
+		/// </summary>
+		/// <param name="item">Compilation unit</param>
+		/// <returns>OS-provided process exit status.</returns>
 		private int InvokeProcess(ITaskItem item)
 		{
 			int exitCode = -1;
@@ -154,11 +176,18 @@ namespace LLVM.Build.Tasks
 		[Required]
 		public string ClangExecutable { get; set; }
 
+		/// <summary>
+		/// Intermediate output directory.
+		/// </summary>
 		public string IntDir { get; set; }
 
 		[Output]
 		public string[] ObjectFiles { get; set; }
-
+		
+		/// <summary>
+		/// Dry run. Print steps to take, but don't execute.
+		/// TODO: Deprecate or rename?
+		/// </summary>
 		public bool PrintOnly { get; set; } = false;
 
 		#endregion // Properties
@@ -212,6 +241,9 @@ namespace LLVM.Build.Tasks
 		}
 
 		//TODO: Make non-arg? If not provided, infer/set per taskitem (InputFiles).
+		/// <summary>
+		/// Common values:TODO
+		/// </summary>
 		public string Language
 		{
 			get
@@ -225,6 +257,9 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
+		/// <summary>
+		/// Common values:TODO
+		/// </summary>
 		public string StandardLibrary
 		{
 			get
@@ -238,6 +273,9 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
+		/// <summary>
+		/// Common values:TODO
+		/// </summary>
 		public string LanguageStandard
 		{
 			get
@@ -290,6 +328,12 @@ namespace LLVM.Build.Tasks
 
 		#region Task members
 
+		/// <summary>
+		/// Executes this task.
+		/// </summary>
+		/// <returns>
+		/// True - if the task succeeded and exited without errors. False otherwise.
+		/// </returns>
 		public override bool Execute()
 		{
 			bool result = true;
