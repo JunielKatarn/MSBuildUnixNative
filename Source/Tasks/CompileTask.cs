@@ -59,7 +59,7 @@ namespace LLVM.Build.Tasks
 		{
 			string[] itemArgs = new string[]
 			{
-				$"-o {IntDir}{item.ItemSpec.Substring(0, item.ItemSpec.LastIndexOf('.'))}.o",
+				$"-o {IntDir}{item.GetMetadata("FileName")}.o",
 				item.GetMetadata("FullPath")
 			};
 
@@ -157,24 +157,10 @@ namespace LLVM.Build.Tasks
 		public string IntDir { get; set; }
 
 		[Output]
-		public string[] ObjectFiles
-		{
-			get
-			{
-				string[] result = new string[InputFiles.Length];
-
-				for (int i = 0; i < result.Length; i++)
-				{
-					result[i] = $"{IntDir}{InputFiles[i].ItemSpec.Substring(0, InputFiles[i].ItemSpec.LastIndexOf('.'))}.o";
-				}
-
-				return result;
-			}
-		}
+		public string[] ObjectFiles { get; set; }
 
 		/// <summary>
-		/// Only applies when the length of InputFiles is 1.
-		/// TODO: Either find usage, or deprecate.
+		/// TODO: Find out how to define using %(FileName) Without affecting %(Compile.*) parameters.
 		/// </summary>
 		public string ObjectFileName { get; set; }
 

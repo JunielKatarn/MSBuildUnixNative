@@ -5,7 +5,7 @@
 
 	<Target Name="Compile">
 		<ItemGroup>
-			<Compile Include="." />
+			<Compile Include="@(ClangCompile)" />
 		</ItemGroup>
 
 		<CompileTask
@@ -23,10 +23,12 @@
 
 				PositionIndependentCode ="%(Compile.PositionIndependentCode)"
 
+				ObjectFiles="@(ClangCompile->'$(IntDir)%(FileName).o')"
+
 				PrintOnly      ="$(PrintOnly)">
 			<Output
 					TaskParameter="ObjectFiles"
-					ItemName="CompileTaskOutput" />
+					ItemName     ="CompileTaskOutput" />
 		</CompileTask>
 	</Target>
 
