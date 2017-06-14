@@ -5,13 +5,17 @@
 
 	<Target Name="Compile">
 		<ItemGroup>
-			<Compile Include="@(ClangCompile)" />
+			<Compile Include="@(ClangCompile)">
+				<!--TODO: Make object file extension a variable.-->
+				<ObjectFileName>$(IntDir)%(FileName).o</ObjectFileName>
+			</Compile>
 		</ItemGroup>
 
 		<CompileTask
 				ClangExecutable="$(ClangExecutable)"
-				InputFiles     ="@(ClangCompile)"
+				InputFiles     ="@(Compile)"
 				IntDir         ="$(IntDir)"
+				ObjectFileName ="%(Compile.ObjectFileName)"
 
 				Stage          ="%(Compile.Stage)"
 				SystemRoot     ="%(Compile.SystemRoot)"
@@ -23,7 +27,7 @@
 
 				PositionIndependentCode ="%(Compile.PositionIndependentCode)"
 
-				ObjectFiles="@(ClangCompile->'$(IntDir)%(FileName).o')"
+				ObjectFiles="@(Compile->'%(ObjectFileName)')"
 
 				PrintOnly      ="$(PrintOnly)">
 			<Output
@@ -37,12 +41,12 @@
 	<!--TODO: This is 'executable-only'-->
 	<Target Name="Link">
 		<ItemGroup>
-			<Link Include="." />
+			<Link Include="@(CompileTaskOutput)" />
 		</ItemGroup>
 
 		<LinkTask
 				LLDExecutable         ="$(LLDExecutable)"
-				InputFiles            ="@(CompileTaskOutput)"
+				InputFiles            ="@(Link)"
 				OutDir                ="$(OutDir)"
 
 				LinkerOptionExtensions="%(Link.LinkerOptionExtensions)"

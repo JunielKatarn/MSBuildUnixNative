@@ -41,6 +41,7 @@ namespace LLVM.Build.Tasks
 			argPriorities["LanguageStandard"]        = i++;
 
 			argPriorities["PositionIndependentCode"] = i++;
+			argPriorities["ObjectFileName"]          = i++;
 			argPriorities["Verbose"]                 = i++;
 		}
 
@@ -59,7 +60,6 @@ namespace LLVM.Build.Tasks
 		{
 			string[] itemArgs = new string[]
 			{
-				$"-o {IntDir}{item.GetMetadata("FileName")}.o",
 				item.GetMetadata("FullPath")
 			};
 
@@ -159,11 +159,6 @@ namespace LLVM.Build.Tasks
 		[Output]
 		public string[] ObjectFiles { get; set; }
 
-		/// <summary>
-		/// TODO: Find out how to define using %(FileName) Without affecting %(Compile.*) parameters.
-		/// </summary>
-		public string ObjectFileName { get; set; }
-
 		public bool PrintOnly { get; set; } = false;
 
 		#endregion // Properties
@@ -187,6 +182,19 @@ namespace LLVM.Build.Tasks
 			set
 			{
 				SetArgumentProperty("Stage", value, Stages[value]);
+			}
+		}
+
+		public string ObjectFileName
+		{
+			get
+			{
+				return argValues["ObjectFileName"] as string;
+			}
+
+			set
+			{
+				SetArgumentProperty("ObjectFileName", value, $"-o {value}");
 			}
 		}
 
