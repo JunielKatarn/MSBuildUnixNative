@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<!--Fetch variables like RootDir.-->
+	<Import Project="..\..\Directory.Build.props" />
+
+	<PropertyGroup Label="SamplesGlobals">
+		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+		<PrintOnly>True</PrintOnly>
+	</PropertyGroup>
+
+</Project>

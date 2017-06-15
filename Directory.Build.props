@@ -3,12 +3,13 @@
 
 	<PropertyGroup>
 		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
-		<BaseIntermediateOutputPath>$(SolutionDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
-		<OutputPath>$(SolutionDir)Target\$(Configuration)\</OutputPath>
+		<RootDir>$(MSBuildThisFileDirectory)</RootDir>
+		<BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
+		<OutputPath>$(RootDir)Target\$(Configuration)\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Label="SamplesGlobals">
-		<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
+		<LLVMTargetsPath>$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
 	</PropertyGroup>
 
 </Project>

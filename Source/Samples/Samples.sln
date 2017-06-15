@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D87971BA-309B-4086-B996-6B79D1964C40}") = "application", "application/application.proj", "{95B2FA74-2F53-40B8-8F48-1A729779EC38}"
+EndProject
+Project("{A0FBAA76-F537-47D6-90CB-F9E96819A507}") = "dynamiclibrary", "dynamiclibrary/dynamiclibrary.proj", "{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Linux64 = Debug|Linux64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95B2FA74-2F53-40B8-8F48-1A729779EC38}.Debug|Linux64.ActiveCfg = Debug|Linux64
+		{95B2FA74-2F53-40B8-8F48-1A729779EC38}.Debug|Linux64.Build.0 = Debug|Linux64
+		{95B2FA74-2F53-40B8-8F48-1A729779EC38}.Debug|Darwin64.ActiveCfg = Debug|Darwin64
+		{95B2FA74-2F53-40B8-8F48-1A729779EC38}.Debug|Darwin64.Build.0 = Debug|Darwin64
+		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Linux64.ActiveCfg = Debug|Linux64
+		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Linux64.Build.0 = Debug|Linux64
+		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Darwin64.ActiveCfg = Debug|Darwin64
+		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Darwin64.Build.0 = Debug|Darwin64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
