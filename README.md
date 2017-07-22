@@ -2,11 +2,11 @@
 
 This project adds support for building native code (C/C++) using MSBuild directly on UNIX platforms, using non-MSVC compiler toolsets.
 
+## Building
+
 ### Source Code
 
-Sources available at: `https://github.com/JunielKatarn/MSBuildUnixNative.git`.
-
-## Building
+Sources available at [`https://github.com/JunielKatarn/MSBuildUnixNative`](https://github.com/JunielKatarn/MSBuildUnixNative).
 
 ### Development Environment
 
@@ -16,20 +16,21 @@ These are the currently tested operating systems:
 * macOS 10.12 (Sierra)
 
 ### Prerequisites
-* .NET Core SDK
-* LLVM/Clang compiler collection (version 4.0.1).
-  * The expected default location is /opt/llvm/4.0.1.
+* [.NET Core SDK](https://www.microsoft.com/net/download/core)
+* LLVM/Clang compiler collection ([version 4.0.0](http://releases.llvm.org/download.html#4.0.0)).
+  * Extract at `/opt/llvm/4.0.0`.
 * Ubuntu 16.04:
-  * Apt packages
-    * `libc6-dev`
-    * `libgcc-5-dev`
-* (Optional) Visual Studio 2017
+  * `libc6-dev`
+  * `libgcc-5-dev`
+* (Optional) [Visual Studio 2017](https://www.visualstudio.com/downloads)
   For the best editing/debugging experience, while deploying to WSL.
 
 ### Build Steps
-1. `dotnet restore`
-2. `dotnet msbuild`
+1. Clone the repository<br/>
+  `git clone git@github.com:JunielKatarn/MSBuildUnixNative.git`
+2. `dotnet restore`
+3. `dotnet msbuild`
 
-### License
+## License
 
 MSBuildUnixNative is licensed under the [MIT license](LICENSE).
