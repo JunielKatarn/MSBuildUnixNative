@@ -3,6 +3,7 @@
 
 	<PropertyGroup Label="LLVMProperties">
 		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">$(SystemDrive)\Program Files\LLVM</LLVMInstallDir>
+		<LLVMToolsDir Condition="'$(LLVMToolsDir)' == ''">$(SystemDrive)\Program Files\LLVM\bin</LLVMToolsDir>
 	</PropertyGroup>
 
 </Project>

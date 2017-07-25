@@ -65,6 +65,34 @@
 		/>
 	</Target>
 
+	<!--TODO: Dummy transition task. Remove.-->
+	<UsingTask TaskName="LLVM.Build.Tasks.TonTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
+	<Target Name="Ton">
+		<TonTask
+			ToolDir        ="$(LLVMToolsDir)"
+			InputFiles     ="@(Compile)"
+			IntDir         ="$(IntDir)"
+			ObjectFileName ="%(Compile.ObjectFileName)"
+
+			Stage          ="%(Compile.Stage)"
+			SystemRoot     ="%(Compile.SystemRoot)"
+			Language       ="%(Compile.Language)"
+			StandardLibrary="%(Compile.StandardLibrary)"
+			Verbose        ="%(Compile.Verbose)"
+
+			LanguageStandard="%(Compile.LanguageStandard)"
+
+			PositionIndependentCode ="%(Compile.PositionIndependentCode)"
+
+			ObjectFiles="@(Compile->'%(ObjectFileName)')"
+
+			PrintOnly      ="$(PrintOnly)">
+			<Output
+					TaskParameter="ObjectFiles"
+					ItemName     ="CompileTaskOutput" />
+		</TonTask>
+	</Target>
+
 	<Target Name="Build" DependsOnTargets="Compile;Link">
 		<!--TODO: Print this message BEFORE 'DependsOn'.-->
 		<Message Text="Executing [Build] target..." />

@@ -132,11 +132,6 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		public override string ToolDir
-		{
-			get; set;
-		}
-
 		public string OutDir { get; set; }
 
 		public bool PrintOnly { get; set; } = false;

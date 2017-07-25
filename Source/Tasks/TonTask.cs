@@ -1,21 +1,18 @@
-#region Using directives
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading;
 
 using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
 
-#endregion
 
 namespace LLVM.Build.Tasks
 {
-	/// <summary>
-	/// This is an MSBuild Task that allows executing the clang compiler, up to the 'Compile' stage.
-	/// </summary>
-	public class CompileTask : CommandLineTask
+	[Obsolete]
+	public class TonTask : CommandLineTask
 	{
 		#region static members
 
@@ -25,9 +22,9 @@ namespace LLVM.Build.Tasks
 		private static readonly Dictionary<string, string> Stages = new Dictionary<string, string>
 		{
 			["Preprocess"] = "-E",
-			["Parse"]      = "-fsyntax-only",
-			["Assemble"]   = "-S",
-			["Compile"]    = "-c"
+			["Parse"] = "-fsyntax-only",
+			["Assemble"] = "-S",
+			["Compile"] = "-c"
 		};
 
 		/// <summary>
@@ -38,20 +35,20 @@ namespace LLVM.Build.Tasks
 		/// <summary>
 		/// Initializes static values for this class.
 		/// </summary>
-		static CompileTask()
+		static TonTask()
 		{
 			uint i = 0;
-			argPriorities["Stage"]                   = i++;
-			argPriorities["SystemRoot"]              = i++;
-			argPriorities["Language"]                = i++;
-			argPriorities["StandardLibrary"]         = i++;
+			argPriorities["Stage"] = i++;
+			argPriorities["SystemRoot"] = i++;
+			argPriorities["Language"] = i++;
+			argPriorities["StandardLibrary"] = i++;
 
 			// Compilation flags
-			argPriorities["LanguageStandard"]        = i++;
+			argPriorities["LanguageStandard"] = i++;
 
 			argPriorities["PositionIndependentCode"] = i++;
-			argPriorities["ObjectFileName"]          = i++;
-			argPriorities["Verbose"]                 = i++;
+			argPriorities["ObjectFileName"] = i++;
+			argPriorities["Verbose"] = i++;
 		}
 
 		#endregion // static members
@@ -59,12 +56,14 @@ namespace LLVM.Build.Tasks
 		/// <summary>
 		/// Initializes an instance of this class.
 		/// </summary>
-		public CompileTask()
+		public TonTask()
 		{
 			argValues = new Dictionary<string, object>();
 			argFuncs = new SortedDictionary<string, Func<object, string>>(Comparer<string>.Create((a, b) => { return argPriorities[a].CompareTo(argPriorities[b]); }));
 			argCount = 0;
 		}
+
+		protected override string ToolName => "clang";
 
 		#region private members
 
@@ -109,95 +108,83 @@ namespace LLVM.Build.Tasks
 		private int InvokeProcess(ITaskItem item)
 		{
 			int exitCode = -1;
-			Process process = null;
-			string[] arguments = ToArgArray(item);
-			string toolPath = GenerateFullPathToTool();
+			//Process process = null;
+			//string[] arguments = ToArgArray(item);
+			//string toolPath = GenerateFullPathToTool();
 
-			Log.LogMessage("Executing command:");
-			Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", arguments)}\n");
+			//Log.LogMessage("Executing command:");
+			//Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", arguments)}\n");
 
-			if (PrintOnly)
-			{
-				Log.LogWarning("PrintOnly was set. Ignoring this task.");
-				return 0;
-			}
+			//if (PrintOnly)
+			//{
+			//	Log.LogWarning("PrintOnly was set. Ignoring this task.");
+			//	return 0;
+			//}
 
-			try
-			{
-				process = new Process();
-				process.StartInfo.FileName = toolPath;
-				process.StartInfo.Arguments = string.Join(" ", arguments);
-				process.StartInfo.UseShellExecute = false;
-				process.StartInfo.RedirectStandardOutput = true;
-				process.StartInfo.RedirectStandardError = true;
+			//try
+			//{
+			//	process = new Process();
+			//	process.StartInfo.FileName = toolPath;
+			//	process.StartInfo.Arguments = string.Join(" ", arguments);
+			//	process.StartInfo.UseShellExecute = false;
+			//	process.StartInfo.RedirectStandardOutput = true;
+			//	process.StartInfo.RedirectStandardError = true;
 
-				process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
-				{
-					if (!string.IsNullOrEmpty(e.Data))
-						Log.LogMessage(e.Data);
-				});
+			//	process.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+			//	{
+			//		if (!string.IsNullOrEmpty(e.Data))
+			//			Log.LogMessage(e.Data);
+			//	});
 
-				process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
-				{
-					if (!string.IsNullOrEmpty(e.Data))
-						Log.LogError(e.Data);
-				});
+			//	process.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
+			//	{
+			//		if (!string.IsNullOrEmpty(e.Data))
+			//			Log.LogError(e.Data);
+			//	});
 
-				// If the path to ObjectFile does not exist, clang won't create it by itself.
-				if (!string.IsNullOrEmpty(IntDir) && !Directory.Exists(IntDir))
-					Directory.CreateDirectory(IntDir);
+			//	// If the path to ObjectFile does not exist, clang won't create it by itself.
+			//	if (!string.IsNullOrEmpty(IntDir) && !Directory.Exists(IntDir))
+			//		Directory.CreateDirectory(IntDir);
 
-				process.Start();
-				process.BeginOutputReadLine();
-				process.BeginErrorReadLine();
-				while (!process.HasExited)
-				{
-					process.WaitForExit(1);
-					Thread.Sleep(TimeSpan.FromSeconds(1));
-				}
+			//	process.Start();
+			//	process.BeginOutputReadLine();
+			//	process.BeginErrorReadLine();
+			//	while (!process.HasExited)
+			//	{
+			//		process.WaitForExit(1);
+			//		Thread.Sleep(TimeSpan.FromSeconds(1));
+			//	}
 
-				exitCode = process.ExitCode;
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine(e.ToString());
-			}
-			finally
-			{
-				process?.Dispose();
-			}
+			//	exitCode = process.ExitCode;
+			//}
+			//catch (Exception e)
+			//{
+			//	Console.WriteLine(e.ToString());
+			//}
+			//finally
+			//{
+			//	process?.Dispose();
+			//}
 
 			return exitCode;
 		}
 
 		#endregion // private members
 
-		#region Properties
+		#region Command line arguments
+		[Required]
+		public ITaskItem[] InputFiles { get; set; }
 
-		/// <summary>
-		/// Intermediate output directory.
-		/// </summary>
 		public string IntDir { get; set; }
 
 		[Output]
 		public string[] ObjectFiles { get; set; }
-		
+
 		/// <summary>
 		/// Dry run. Print steps to take, but don't execute.
 		/// TODO: Deprecate or rename?
 		/// </summary>
 		public bool PrintOnly { get; set; } = false;
-
-		#endregion // Properties
-
-		#region Command line arguments
-
-		/// <summary>
-		/// Not treated as a regular command line argument.
-		/// There will be a clang process for each source file in this array.
-		/// </summary>
-		[Required]
-		public ITaskItem[] InputFiles { get; set; }
 
 		public string Stage
 		{
@@ -322,34 +309,15 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
-		#endregion // Command line arguments
-
-		#region Task members
-
-		/// <summary>
-		/// Executes this task.
-		/// </summary>
-		/// <returns>
-		/// True - if the task succeeded and exited without errors. False otherwise.
-		/// </returns>
-		public override bool Execute()
-		{
-			bool result = true;
-
-			foreach (var item in InputFiles)
-			{
-				result &= InvokeProcess(item) == 0;
-			}
-
-			return result;
-		}
-
-		#endregion // Task members
-
-		#region ToolTask members
-
-		protected override string ToolName => "clang";
-
 		#endregion
+
+		protected override string GenerateCommandLineCommands()
+		{
+			var builder = new CommandLineBuilder();
+
+			builder.AppendSwitch("-###");
+
+			return builder.ToString();
+		}
 	}
 }

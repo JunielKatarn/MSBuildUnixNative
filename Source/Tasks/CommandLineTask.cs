@@ -227,7 +227,7 @@ namespace LLVM.Build.Tasks
 		#region public members
 
 		[Required]
-		public abstract string ToolDir { get; set; }
+		public string ToolDir { get; set; }
 
 		protected override string GenerateFullPathToTool()
 		{

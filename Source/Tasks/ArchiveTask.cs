@@ -21,11 +21,6 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		public override string ToolDir
-		{
-			get; set;
-		}
-
 		#endregion // Properties
 
 		#region Archiver options
