@@ -111,9 +111,10 @@ namespace LLVM.Build.Tasks
 			int exitCode = -1;
 			Process process = null;
 			string[] arguments = ToArgArray(item);
+			string toolPath = GenerateFullPathToTool();
 
 			Log.LogMessage("Executing command:");
-			Log.LogCommandLine($"{ClangExecutable}\n\t{string.Join("\n\t", arguments)}\n");
+			Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", arguments)}\n");
 
 			if (PrintOnly)
 			{
@@ -124,7 +125,7 @@ namespace LLVM.Build.Tasks
 			try
 			{
 				process = new Process();
-				process.StartInfo.FileName = ClangExecutable;
+				process.StartInfo.FileName = toolPath;
 				process.StartInfo.Arguments = string.Join(" ", arguments);
 				process.StartInfo.UseShellExecute = false;
 				process.StartInfo.RedirectStandardOutput = true;
@@ -173,9 +174,10 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		[Required]
-		public string ClangExecutable { get; set; }
-
+		public override string ToolDir
+		{
+			get; set;
+		}
 		/// <summary>
 		/// Intermediate output directory.
 		/// </summary>
@@ -347,5 +349,11 @@ namespace LLVM.Build.Tasks
 		}
 
 		#endregion // Task members
+
+		#region ToolTask members
+
+		protected override string ToolName => "clang";
+
+		#endregion
 	}
 }

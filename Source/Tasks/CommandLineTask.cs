@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
@@ -9,7 +10,7 @@ namespace LLVM.Build.Tasks
 	/// <summary>
 	/// Base class modeling a command line tool with variable arguments.
 	/// </summary>
-	public abstract class CommandLineTask : Task
+	public abstract class CommandLineTask : ToolTask
 	{
 		#region protected members
 
@@ -222,5 +223,17 @@ namespace LLVM.Build.Tasks
 		}
 
 		#endregion // protected members
+
+		#region public members
+
+		[Required]
+		public abstract string ToolDir { get; set; }
+
+		protected override string GenerateFullPathToTool()
+		{
+			return Path.Combine(ToolDir, ToolName);
+		}
+
+		#endregion // public members
 	}
 }

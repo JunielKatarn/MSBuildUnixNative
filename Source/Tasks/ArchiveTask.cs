@@ -9,7 +9,7 @@ using Microsoft.Build.Utilities;
 
 namespace LLVM.Build.Tasks
 {
-	class ArchiveTask : Task
+	class ArchiveTask : CommandLineTask
 	{
 		#region Static members
 
@@ -18,6 +18,15 @@ namespace LLVM.Build.Tasks
 		#region Private members
 
 		#endregion // Private members
+
+		#region Properties
+
+		public override string ToolDir
+		{
+			get; set;
+		}
+
+		#endregion // Properties
 
 		#region Archiver options
 
@@ -31,5 +40,11 @@ namespace LLVM.Build.Tasks
 		}
 
 		#endregion // Task members
+
+		#region ToolTask members
+
+		protected override string ToolName => "llvm-ar";
+
+		#endregion // ToolTask members
 	}
 }

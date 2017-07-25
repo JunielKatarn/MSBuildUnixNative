@@ -3,8 +3,7 @@
 
 	<PropertyGroup Label="LLVMProperties">
 		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/opt/llvm/4/lib/clang/4.0.0</LLVMInstallDir>
-		<ClangExecutable Condition="'$(ClangExecutable)' == ''">/opt/llvm/4/bin/clang</ClangExecutable>
-		<LLDExecutable Condition="'$(LLDExecutable)' == ''">/opt/llvm/4/bin/ld.lld</LLDExecutable>
+		<LLVMToolsDir Condition="'$(Condition)' == ''">/opt/llvm/4/bin</LLVMToolsDir>
 	</PropertyGroup>
 
 </Project>

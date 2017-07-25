@@ -69,9 +69,10 @@ namespace LLVM.Build.Tasks
 		{
 			int exitCode = -1;
 			Process process = null;
+			string toolPath = GenerateFullPathToTool();
 
 			Log.LogMessage("Executing command:");
-			Log.LogCommandLine($"{LLDExecutable}\n\t{string.Join("\n\t", args)}\n");
+			Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", args)}\n");
 
 			if (PrintOnly)
 			{
@@ -82,7 +83,7 @@ namespace LLVM.Build.Tasks
 			try
 			{
 				process = new Process();
-				process.StartInfo.FileName = LLDExecutable;
+				process.StartInfo.FileName = toolPath;
 				process.StartInfo.Arguments = string.Join(" ", args);
 				process.StartInfo.UseShellExecute = false;
 				process.StartInfo.RedirectStandardOutput = true;
@@ -131,8 +132,10 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		[Required]
-		public string LLDExecutable { get; set; }
+		public override string ToolDir
+		{
+			get; set;
+		}
 
 		public string OutDir { get; set; }
 
@@ -369,5 +372,11 @@ namespace LLVM.Build.Tasks
 		}
 
 		#endregion // Task members
+
+		#region ToolTask members
+
+		protected override string ToolName => "ld.lld";
+
+		#endregion
 	}
 }

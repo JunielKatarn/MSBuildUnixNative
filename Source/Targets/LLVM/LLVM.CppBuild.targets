@@ -12,7 +12,7 @@
 		</ItemGroup>
 
 		<CompileTask
-				ClangExecutable="$(ClangExecutable)"
+				ToolDir        ="$(LLVMToolsDir)"
 				InputFiles     ="@(Compile)"
 				IntDir         ="$(IntDir)"
 				ObjectFileName ="%(Compile.ObjectFileName)"
@@ -45,7 +45,7 @@
 		</ItemGroup>
 
 		<LinkTask
-				LLDExecutable         ="$(LLDExecutable)"
+				ToolDir               ="$(LLVMToolsDir)"
 				InputFiles            ="@(Link)"
 				OutDir                ="$(OutDir)"
 
