@@ -5,6 +5,7 @@
 	<Import Project="..\..\Directory.Build.props" />
 
 	<PropertyGroup Label="SamplesGlobals">
+		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
 		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 		<PrintOnly>True</PrintOnly>
 	</PropertyGroup>
