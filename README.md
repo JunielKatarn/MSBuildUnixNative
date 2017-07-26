@@ -2,6 +2,11 @@
 
 This project adds support for building native code (C/C++) using MSBuild directly on UNIX platforms, using non-MSVC compiler toolsets.
 
+[![NuGet](https://img.shields.io/nuget/v/LLVM.Build.svg)](https://www.nuget.org/packages/LLVM.Build/absoluteLatest)
+[![NuGet](https://img.shields.io/nuget/dt/LLVM.Build.svg)]()
+
+[![Visual Studio Team Services](https://garage-05.visualstudio.com/_apis/public/build/definitions/8378d9ce-d7ae-453b-a3b7-825306540b1f/4/badge)]()
+
 ## Building
 
 ### Source Code
