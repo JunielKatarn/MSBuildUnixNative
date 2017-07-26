@@ -7,6 +7,8 @@ Project("{D87971BA-309B-4086-B996-6B79D1964C40}") = "application", "application/
 EndProject
 Project("{A0FBAA76-F537-47D6-90CB-F9E96819A507}") = "dynamiclibrary", "dynamiclibrary/dynamiclibrary.proj", "{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}"
 EndProject
+Project("{A0FBAA76-F537-47D6-90CB-F9E96819A507}") = "staticlibrary", "staticlibrary/staticlibrary.proj", "{7DE10EA3-52E1-4053-97E3-C9E3B80D18F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Linux64 = Debug|Linux64
@@ -20,6 +22,10 @@ Global
 		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Linux64.Build.0 = Debug|Linux64
 		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Darwin64.ActiveCfg = Debug|Darwin64
 		{C7F21371-4A0B-499E-A2CC-BD0426FF3F04}.Debug|Darwin64.Build.0 = Debug|Darwin64
+		{7DE10EA3-52E1-4053-97E3-C9E3B80D18F7}.Debug|Linux64.ActiveCfg = Debug|Linux64
+		{7DE10EA3-52E1-4053-97E3-C9E3B80D18F7}.Debug|Linux64.Build.0 = Debug|Linux64
+		{7DE10EA3-52E1-4053-97E3-C9E3B80D18F7}.Debug|Darwin64.ActiveCfg = Debug|Darwin64
+		{7DE10EA3-52E1-4053-97E3-C9E3B80D18F7}.Debug|Darwin64.Build.0 = Debug|Darwin64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
