@@ -15,6 +15,9 @@
 		<TargetExt Condition="'$(ConfigurationType)' == 'DynamicLibrary'">.so</TargetExt>
 		<TargetExt Condition="'$(ConfigurationType)' == 'StaticLibrary'">.a</TargetExt>
 		<TargetName Condition="'$(TargetName)' == ''">$(MSBuildProjectName)</TargetName>
+
+		<BuildDependsOn Condition="'$(ConfigurationType)' == 'StaticLibrary'">Compile;Lib</BuildDependsOn>
+		<BuildDependsOn Condition="'$(ConfigurationType)' != 'StaticLibrary'">Compile;Link</BuildDependsOn>
 	</PropertyGroup>
 
 	<ItemDefinitionGroup>
