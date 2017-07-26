@@ -36,6 +36,38 @@ These are the currently tested operating systems:
 2. `dotnet restore`
 3. `dotnet msbuild`
 
+## Usage
+
+1. Create a directory for your project, with two components:
+    1. Source files
+    2. Project file (i.e. myproject.proj)
+    ```
+    <Project>
+      <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+      <PropertyGroup>
+        <IntDir>obj/</IntDir>
+        <OutDir>bin/</OutDir>
+      </PropertyGroup>
+      <ItemGroup>
+        <PackageReference Include="LLVM.Build" />
+      </ItemGroup>
+      <ItemGroup>
+        <ClangCompile Include="source1.cpp" />
+        <ClangCompile Include="source2.cpp" />
+        ...
+        <ClangCompile Include="sourceN.cpp" />
+      </ItemGroup>
+    </Project>
+    ```
+2. Restore .NET dependencies.
+    ```
+    dotnet restore
+    ```
+3. Build the project.
+    ```
+    dotnet msbuild
+    ```
+
 ## License
 
 MSBuildUnixNative is licensed under the [MIT license](LICENSE).
