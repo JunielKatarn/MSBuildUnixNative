@@ -12,7 +12,7 @@ namespace LLVM.Build.Tasks
 	/// </summary>
 	public abstract class CommandLineTask : ToolTask
 	{
-		#region protected members
+		#region Protected members
 
 		/// <summary>
 		/// Actual values for the command line arguments.
@@ -222,18 +222,24 @@ namespace LLVM.Build.Tasks
 			SetArgumentProperty(key, value, (v) => { return v.ToString(); });
 		}
 
-		#endregion // protected members
+		#endregion // Protected members
 
-		#region public members
+		#region Properties
 
 		[Required]
 		public string ToolDir { get; set; }
+
+		public bool Fake { get; set; } = false;
+
+		#endregion
+
+		#region ToolTask members
 
 		protected override string GenerateFullPathToTool()
 		{
 			return Path.Combine(ToolDir, ToolName);
 		}
 
-		#endregion // public members
+		#endregion // ToolTask members
 	}
 }

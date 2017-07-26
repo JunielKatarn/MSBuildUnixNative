@@ -134,8 +134,6 @@ namespace LLVM.Build.Tasks
 
 		public string OutDir { get; set; }
 
-		public bool Fake { get; set; } = false;
-
 		#endregion
 
 		#region Command line arguments

@@ -37,8 +37,6 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		public bool Fake { get; set; } = false;
-
 		#endregion // Properties
 
 		#region Command line arguments

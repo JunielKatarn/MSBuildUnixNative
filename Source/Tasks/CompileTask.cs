@@ -181,12 +181,6 @@ namespace LLVM.Build.Tasks
 
 		[Output]
 		public string[] ObjectFiles { get; set; }
-		
-		/// <summary>
-		/// Dry run. Print steps to take, but don't execute.
-		/// TODO: Deprecate or rename?
-		/// </summary>
-		public bool Fake { get; set; } = false;
 
 		#endregion // Properties
 
