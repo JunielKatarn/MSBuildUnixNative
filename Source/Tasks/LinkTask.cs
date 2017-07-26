@@ -348,7 +348,7 @@ namespace LLVM.Build.Tasks
 			}
 		}
 
-		#endregion // Linker options
+		#endregion // Command line arguments
 
 		#region Task members
 

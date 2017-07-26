@@ -2,6 +2,7 @@
 
 	<UsingTask TaskName="LLVM.Build.Tasks.CompileTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 	<UsingTask TaskName="LLVM.Build.Tasks.LinkTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
+	<UsingTask TaskName="LLVM.Build.Tasks.ArchiveTask" AssemblyFile="$(LLVMTasksPath)LLVM.Build.Tasks.dll" />
 
 	<Target Name="Compile">
 		<ItemGroup>
@@ -36,7 +37,19 @@
 		</CompileTask>
 	</Target>
 
-	<Target Name="Lib" />
+	<Target Name="Lib" DependsOnTargets="Compile">
+		<ItemGroup>
+			<Lib Include="@(CompileTaskOutput)" />
+		</ItemGroup>
+
+		<ArchiveTask
+				ToolDir               ="$(LLVMToolsDir)"
+				InputFiles            ="@(Lib)"
+				OutputFile            ="%(Lib.OutputFile)"
+
+				PrintOnly             ="$(PrintOnly)"
+		/>
+	</Target>
 
 	<!--TODO: This is 'executable-only'-->
 	<Target Name="Link">
@@ -93,7 +106,7 @@
 		</TonTask>
 	</Target>
 
-	<Target Name="Build" DependsOnTargets="Compile;Link">
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)">
 		<!--TODO: Print this message BEFORE 'DependsOn'.-->
 		<Message Text="Executing [Build] target..." />
 	</Target>

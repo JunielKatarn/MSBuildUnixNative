@@ -17,9 +17,9 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 
-	<!--Properties that must be set before Targets loading.-->
+	<!-- Properties that must be set before Targets loading.-->
 	<PropertyGroup Label="Configuration">
-		<ConfigurationType>DynamicLibrary</ConfigurationType>
+		<ConfigurationType>StaticLibrary</ConfigurationType>
 	</PropertyGroup>
 
 	<!--Sets up the LLVM.Build environment.-->
@@ -32,9 +32,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ClangCompile Include="lib.cpp" />
 		<ClangCompile Include="lib1.cpp" />
 		<ClangCompile Include="lib2.cpp" />
+		<ClangCompile Include="lib3.cpp" />
 	</ItemGroup>
 
 </Project>

@@ -13,7 +13,11 @@
 
 		<TargetExt Condition="'$(ConfigurationType)' == 'Application'"></TargetExt>
 		<TargetExt Condition="'$(ConfigurationType)' == 'DynamicLibrary'">.so</TargetExt>
-		<TargetName Condition="'$(TargetName)' == '' AND '$(ProjectName)' != ''">$(ProjectName)</TargetName>
+		<TargetExt Condition="'$(ConfigurationType)' == 'StaticLibrary'">.a</TargetExt>
+		<TargetName Condition="'$(TargetName)' == ''">$(MSBuildProjectName)</TargetName>
+
+		<BuildDependsOn Condition="'$(ConfigurationType)' == 'StaticLibrary'">Compile;Lib</BuildDependsOn>
+		<BuildDependsOn Condition="'$(ConfigurationType)' != 'StaticLibrary'">Compile;Link</BuildDependsOn>
 	</PropertyGroup>
 
 	<ItemDefinitionGroup>
@@ -27,11 +31,19 @@
 			<LanguageStandard Condition="'%(Compile.LanguageStandard)' == ''">c++11</LanguageStandard>
 		</Compile>
 
+		<Lib>
+			<OutputFile Condition="'%(Lib.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+		</Lib>
+
 		<Link>
 			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
 		</Link>
 		<Link Condition="'$(ConfigurationType)' == 'DynamicLibrary'">
 			<Shared Condition="'%(Link.Shared)' == ''">True</Shared>
+		</Link>
+		<!--TODO: Needed?-->
+		<Link Condition="'$(ConfigurationType)' == 'SaticLibrary'">
+			<Shared Condition="'%(Link.Shared)' == ''">False</Shared>
 		</Link>
 	</ItemDefinitionGroup>
 
