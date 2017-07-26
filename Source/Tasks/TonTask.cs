@@ -115,9 +115,9 @@ namespace LLVM.Build.Tasks
 			//Log.LogMessage("Executing command:");
 			//Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", arguments)}\n");
 
-			//if (Fake)
+			//if (Dry)
 			//{
-			//	Log.LogWarning("Fake was set. Ignoring this task.");
+			//	Log.LogWarning("Dry was set. Ignoring this task.");
 			//	return 0;
 			//}
 
@@ -184,7 +184,7 @@ namespace LLVM.Build.Tasks
 		/// Dry run. Print steps to take, but don't execute.
 		/// TODO: Deprecate or rename?
 		/// </summary>
-		public bool Fake { get; set; } = false;
+		public bool Dry { get; set; } = false;
 
 		public string Stage
 		{

@@ -81,6 +81,11 @@ namespace LLVM.Build.Tasks
 
 		protected override string ToolName => "llvm-ar";
 
+		protected override bool SkipTaskExecution()
+		{
+			return Dry;
+		}
+
 		protected override string GenerateCommandLineCommands()
 		{
 			CommandLineBuilder builder = new CommandLineBuilder();

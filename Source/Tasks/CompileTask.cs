@@ -116,9 +116,9 @@ namespace LLVM.Build.Tasks
 			Log.LogMessage("Executing command:");
 			Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", arguments)}\n");
 
-			if (Fake)
+			if (Dry)
 			{
-				Log.LogWarning("Fake was set. Ignoring this task.");
+				Log.LogWarning("Dry was set. Ignoring this task.");
 				return 0;
 			}
 

@@ -229,7 +229,10 @@ namespace LLVM.Build.Tasks
 		[Required]
 		public string ToolDir { get; set; }
 
-		public bool Fake { get; set; } = false;
+		/// <summary>
+		/// Dry run.
+		/// </summary>
+		public bool Dry { get; set; } = false;
 
 		#endregion
 

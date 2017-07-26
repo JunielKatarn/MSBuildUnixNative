@@ -36,9 +36,9 @@ namespace LLVM.Build.Tasks
 				foreach (string filePath in filePaths)
 				{
 					string trimmedFilePath = filePath.Trim();
-					if (Fake)
+					if (Dry)
 					{
-						Log.LogWarning($"Fake mode. Skiping: {trimmedFilePath}");
+						Log.LogWarning($"Dry mode. Skiping: {trimmedFilePath}");
 						continue;
 					}
 					Log.LogMessage("Deleting file: {0}", trimmedFilePath);
@@ -76,7 +76,7 @@ namespace LLVM.Build.Tasks
 		[Required]
 		public ITaskItem[] Extensions { get; set; }
 
-		public bool Fake { get; set; } = false;
+		public bool Dry { get; set; } = false;
 
 		#endregion
 

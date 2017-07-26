@@ -7,7 +7,7 @@
 	<PropertyGroup Label="SamplesGlobals">
 		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
 		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
-		<Fake>True</Fake>
+		<Dry>True</Dry>
 	</PropertyGroup>
 
 </Project>
