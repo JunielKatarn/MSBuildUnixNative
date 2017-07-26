@@ -6,7 +6,10 @@
 <PropertyGroup Label="Configuration">
 	<ConfigurationType>Application</ConfigurationType>
 
-	<BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
+	<!-- TODO: setting these fails to load assembly imported from NuGet. -->
+	<!-- <BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>  -->
+	<!-- <IntermediateOutputPath>$(RootDir)Build\$(Configuration)\</IntermediateOutputPath> -->
+
 	<OutputPath>$(RootDir)Target\$(Configuration)\</OutputPath>
 
 	<IntDir>$(RootDir)Build\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</IntDir>
