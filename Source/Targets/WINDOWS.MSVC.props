@@ -10,8 +10,8 @@
 	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
 	<PropertyGroup Label="Configuration">
 		<!--Set before VCTargets-->
-		<IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
-		<OutDir>$(SolutionDir)Target\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
+		<IntDir>$(SolutionDir)Build\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</IntDir>
+		<OutDir>$(SolutionDir)Target\$(Platform)\$(Configuration)\$(MSBuildProjectName)\</OutDir>
 		<PlatformToolset>v141</PlatformToolset><!--TODO: Use clang c2 compatibility?-->
 		<CppCollection>MSVC</CppCollection><!--TODO: Pointless?-->
 

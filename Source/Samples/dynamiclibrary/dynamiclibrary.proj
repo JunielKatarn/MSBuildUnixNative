@@ -26,13 +26,9 @@
 	<Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 	<Import Project="$(LLVMTargetsPath)\..\CppProject.props" />
 
-	<PropertyGroup Label="Globals">
-		<ProjectName>dynamiclibrary</ProjectName>
-	</PropertyGroup>
-
 	<PropertyGroup Label="Configuration">
-		<IntDir>$(RootDir)Build\$(Configuration)\$(Platform)\$(ProjectName)\</IntDir>
-		<OutDir>$(RootDir)Target\$(Configuration)\$(Platform)\$(ProjectName)\</OutDir>
+		<IntDir>$(RootDir)Build\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</IntDir>
+		<OutDir>$(RootDir)Target\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</OutDir>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -7,8 +7,7 @@
 
 	<!-- Build properties related to this codebase. -->
 	<PropertyGroup>
-		<ProjectName>Tasks</ProjectName>
-		<BaseIntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\$(ProjectName)\</BaseIntermediateOutputPath>
+		<BaseIntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
 	</PropertyGroup>
 

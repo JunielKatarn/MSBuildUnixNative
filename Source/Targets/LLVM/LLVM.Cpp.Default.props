@@ -14,7 +14,7 @@
 		<TargetExt Condition="'$(ConfigurationType)' == 'Application'"></TargetExt>
 		<TargetExt Condition="'$(ConfigurationType)' == 'DynamicLibrary'">.so</TargetExt>
 		<TargetExt Condition="'$(ConfigurationType)' == 'StaticLibrary'">.a</TargetExt>
-		<TargetName Condition="'$(TargetName)' == '' AND '$(ProjectName)' != ''">$(ProjectName)</TargetName>
+		<TargetName Condition="'$(TargetName)' == ''">$(MSBuildProjectName)</TargetName>
 	</PropertyGroup>
 
 	<ItemDefinitionGroup>

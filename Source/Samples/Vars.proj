@@ -17,7 +17,6 @@
 
 	<PropertyGroup Label="Globals">
 		<ProjectGuid>{86082908-3b33-429c-b694-8aed79d1e71f}</ProjectGuid>
-		<ProjectName>Vars</ProjectName>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))">$([System.Runtime.InteropServices.OSPlatform]::OSX)</OSPlatform>
@@ -51,6 +50,7 @@
 		<Message Text="LLVMTargetsPath            [$(LLVMTargetsPath)]" />
 		<Message Text="LLVMTasksPath              [$(LLVMTasksPath)]" />
 		<Message Text="MSBuildBinPath             [$(MSBuildBinPath)]" />
+		<Message Text="MSBuildProjectName         [$(MSBuildProjectName)]" />
 		<Message Text="MSBuildToolsPath           [$(MSBuildToolsPath)]" />
 		<Message Text="MSBuildStartupDirectory    [$(MSBuildStartupDirectory)]" />
 		<Message Text="MSBuildThisFileDirectory   [$(MSBuildThisFileDirectory)]" />
@@ -64,7 +64,6 @@
 		<Message Text="Platform                   [$(Platform)]" />
 		<Message Text="PlatformTarget             [$(PlatformTarget)]" />
 		<Message Text="ProcessorArchitecture      [$(ProcessorArchitecture)]" />
-		<Message Text="ProjectName                [$(ProjectName)]" />
 		<Message Text="RootDir                    [$(RootDir)]" />
 		<Message Text="SolutionDir                [$(SolutionDir)]" />
 		<Message Text="TargetPlatformIdentifier   [$(TargetPlatformIdentifier)]" />
