@@ -9,16 +9,25 @@
 	<PropertyGroup>
 		<BaseIntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
 		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+		<PackageLicenseUrl>https://github.com/JunielKatarn/MSBuildUnixNative/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/JunielKatarn/MSBuildUnixNative</PackageProjectUrl>
+		<RepositoryUrl>git@github.com:JunielKatarn/MSBuildUnixNative.git</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Initial development preview.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Label="NuGet">
 		<AssemblyName>LLVM.Build.Tasks</AssemblyName>
 		<PackageId>LLVM.Build</PackageId>
-		<Version>0.0.0</Version>
-		<Authors />
+		<Version>0.0.0.1</Version>
+		<Authors>Julio C. Rocha</Authors>
 		<Company />
-		<Product />
+		<Product>LLVM.Build</Product>
 		<Description>MSBuild tasks and targets for LLVM/Clang compiler tools.</Description>
+		<AssemblyVersion>0.0.0.1</AssemblyVersion>
+		<FileVersion>0.0.0.1</FileVersion>
+		<Copyright>Julio C. Rocha</Copyright>
 	</PropertyGroup>
 
 	<ItemGroup>
