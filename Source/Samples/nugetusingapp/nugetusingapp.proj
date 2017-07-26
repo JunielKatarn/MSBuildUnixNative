@@ -3,6 +3,16 @@
 
 <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
 
+<PropertyGroup Label="Configuration">
+	<ConfigurationType>Application</ConfigurationType>
+
+	<BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
+	<OutputPath>$(RootDir)Target\$(Configuration)\</OutputPath>
+
+	<IntDir>$(RootDir)Build\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</IntDir>
+	<OutDir>$(RootDir)Target\$(Configuration)\$(Platform)\$(MSBuildProjectName)\</OutDir>
+</PropertyGroup>
+
 <ItemGroup>
 	<PackageReference Include="LLVM.Build" Version="0.0.0" />
 </ItemGroup>
