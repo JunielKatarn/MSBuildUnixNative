@@ -37,7 +37,7 @@ namespace LLVM.Build.Tasks
 
 		#region Properties
 
-		public bool PrintOnly { get; set; } = false;
+		public bool Fake { get; set; } = false;
 
 		#endregion // Properties
 

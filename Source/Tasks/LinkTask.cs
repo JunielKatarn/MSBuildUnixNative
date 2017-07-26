@@ -74,9 +74,9 @@ namespace LLVM.Build.Tasks
 			Log.LogMessage("Executing command:");
 			Log.LogCommandLine($"{toolPath}\n\t{string.Join("\n\t", args)}\n");
 
-			if (PrintOnly)
+			if (Fake)
 			{
-				Log.LogWarning("PrintOnly was set. Ignoring this task.");
+				Log.LogWarning("Fake was set. Ignoring this task.");
 				return 0;
 			}
 
@@ -134,7 +134,7 @@ namespace LLVM.Build.Tasks
 
 		public string OutDir { get; set; }
 
-		public bool PrintOnly { get; set; } = false;
+		public bool Fake { get; set; } = false;
 
 		#endregion
 

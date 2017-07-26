@@ -22,7 +22,7 @@
 		<CleanTask
 				Directories="%(CleanTask.Directories)"
 				Extensions="%(CleanTask.Extensions)"
-				PrintOnly="$(PrintOnly)"
+				Fake="$(Fake)"
 		/>
 	</Target>
 

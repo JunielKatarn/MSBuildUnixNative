@@ -30,7 +30,7 @@
 
 				ObjectFiles="@(Compile->'%(ObjectFileName)')"
 
-				PrintOnly      ="$(PrintOnly)">
+				Fake      ="$(Fake)">
 			<Output
 					TaskParameter="ObjectFiles"
 					ItemName     ="CompileTaskOutput" />
@@ -47,7 +47,7 @@
 				InputFiles            ="@(Lib)"
 				OutputFile            ="%(Lib.OutputFile)"
 
-				PrintOnly             ="$(PrintOnly)"
+				Fake             ="$(Fake)"
 		/>
 	</Target>
 
@@ -74,7 +74,7 @@
 				FooterInputs          ="%(Link.FooterInputs)"
 				OutputFile            ="%(Link.OutputFile)"
 
-				PrintOnly             ="$(PrintOnly)"
+				Fake             ="$(Fake)"
 		/>
 	</Target>
 
@@ -99,7 +99,7 @@
 
 			ObjectFiles="@(Compile->'%(ObjectFileName)')"
 
-			PrintOnly      ="$(PrintOnly)">
+			Fake      ="$(Fake)">
 			<Output
 					TaskParameter="ObjectFiles"
 					ItemName     ="CompileTaskOutput" />
