@@ -24,12 +24,12 @@
 
 	<!--TODO: Research - avoid setting this per project?-->
 	<PropertyGroup>
-		<SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildStartupDirectory)\</SolutionDir>
+		<RootDir Condition="'$(RootDir)'==''">$(MSBuildThisFileDirectory)..\..\..\</RootDir>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<LLVMTargetsPath>$(SolutionDir)Source\Targets\LLVM</LLVMTargetsPath>
-		<LLVMTasksPath>$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+		<LLVMTargetsPath>$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
+		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,7 +37,7 @@
 	</ItemGroup>
 
 	<!-- Include targets and properties for this project type. -->
-	<Import Project="$(SolutionDir)Source\Targets\CppProject.props" />
+	<Import Project="$(RootDir)Source\Targets\CppProject.props" />
 
 	<Target Name="Build">
 		<Message Text="BaseIntermediateOutputPath [$(BaseIntermediateOutputPath)]" />
