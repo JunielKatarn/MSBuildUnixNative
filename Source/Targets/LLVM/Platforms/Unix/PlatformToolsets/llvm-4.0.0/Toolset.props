@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project>
-
-	<PropertyGroup Label="LLVMProperties">
-		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/opt/llvm/4/lib/clang/4.0.0</LLVMInstallDir>
-		<LLVMToolsDir Condition="'$(LLVMToolsDir)' == ''">/opt/llvm/4/bin</LLVMToolsDir>
-	</PropertyGroup>
-
-</Project>

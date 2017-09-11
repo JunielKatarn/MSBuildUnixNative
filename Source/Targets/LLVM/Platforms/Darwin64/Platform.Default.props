@@ -4,7 +4,7 @@
 	<PropertyGroup>
 		<PlatformArchitecture>64</PlatformArchitecture>
 		<!--TODO: PlatformTarget?-->
-		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-4.0.0</PlatformToolset>
+		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-5.0.0</PlatformToolset>
 	</PropertyGroup>
 
 </Project>

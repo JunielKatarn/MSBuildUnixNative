@@ -4,7 +4,7 @@
 	<PropertyGroup>
 		<PlatformArchitecture>64</PlatformArchitecture>
 		<!--TODO: PlatformTarget?-->
-		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-4.0.0</PlatformToolset>
+		<PlatformToolset Condition="'$(PlatformToolset)' == ''">llvm-5.0.0</PlatformToolset>
 	</PropertyGroup>
 
 	<!--TODO: This works for executables only, currently.-->
@@ -31,7 +31,7 @@
 				/lib64;
 				/usr/lib/x86_64-linux-gnu;
 				/usr/lib;
-				/opt/llvm/4/lib;
+				/opt/llvm/5/lib;
 				/lib;
 				/usr/lib
 			</LibrarySearchPath>
