@@ -22,8 +22,8 @@ These are the currently tested operating systems:
 
 ### Prerequisites
 * [.NET Core SDK](https://www.microsoft.com/net/download/core)
-* LLVM/Clang compiler collection ([version 4.0.0](http://releases.llvm.org/download.html#4.0.0)).
-  * Extract at `/opt/llvm/4.0.0`.
+* LLVM/Clang compiler collection ([version 5.0.0](http://releases.llvm.org/download.html#5.0.0)).
+  * Extract at `/opt/llvm/5.0.0`.
 * Ubuntu 16.04:
   * `libc6-dev`
   * `libgcc-5-dev`
