@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	This is the entry point for native (C/C++) project types.
+	Expected variables set:
+	- LLVMTargetsPath
+-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><!--TreatAsLocalProperty="Platform"-->
+
+	<PropertyGroup>
+		<!--TODO: Wait for .NET Core to implement a decent getter.-->
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
+		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))">$([System.Runtime.InteropServices.OSPlatform]::OSX)</OSPlatform>
+	</PropertyGroup>
+
+	<!--
+		Provides default:
+		- PlatformToolset
+		- Platform
+		- Configuration
+	-->
+	<Import Project="$(OSPlatform).props" />
+
+	<!-- Add Platform/Configuration defaults. -->
+	<!--TODO: Fetch from $(OSPlatform).props instead?-->
+	<!--<Import Project="$(CppCollection)\Platforms\$(Platform).props" />-->
+	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
+
+</Project>
