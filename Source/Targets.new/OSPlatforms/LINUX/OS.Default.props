@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- TODO: Move this stuff somewhere else. -->
+<Project>
+
+	<PropertyGroup>
+		<!--TODO: PlatformTarget?-->
+		<PlatformToolset Condition="'$(PlatformToolset)' == ''">Default</PlatformToolset>
+	</PropertyGroup>
+
+	<!-- TODO: This works for executables only, currently... -->
+	<ItemDefinitionGroup>
+
+		<Compile>
+			<SystemRoot Condition="'%(Compile.SystemRoot)' == ''"></SystemRoot>
+		</Compile>
+
+		<Link>
+			<LinkerOptionExtensions Condition="'%(Link.LinkerOptionExtensions)' == ''">relro</LinkerOptionExtensions>
+			<HashStyle              Condition="'%(Link.HashStyle)'              == ''">gnu</HashStyle>
+			<EhFrameHeader          Condition="'%(Link.EhFrameHeader)'          == ''">True</EhFrameHeader>
+			<TargetEmulation        Condition="'%(Link.TargetEmulation)'        == ''">elf_x86_64</TargetEmulation>
+			<HeaderInputs           Condition="'%(Link.HeaderInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crti.o</HeaderInputs>
+			<LibrarySearchPath      Condition="'%(Link.LibrarySearchPath)'      == ''">
+				/usr/lib/gcc/x86_64-linux-gnu/5;
+				/usr/lib/x86_64-linux-gnu;
+				/lib/x86_64-linux-gnu;
+				/lib64;
+				/usr/lib/x86_64-linux-gnu;
+				/usr/lib;
+				/opt/llvm/5/lib;
+				/lib;
+				/usr/lib
+			</LibrarySearchPath>
+			<LibraryNames           Condition="'%(Link.LibraryNames)'           == ''">c</LibraryNames>
+			<FooterInputs           Condition="'%(Link.FooterInputs)'           == ''">/usr/lib/x86_64-linux-gnu/crtn.o</FooterInputs>
+		</Link>
+	</ItemDefinitionGroup>
+
+</Project>

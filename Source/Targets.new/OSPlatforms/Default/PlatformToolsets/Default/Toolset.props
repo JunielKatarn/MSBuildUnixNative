@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
 
+	<PropertyGroup Label="LLVMProperties">
+		<LLVMInstallDir Condition="'$(LLVMInstallDir)' == ''">/opt/llvm/5/lib/clang/5.0.1</LLVMInstallDir>
+		<LLVMToolsDir Condition="'$(LLVMToolsDir)' == ''">/opt/llvm/5.0.1/bin</LLVMToolsDir>
+	</PropertyGroup>
 
+	<Import Project="$(MSBuildThisFileDirectory)Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)Configurations\$(Configuration).props" />
+	<Import Project="$(MSBuildThisFileDirectory)ConfigurationTypes\$(ConfigurationType).props" />
 
 </Project>

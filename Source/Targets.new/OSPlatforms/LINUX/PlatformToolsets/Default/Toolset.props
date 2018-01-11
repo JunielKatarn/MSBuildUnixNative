@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<!--TODO: Perhaps define 'PlatformsFolder' (plural) in Cpp.Default.props?-->
+	<!--Import from shared OS family platform.-->
+	<Import Project="$(LLVMTargetsPath)\OSPlatforms\Default\PlatformToolsets\$(PlatformToolset)\Toolset.props" />
+
+</Project>

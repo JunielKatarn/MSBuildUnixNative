@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<TargetExt>.a</TargetExt>
+		<BuildDependsOn>Compile;Lib</BuildDependsOn>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<Lib>
+			<OutputFile Condition="'%(Lib.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+		</Lib>
+	</ItemDefinitionGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Configurations\$(Configuration).props" />
+
+</Project>

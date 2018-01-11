@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup Label="Configuration">
+		<Platform Condition="'$(Platform)'=='' OR '$(Platform)'=='AnyCPU'">x64</Platform>
+		<OSPlatformFolder Condition="'$(OSPlatformFolder)' == ''">$(MSBuildThisFileDirectory)</OSPlatformFolder>
+	</PropertyGroup>
+
+</Project>

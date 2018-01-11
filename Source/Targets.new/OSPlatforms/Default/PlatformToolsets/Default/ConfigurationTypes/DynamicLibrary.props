@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<TargetExt>.so</TargetExt>
+		<BuildDependsOn>Compile;Link</BuildDependsOn>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<!-- Target-independent compilation options -->
+		<Compile>
+			<PositionIndependentCode Condition="'%(Compile.PositionIndependentCode)' == ''">True</PositionIndependentCode>
+		</Compile>
+
+		<Link>
+			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+			<Shared Condition="'%(Link.Shared)' == ''">True</Shared>
+
+			<HeaderInputs>
+				%(Link.HeaderInputs);
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+			</HeaderInputs>
+			<FooterInputs>
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o;
+				%(Link.FooterInputs)
+			</FooterInputs>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Configurations\$(Configuration).props" />
+
+</Project>

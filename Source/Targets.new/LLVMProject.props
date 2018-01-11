@@ -7,7 +7,7 @@
 -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><!--TreatAsLocalProperty="Platform"-->
 
-	<PropertyGroup>
+	<PropertyGroup Condition="'$(OSPlatform)' == ''">
 		<!--TODO: Wait for .NET Core to implement a decent getter.-->
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
@@ -19,12 +19,24 @@
 		- PlatformToolset
 		- Platform
 		- Configuration
+		- OSPlatformFolder
 	-->
-	<Import Project="$(OSPlatform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)OSPlatforms\$(OSPlatform)\OS.props" />
+	<Import Project="$(OSPlatformFolder)\OS.Default.props" />
+	<Import Project="$(OSPlatformFolder)\OS.targets" />
 
-	<!-- Add Platform/Configuration defaults. -->
-	<!--TODO: Fetch from $(OSPlatform).props instead?-->
-	<!--<Import Project="$(CppCollection)\Platforms\$(Platform).props" />-->
-	<Import Project="$(CppCollection)\Configurations\$(Configuration).props" />
+	<!--
+		Provides default:
+		- Configuration
+		- ConfigurationType
+		- Targets (i.e. Build)
+	-->
+	<Import Project="$(MSBuildThisFileDirectory)LLVM.Default.props" />
+
+	<Import Project="$(OSPlatformFolder)\PlatformToolsets\$(PlatformToolset)\Toolset.props" />
+	<Import Project="$(OSPlatformFolder)\PlatformToolsets\$(PlatformToolset)\Toolset.targets" />
+
+	<!-- TODO: Remove -->
+	<Target Name="Build" />
 
 </Project>
