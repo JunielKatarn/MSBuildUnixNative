@@ -12,6 +12,8 @@
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Windows)))">$([System.Runtime.InteropServices.OSPlatform]::Windows)</OSPlatform>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))">$([System.Runtime.InteropServices.OSPlatform]::Linux)</OSPlatform>
 		<OSPlatform Condition="$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))">$([System.Runtime.InteropServices.OSPlatform]::OSX)</OSPlatform>
+
+		<OSPlatformFolder Condition="'$(OSPlatformFolder)' == ''">$(MSBuildThisFileDirectory)OSPlatforms\$(OSPlatform)</OSPlatformFolder>
 	</PropertyGroup>
 
 	<!--
@@ -21,8 +23,9 @@
 		- Configuration
 		- OSPlatformFolder
 	-->
-	<Import Project="$(MSBuildThisFileDirectory)OSPlatforms\$(OSPlatform)\OS.props" />
+	<!-- TODO: .Default needed at all? -->
 	<Import Project="$(OSPlatformFolder)\OS.Default.props" />
+	<Import Project="$(OSPlatformFolder)\OS.props" />
 	<Import Project="$(OSPlatformFolder)\OS.targets" />
 
 	<!--
