@@ -9,18 +9,6 @@
 	<ItemDefinitionGroup>
 		<Link>
 			<OutputFile Condition="'%(Link.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-
-			<!-- TODO: Move this stuff to LINUX props. -->
-			<DynamicLinker Condition="'%(Link.DynamicLinker)' == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
-			<HeaderInputs>
-				/usr/lib/x86_64-linux-gnu/crt1.o;
-				%(Link.HeaderInputs);
-				/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o
-			</HeaderInputs>
-			<FooterInputs>
-				/usr/lib/gcc/x86_64-linux-gnu/5/crtend.o;
-				%(Link.FooterInputs)
-			</FooterInputs>
 		</Link>
 	</ItemDefinitionGroup>
 

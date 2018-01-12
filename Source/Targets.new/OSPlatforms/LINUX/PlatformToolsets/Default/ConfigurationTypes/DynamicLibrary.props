@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<TargetExt>.so</TargetExt>
+	</PropertyGroup>
+
+	<ItemDefinitionGroup>
+		<Link>
+			<HeaderInputs>
+				%(Link.HeaderInputs);
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtbeginS.o
+			</HeaderInputs>
+			<FooterInputs>
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtendS.o;
+				%(Link.FooterInputs)
+			</FooterInputs>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<!-- TODO: Implement, even if empty? -->
+	<!-- <Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Configurations\$(Configuration).props" /> -->
+
+</Project>

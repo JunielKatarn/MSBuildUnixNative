@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<TargetExt>.a</TargetExt>
+	</PropertyGroup>
+
+	<!-- TODO: Implement, even if empty? -->
+	<!-- <Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Configurations\$(Configuration).props" /> -->
+
+</Project>

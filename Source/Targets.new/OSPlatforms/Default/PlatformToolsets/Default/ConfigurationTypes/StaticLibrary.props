@@ -2,7 +2,6 @@
 <Project>
 
 	<PropertyGroup>
-		<TargetExt>.a</TargetExt>
 		<BuildDependsOn>Compile;Lib</BuildDependsOn>
 	</PropertyGroup>
 

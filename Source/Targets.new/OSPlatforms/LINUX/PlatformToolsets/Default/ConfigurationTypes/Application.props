@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<ItemDefinitionGroup>
+		<Link>
+			<DynamicLinker Condition="'%(Link.DynamicLinker)' == ''">/lib64/ld-linux-x86-64.so.2</DynamicLinker>
+			<HeaderInputs>
+				/usr/lib/x86_64-linux-gnu/crt1.o;
+				%(Link.HeaderInputs);
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtbegin.o
+			</HeaderInputs>
+			<FooterInputs>
+				/usr/lib/gcc/x86_64-linux-gnu/5/crtend.o;
+				%(Link.FooterInputs)
+			</FooterInputs>
+		</Link>
+	</ItemDefinitionGroup>
+
+	<!-- TODO: Implement, even if empty? -->
+	<!-- <Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Platforms\$(Platform).props" />
+	<Import Project="$(MSBuildThisFileDirectory)$(ConfigurationType)\Configurations\$(Configuration).props" /> -->
+
+</Project>

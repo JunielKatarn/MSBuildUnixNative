@@ -7,11 +7,6 @@
 		<!-- sure??? -->
 		<LLVMTargetsPath   Condition="'$(LLVMTargetsPath)'   == ''">$(MSBuildThisFileDirectory)</LLVMTargetsPath>
 
-		<!-- Replace with an actual installation/deployment path. -->
-		<!-- <LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath> -->
-
-		<!-- TODO: DISCARD? -->
-		<!-- <PlatformFolder Condition="'$(PlatformFolder)' == ''">$(LLVMTargetsPath)\Platforms\$(Platform)</PlatformFolder> -->
 
 		<TargetName Condition="'$(TargetName)' == ''">$(MSBuildProjectName)</TargetName>
 	</PropertyGroup>
