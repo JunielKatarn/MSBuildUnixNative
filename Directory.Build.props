@@ -4,6 +4,7 @@
 	<PropertyGroup>
 		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
 		<RootDir>$(MSBuildThisFileDirectory)</RootDir>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
 		<OutputPath>$(RootDir)Target\$(Configuration)\</OutputPath>
 	</PropertyGroup>
