@@ -7,7 +7,7 @@
 		<LLVMTargetsPath   Condition="'$(LLVMTargetsPath)'   == ''">$(MSBuildThisFileDirectory)</LLVMTargetsPath>
 
 		<!-- Replace with an actual installation/deployment path. -->
-		<LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+		<LLVMTasksPath Condition="'$(LLVMTasksPath)' == ''">$(SolutionDir)Target\$(Configuration)\netstandard2.0\</LLVMTasksPath>
 
 		<PlatformFolder Condition="'$(PlatformFolder)' == ''">$(LLVMTargetsPath)\Platforms\$(Platform)</PlatformFolder>
 

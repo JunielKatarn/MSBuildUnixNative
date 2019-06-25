@@ -29,7 +29,7 @@
 
 	<PropertyGroup>
 		<LLVMTargetsPath>$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
-		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard1.6\</LLVMTasksPath>
+		<LLVMTasksPath>$(RootDir)Target\$(Configuration)\netstandard2.0\</LLVMTasksPath>
 	</PropertyGroup>
 
 	<ItemGroup>
