@@ -5,12 +5,21 @@
 		<SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
 		<RootDir>$(MSBuildThisFileDirectory)</RootDir>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<BaseIntermediateOutputPath>$(RootDir)Build\$(Configuration)\</BaseIntermediateOutputPath>
-		<OutputPath>$(RootDir)Target\$(Configuration)\</OutputPath>
+
+		<IntermediateOutputPathRoot>$(RootDir)Build\</IntermediateOutputPathRoot>
+		<IntermediateOutputPathBase>$(IntermediateOutputPathRoot)$(Platform)\$(Configuration)\</IntermediateOutputPathBase>
+		<IntermediateOutputPath>$(IntermediateOutputPathBase)$(MSBuildProjectName)\</IntermediateOutputPath>
+
+		<!-- "obj" directory used for Restore target recepits. -->
+		<BaseIntermediateOutputPath>$(IntermediateOutputPath)</BaseIntermediateOutputPath>
+
+		<OutputPathRoot>$(RootDir)Target\</OutputPathRoot>
+		<OutputPathBase>$(OutputPathRoot)$(Platform)\$(Configuration)\</OutputPathBase>
+    <OutputPath>$(OutputPathBase)$(MSBuildProjectName)\</OutputPath>
 	</PropertyGroup>
 
 	<PropertyGroup Label="SamplesGlobals">
-		<LLVMTargetsPath>$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
+		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
 	</PropertyGroup>
 
 </Project>

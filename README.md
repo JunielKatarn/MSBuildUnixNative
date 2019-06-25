@@ -61,11 +61,11 @@ These are the currently tested operating systems:
     ```
 2. Restore .NET dependencies.
     ```
-    dotnet restore
+    msbuild /t:Restore
     ```
 3. Build the project.
     ```
-    dotnet msbuild
+    msbuild
     ```
 
 ## License
