@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+	<PropertyGroup>
+		<Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+	</PropertyGroup>
+
+	<Import Project="..\Directory.Build.props" />
+
+	<PropertyGroup>
+		<IntermediateOutputPath>$(IntermediateOutputPathBase)Samples\$(MSBuildProjectName)\</IntermediateOutputPath>
+		<BaseIntermediateOutputPath>$(IntermediateOutputPath)</BaseIntermediateOutputPath>
+		<OutputPath>$(OutputPathBase)Samples\$(MSBuildProjectName)\</OutputPath>
+
+		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
+	</PropertyGroup>
+
+</Project>

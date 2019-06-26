@@ -15,11 +15,7 @@
 
 		<OutputPathRoot>$(RootDir)Target\</OutputPathRoot>
 		<OutputPathBase>$(OutputPathRoot)$(Platform)\$(Configuration)\</OutputPathBase>
-    <OutputPath>$(OutputPathBase)$(MSBuildProjectName)\</OutputPath>
-	</PropertyGroup>
-
-	<PropertyGroup Label="SamplesGlobals">
-		<LLVMTargetsPath Condition="'$(LLVMTargetsPath)' == ''">$(RootDir)Source\Targets\LLVM</LLVMTargetsPath>
+		<OutputPath>$(OutputPathBase)$(MSBuildProjectName)\</OutputPath>
 	</PropertyGroup>
 
 </Project>
