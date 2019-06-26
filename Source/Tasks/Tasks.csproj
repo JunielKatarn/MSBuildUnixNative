@@ -5,18 +5,6 @@
 		<RootNamespace>LLVM.Build.Tasks</RootNamespace>
 	</PropertyGroup>
 
-	<!-- Build properties related to this codebase. -->
-	<PropertyGroup>
-		<BaseIntermediateOutputPath>$(BaseIntermediateOutputPath)$(TargetFramework)\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
-		<IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
-		<PackageLicenseUrl>https://github.com/JunielKatarn/MSBuildUnixNative/blob/master/LICENSE</PackageLicenseUrl>
-		<PackageProjectUrl>https://github.com/JunielKatarn/MSBuildUnixNative</PackageProjectUrl>
-		<RepositoryUrl>git@github.com:JunielKatarn/MSBuildUnixNative.git</RepositoryUrl>
-		<RepositoryType>Git</RepositoryType>
-		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
-		<PackageReleaseNotes>Initial development preview.</PackageReleaseNotes>
-	</PropertyGroup>
-
 	<PropertyGroup Label="NuGet">
 		<AssemblyName>LLVM.Build.Tasks</AssemblyName>
 		<PackageId>LLVM.Build</PackageId>
@@ -28,6 +16,12 @@
 		<AssemblyVersion>0.0.0.1</AssemblyVersion>
 		<FileVersion>0.0.0.1</FileVersion>
 		<Copyright>Julio C. Rocha</Copyright>
+		<PackageLicenseUrl>https://github.com/JunielKatarn/MSBuildUnixNative/blob/master/LICENSE</PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/JunielKatarn/MSBuildUnixNative</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/JunielKatarn/MSBuildUnixNative</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<PackageReleaseNotes>Initial development preview.</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
